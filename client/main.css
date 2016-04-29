@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+
+#mainbox, #chatPanel, #infoPanel, #opponentBoard {
+	padding: 5px;
+
+}
