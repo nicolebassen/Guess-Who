@@ -6,7 +6,7 @@
     <div class="container">
         <h1>Guess Who?</h1>
         
-        <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="col-lg-12 col-md-12 col-sm-12">
         	<!-- Gameplay area -->
         	<div class="row">
         		{{> mainbox}}
@@ -15,9 +15,9 @@
         	<div class="row">
         		{{> chatPanel }}
         	</div>
-        </div>
+
         
-        <div class="col-sm-3">
+
         	<!-- Online users -->
         	<div class="row">
         		{{> infoPanel }}
@@ -30,7 +30,8 @@
     </div>
 </body>
 
-<template name="mainbox"> 
+<template name="mainbox">
+    <div class="col-lg-9 col-md-9 col-sm-9">
     <div class="panel panel-default" id="mainbox">
         <div class="panel-body">
             
@@ -56,15 +57,15 @@
                     </div>
                 </div> <!-- /stats div -->
             </div> <!-- /photo+stats div -->
-                
+
             <!-- tiles div -->
-            <div class="col-xs-9">
+            <div class="col-lg-9 col-md-9 col-sm-9" id="playerboard">
             
             	<!-- row #1 -->
             	<div class="row">
 					{{#each firstRow}}
                 	<div class="col-lg-2 col-md-2 col-sm-2">
-                    	<div class="panel panel-default">
+                    	<div class="box" id="player-row">
                             <div class="flip-container">
                                 <div class="flipper" onclick="this.classList.toggle('flipped')">
                                     <div class="front">
@@ -84,7 +85,7 @@
             	<div class="row">
 					{{#each secondRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <div class="panel panel-default">
+                            <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="this.classList.toggle('flipped')">
                                         <div class="front">
@@ -104,7 +105,7 @@
             	<div class="row">
 					{{#each thirdRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <div class="panel panel-default">
+                            <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="this.classList.toggle('flipped')">
                                         <div class="front">
@@ -121,34 +122,39 @@
                 </div> <!-- /row #3 -->
 
             </div>
-            
         </div>
     </div>
+        </div>
 </template>
 
 <template name="chatPanel">
+    <div class="col-lg-9 col-md-9 col-sm-9">
 	<div class="panel panel-default" id="chatPanel">
 		<h3>Chat Panel</h3>
 		<p>Chat panel goes here.</p>
 	</div>
+        </div>
 </template>
 
 <template name="infoPanel">
+    <div class="col-lg-3 col-md-3 col-sm-3">
 	<div class="panel panel-default" id="infoPanel">
 		<h3>Info Panel</h3>
 		<p>Info panel goes here. Qui blandit praesent luptatum zzril delenit augue duis 
 		dolore, te feugait nulla facilisi nam liber tempor.</p>
 	</div>
+        </div>
 </template>
 
 <template name="opponentBoard">
+    <div class="col-lg-3 col-md-3 col-sm-3">
 	<div class="panel panel-default" id="opponentBoard">
 		<h3>Opponent Board</h3>
         <!-- row #1 -->
         <div class="row">
             {{#each firstRow}}
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <div class="panel panel-default">
+                    <div class="box" id="opponent-row">
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
@@ -168,7 +174,7 @@
         <div class="row">
             {{#each secondRow}}
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <div class="panel panel-default">
+                    <div class="box" id="opponent-row">
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
@@ -188,7 +194,7 @@
         <div class="row">
             {{#each thirdRow}}
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <div class="panel panel-default">
+                    <div class="box" id="opponent-row">
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
@@ -204,6 +210,7 @@
             {{/each}}
         </div> <!-- /row #3 -->
 	</div>
+        </div>
 </template>
 
 

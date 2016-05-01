@@ -5,9 +5,33 @@
 
 }
 
-.teamlogo{
-	padding-left:5%;
+
+body{
+	background-color: lightgoldenrodyellow;
 }
+
+#opponentBoard{
+	background-color: red;
+    padding: 5px;
+    height: 280px;
+}
+
+#playerboard{
+	background-color: lightskyblue;
+}
+
+#player-row{
+    padding: 10px;
+    height: 250px;
+}
+
+#opponent-row{
+    padding: 10px;
+    height: 70px;
+}
+
+
+
 /* entire container, keeps perspective */
 .flip-container{
 	/*perspective*/
