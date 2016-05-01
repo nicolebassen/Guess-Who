@@ -39,11 +39,7 @@
             	<!-- photo div -->
             	<div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-rounded img-responsive" src="../public/bob.jpg"/>
-                        </div>
-                    </div>
+                    <img src="bob.jpg">
                 </div>
             	</div><!-- /photo div -->
             
@@ -69,7 +65,16 @@
 					{{#each firstRow}}
                 	<div class="col-lg-2 col-md-2 col-sm-2">
                     	<div class="panel panel-default">
-                        	<img class="img-responsive" src="{{this.image}}"/>
+                            <div class="flip-container">
+                                <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                    <div class="front">
+                                        <img src="bob.jpg">
+                                    </div>
+                                    <div class="back">
+                                        <img src="pam.jpg">
+                                    </div>
+                                </div>
+                            </div>
                     	</div>
                 	</div>
                 	{{/each}}
@@ -78,22 +83,40 @@
                 <!-- row #2 -->
             	<div class="row">
 					{{#each secondRow}}
-                	<div class="col-lg-2 col-md-2 col-sm-2">
-                    	<div class="panel panel-default">
-                        	<img class="img-responsive" src="{{this.image}}"/>
-                    	</div>
-                	</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="panel panel-default">
+                                <div class="flip-container">
+                                    <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                        <div class="front">
+                                            <img src="bob.jpg">
+                                        </div>
+                                        <div class="back">
+                                            <img src="pam.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 	{{/each}}
                 </div> <!-- /row #2 -->
                 
                 <!-- row #3 -->
             	<div class="row">
 					{{#each thirdRow}}
-                	<div class="col-lg-2 col-md-2 col-sm-2">
-                    	<div class="panel panel-default">
-                        	<img class="img-responsive" src="{{this.image}}"/>
-                    	</div>
-                	</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="panel panel-default">
+                                <div class="flip-container">
+                                    <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                        <div class="front">
+                                            <img src="bob.jpg">
+                                        </div>
+                                        <div class="back">
+                                            <img src="pam.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 	{{/each}}
                 </div> <!-- /row #3 -->
 
@@ -121,8 +144,66 @@
 <template name="opponentBoard">
 	<div class="panel panel-default" id="opponentBoard">
 		<h3>Opponent Board</h3>
-		<p>Opponent's board goes here. Qui blandit praesent luptatum zzril delenit augue duis 
-		dolore, te feugait nulla facilisi nam liber tempor.</p>
+        <!-- row #1 -->
+        <div class="row">
+            {{#each firstRow}}
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="flip-container">
+                            <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                <div class="front">
+                                    <img src="bob.jpg" width="50" height="70">
+                                </div>
+                                <div class="back">
+                                    <img src="pam.jpg" width="50" height="70">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div> <!-- /row #1 -->
+
+        <!-- row #2 -->
+        <div class="row">
+            {{#each secondRow}}
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="flip-container">
+                            <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                <div class="front">
+                                    <img src="bob.jpg" width="50" height="70">
+                                </div>
+                                <div class="back">
+                                    <img src="pam.jpg" width="50" height="70">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div> <!-- /row #2 -->
+
+        <!-- row #3 -->
+        <div class="row">
+            {{#each thirdRow}}
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="flip-container">
+                            <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                <div class="front">
+                                    <img src="bob.jpg" width="50" height="70">
+                                </div>
+                                <div class="back">
+                                    <img src="pam.jpg" width="50" height="70">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div> <!-- /row #3 -->
 	</div>
 </template>
+
 

@@ -1,4 +1,4 @@
-import './main.html';
+
 
 var tiles = [
 	{
@@ -94,11 +94,24 @@ Template.mainbox.helpers({
 	}
 });
 
+Template.opponentBoard.helpers({
+	firstRow: function() {
+		return firstRow;
+	},
+	secondRow: function() {
+		return secondRow;
+	},
+	thirdRow: function() {
+		return thirdRow;
+	}
+});
+
 Template.mainbox.events({
     'click': function(event, instance) {
         // do something
     }
 });
+
 
 
 
