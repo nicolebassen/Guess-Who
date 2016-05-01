@@ -3,63 +3,78 @@
 var tiles = [
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	},
 	{
 		name: "Bob",
-		image: "../public/bob.jpg"
+		frontImage: "bob.jpg",
+		backImage: "pam.jpg"
 	}
 ];
 

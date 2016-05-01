@@ -1,28 +1,53 @@
 /* CSS declarations go here */
 
-#mainbox, #chatPanel, #infoPanel, #opponentBoard {
-	padding: 5px;
-
+body{
+	background-color: #ffffb2;
 }
 
+#mainbox, #chatPanel, #infoPanel, #opponentBoard {
+	padding: 10px;
+}
 
-body{
-	background-color: lightgoldenrodyellow;
+/* panel right margins */
+#mainbox, #chatPanel {
+	margin-right: 10px;
+}
+
+/* panel bottom margins */
+#mainbox, #chatPanel, #infoPanel, #opponentBoard {
+	margin-bottom: 10px;
+}
+
+#mainbox {
+	height: 47em;
+}
+
+#mainbox img.playerTile {
+	max-height: 10em;
+}
+
+#chatPanel {
+	height: 10em;
+}
+
+#infoPanel {
+	height: 35em;
 }
 
 #opponentBoard{
-	background-color: red;
+	background-color: #ff4c4c;
     padding: 5px;
-    height: 280px;
+    height: 22em;
 }
 
 #playerboard{
 	background-color: lightskyblue;
+	max-height: 42em;
 }
 
 #player-row{
     padding: 10px;
-    height: 250px;
+    height: 12em;
 }
 
 #opponent-row{
