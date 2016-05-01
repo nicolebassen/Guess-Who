@@ -19,7 +19,7 @@ body{
 }
 
 #mainbox {
-	height: 47em;
+	height: 42em;
 }
 
 #mainbox img.playerTile {
@@ -31,7 +31,7 @@ body{
 }
 
 #infoPanel {
-	height: 35em;
+	height: 30em;
 }
 
 #opponentBoard{
