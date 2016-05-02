@@ -24,6 +24,7 @@ body{
 
 #mainbox img.playerTile {
 	max-height: 10em;
+	max-width: 7em;
 }
 
 #chatPanel {
