@@ -43,6 +43,7 @@ body{
 #playerboard{
 	background-color: lightskyblue;
 	max-height: 42em;
+	padding: 10px 0 10px 10px;
 }
 
 #player-row{
@@ -54,6 +55,7 @@ body{
     padding: 10px;
     height: 70px;
 }
+
 
 
 

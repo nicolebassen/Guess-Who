@@ -46,12 +46,12 @@
             
             	<!-- stats div -->
             	<div class="row">
-                    <p>Qui blandit praesent luptatum zzril delenit augue duis dolore, te feugait nulla facilisi nam liber
-                       temporQui blandit praesent luptatum zzril delenit augue duis dolore, te feugait nulla facilisi nam liber
-                       temporQui blandit praesent luptatum zzril delenit augue duis dolore, te feugait nulla facilisi nam liber
-                       temporQui blandit praesent luptatum zzril delenit augue duis dolore, te feugait nulla facilisi nam liber
-                       tempor
-                       </p>
+            		<h3 class="text-center">Your Stats</h3>
+                    <p>Wins: 0<br />
+                    Losses: 0</p>
+                    <h3 class="text-center">Opponent Stats</h3>
+                    <p>Wins: 0<br />
+                    Losses: 0</p>
                 </div> <!-- /stats div -->
             </div> <!-- /photo+stats div -->
 
@@ -66,10 +66,12 @@
                             <div class="flip-container">
                                 <div class="flipper" onclick="this.classList.toggle('flipped')">
                                     <div class="front">
-                                       <img src="{{this.frontImage}}" class="playerTile">
+                                        <img src="{{this.frontImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                       <img src="{{this.backImage}}" class="playerTile">
+                                        <img src="{{this.backImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,11 +88,13 @@
                                 <div class="flip-container">
                                     <div class="flipper" onclick="this.classList.toggle('flipped')">
                                         <div class="front">
-                                            <img src="{{this.frontImage}}" class="playerTile">
-                                        </div>
-                                        <div class="back">
-                                            <img src="{{this.backImage}}" class="playerTile">
-                                        </div>
+                                        <img src="{{this.frontImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
+                                    </div>
+                                    <div class="back">
+                                        <img src="{{this.backImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +110,13 @@
                                 <div class="flip-container">
                                     <div class="flipper" onclick="this.classList.toggle('flipped')">
                                         <div class="front">
-                                            <img src="{{this.frontImage}}" class="playerTile">
-                                        </div>
-                                        <div class="back">
-                                            <img src="{{this.backImage}}" class="playerTile">
-                                        </div>
+                                        <img src="{{this.frontImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
+                                    </div>
+                                    <div class="back">
+                                        <img src="{{this.backImage}}" class="playerTile">
+                                        <p>{{this.name}}</p>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +158,7 @@
                                     <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{this.backImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>
@@ -172,7 +178,7 @@
                                     <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{this.backImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>
@@ -192,7 +198,7 @@
                                     <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{this.backImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>

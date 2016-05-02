@@ -2,79 +2,94 @@
 
 var tiles = [
 	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
+		name: "Kim",
+		frontImage: "kim.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Nicole",
+		frontImage: "nicole.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Chris",
+		frontImage: "christopher.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Richard",
+		frontImage: "richard.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
 	},
 	{
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Kim",
+		frontImage: "kim.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Nicole",
+		frontImage: "nicole.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Chris",
+		frontImage: "christopher.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Richard",
+		frontImage: "richard.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
 	},
 	{
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Kim",
+		frontImage: "kim.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Nicole",
+		frontImage: "nicole.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Chris",
+		frontImage: "christopher.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
+	},
+	{
+		name: "Richard",
+		frontImage: "richard.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
 	},
 	{
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
-	},
-	{
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "pam.jpg"
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png"
 	}
 ];
 
