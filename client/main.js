@@ -3,109 +3,131 @@
 
 var tiles = [
 	{
+		id: 0,
 		name: "Kim",
 		frontImage: "kim.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 1,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 2,
 		name: "Chris",
 		frontImage: "christopher.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 3,
 		name: "Richard",
 		frontImage: "richard.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 4,
+		backId: -5,
 		name: "Bob",
 		frontImage: "bob.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 5,
+		backId: 20,
 		name: "Kim",
 		frontImage: "kim.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 6,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 7,
 		name: "Chris",
 		frontImage: "christopher.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 8,
 		name: "Richard",
 		frontImage: "richard.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 9,
 		name: "Bob",
 		frontImage: "bob.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 10,
 		name: "Kim",
 		frontImage: "kim.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 11,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 12,
 		name: "Chris",
 		frontImage: "christopher.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 13,
 		name: "Richard",
 		frontImage: "richard.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
 	},
 	{
+		id: 14,
 		name: "Bob",
 		frontImage: "bob.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
-		clickCounter: 0
+		flipped: 0
+	},
+	{
+		id: 15,
+		name: "",
+		frontImage: "tileback.png"
 	}
 ];
 
@@ -118,12 +140,13 @@ var tileCounter = 0;
 var allTiles = Session.get('tile');
 
 // tile that the player selects
-var myTile = "tileback.png";
+var myTile = allTiles[15];
+Session.set('myTile', myTile);
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
-console.log(opponentTile.name);
+console.log("The opponent's tile is: " + opponentTile.name);
 
 // store the three rows of tiles separately
 var firstRow = [];
@@ -148,7 +171,7 @@ Template.mainbox.helpers({
 		return thirdRow;
 	},
 	myTile: function() {
-		return myTile;
+		return Session.get('myTile');
 	}
 });
 
@@ -165,20 +188,41 @@ Template.opponentBoard.helpers({
 });
 
 Template.mainbox.events({
-    'click .playerTile': function(event, instance) {
+    'click .playerTile': function(event) {
+    	var id = event.currentTarget.id;
+    	
         if (tileCounter == 0) {
-        	// myTile = ??
+        	event.preventDefault(); // prevent tile from flipping?
+        	Session.set('myTile', allTiles[id]);
+        	tileCounter++;
+        	
+        	// test
+        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")");
+        } else {
+        	// if image side of tile was facing up
+        	if (allTiles[id].flipped % 2 == 0) {
+        		allTiles[id].flipped++;	// switch flipped to true
+        		tileCounter++;
+        		
+        		// test
+        		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
+        				allTiles[id].flipped);
+        	} 
+        	// if blank side of tile was facing up
+        	else {
+         		allTiles[id].flipped--; // switch flipped to false
+         		tileCounter--;
+         		
+         		// test
+         		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
+         				allTiles[id].flipped);	
+         	}
         }
-        // if (this.clickCounter??? % 2 = 0) {
-        //		this.clickCounter++		"flip tile"
-        // } else {
-        // 		this.clickCounter--		"unflip tile"
-        // }
-        tileCounter++;
-        if (tileCounter == 14) {
+        console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
+        
+        if (tileCounter >= 14) {
         	console.log("Game over");
-        }
-        console.log(tileCounter);
+        }  
     }
 });
 

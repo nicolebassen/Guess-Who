@@ -27,6 +27,10 @@ body{
 	max-width: 7em;
 }
 
+#mainbox #myTile {
+	height: 15em;
+}
+
 #chatPanel {
 	height: 10em;
 }
