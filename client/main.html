@@ -1,3 +1,8 @@
+<!--
+	Nicole Bassen and Kimberly Praxel
+	Guess Who? Meteor site
+-->
+
 <head>
   <title>Guess Who?</title>
 </head>
@@ -40,7 +45,7 @@
             	<!-- photo div -->
             	<div class="row">
 
-                    <img src="bob.jpg">
+                    <img src="{{myTile}}">
 
             	</div><!-- /photo div -->
             
@@ -66,7 +71,7 @@
                             <div class="flip-container">
                                 <div class="flipper" onclick="this.classList.toggle('flipped')">
                                     <div class="front">
-                                        <img src="{{this.frontImage}}" class="playerTile">
+                                        <img src="{{this.frontImage}}" class="playerTile" id="test">
                                         <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
