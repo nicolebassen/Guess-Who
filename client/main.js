@@ -28,15 +28,14 @@ var tiles = [
 	},
 	{
 		id: 3,
-		name: "Richard",
-		frontImage: "richard.jpg",
+		name: "Paige",
+		frontImage: "paigegreen.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
 	{
 		id: 4,
-		backId: -5,
 		name: "Bob",
 		frontImage: "bob.jpg",
 		backImage: "tileback.png",
@@ -45,25 +44,24 @@ var tiles = [
 	},
 	{
 		id: 5,
-		backId: 20,
-		name: "Kim",
-		frontImage: "kim.jpg",
+		name: "Dinesh",
+		frontImage: "dinesh.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
 	{
 		id: 6,
-		name: "Nicole",
-		frontImage: "nicole.jpg",
+		name: "Gilfoyle",
+		frontImage: "gilfoyle.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
 	{
 		id: 7,
-		name: "Chris",
-		frontImage: "christopher.jpg",
+		name: "Pam",
+		frontImage: "pam.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
@@ -118,8 +116,8 @@ var tiles = [
 	},
 	{
 		id: 14,
-		name: "Bob",
-		frontImage: "bob.jpg",
+		name: "Barbie",
+		frontImage: "barbie.jpg",
 		backImage: "tileback.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0

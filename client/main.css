@@ -4,8 +4,18 @@ body{
 	background-color: #ffffb2;
 }
 
+#mainTitle {
+	color: #ff4c4c;
+	font-size: 4.5em;
+	text-shadow: 2px 2px lightskyblue;
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: 0;
+}
+
 #mainbox, #chatPanel, #infoPanel, #opponentBoard {
 	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #fffff9;
 }
 
 /* panel right margins */
@@ -13,18 +23,13 @@ body{
 	margin-right: 10px;
 }
 
-/* panel bottom margins */
-#mainbox, #chatPanel, #infoPanel, #opponentBoard {
-	margin-bottom: 10px;
-}
-
 #mainbox {
-	height: 42em;
+	height: 40em;
 }
 
 #mainbox img.playerTile {
 	max-height: 10em;
-	max-width: 7em;
+	max-width: 6em;
 }
 
 #mainbox #myTile {
@@ -32,7 +37,7 @@ body{
 }
 
 #chatPanel {
-	height: 10em;
+	height: 12em;
 }
 
 #infoPanel {
@@ -40,6 +45,7 @@ body{
 }
 
 #opponentBoard{
+	color: #fffff9;
 	background-color: #ff4c4c;
     padding: 5px;
     height: 22em;
@@ -47,13 +53,13 @@ body{
 
 #playerboard{
 	background-color: lightskyblue;
-	max-height: 42em;
+	max-height: 36em;
 	padding: 10px 0 10px 10px;
 }
 
 #player-row{
     padding: 10px;
-    height: 12em;
+    height: 11em;
 }
 
 #opponent-row{
