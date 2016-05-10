@@ -233,6 +233,11 @@ Template.mainbox.events({
 
 //chat stuff
 
+function scrollChat(){
+	var height = $('#chatPanel')[0].scrollHeight;
+
+	$('#chatPanel').scrollTop(height);
+};
 
 //save some initial data for our messaging application
 Template.addMessageForm.onCreated(function() {
@@ -258,13 +263,15 @@ Template.addMessageForm.events({
 
         Session.set('messages', messages);
 
+		scrollChat();
+
     }
 });
 
 Template.messageList.helpers({
-    allMessages: function() {
-        return Session.get('messages');
-    }
+	allMessages: function() {
+		return Session.get('messages');
+	}
 });
 
 Template.registerHelper('messagesExist', function() {

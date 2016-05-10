@@ -137,14 +137,14 @@ body{
 /*chat stuff*/
 
 .chat {
-	overflow: none;
+	overflow: auto;
 	position: absolute;
-    max-height: 200px;
+    max-height: 146px;
 
 }
 
-#chatMessages {
-    max-height: 200px;
+#chatpanel {
+    max-height: 146px;
 	overflow:   auto;
 	position:   absolute;
 }

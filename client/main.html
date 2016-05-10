@@ -18,8 +18,11 @@
         	</div>
         	<!-- Chat with opponent -->
         	<div class="row">
-                {{> addMessageForm}}
+                {{> messageList}}
         	</div>
+            <div class="row">
+                {{> addMessageForm}}
+            </div>
         </div>
 
         
@@ -142,11 +145,7 @@
 </template>
 
 <template name="addMessageForm">
-	<div class="panel panel-default" id="chatPanel">
-        <div id="chatMessages">
-            {{> messageList}}
-        </div>
-
+	<div class="panel panel-default" id="chatInputPanel">
         <form class="newMessage">
             <div class="form-group">
                 <input type="text" id="messageText" class="form-control">
@@ -157,11 +156,13 @@
 
 
 <template name="messageList">
+    <div class="panel panel-default" id="chatPanel">
     <ul class="list-group">
         {{#each message in allMessages}}
             <b>Player 1</b>: {{message.messageText}}<br>
         {{/each}}
     </ul>
+        </div>
 </template>
 
 <template name="infoPanel">
