@@ -1,6 +1,12 @@
 // Nicole Bassen and Kimberly Praxel
 // Guess Who? Meteor website
 
+import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
+
+import './main.html';
+
+
 var tiles = [
 	{
 		id: 0,
@@ -225,6 +231,44 @@ Template.mainbox.events({
 });
 
 
+//chat stuff
 
+
+//save some initial data for our messaging application
+Template.addMessageForm.onCreated(function() {
+    Session.setDefault('messages', []);
+});
+
+Template.addMessageForm.events({
+    'submit .newMessage': function(event, template) {
+        //prevent the from from refreshing the page
+        event.preventDefault();
+
+        //get our form value (message text)
+        var messageText = $('#messageText').val();
+        $('#messageText').val(''); // remove text from our message box
+
+        //get our data source (from session)
+        var messages = Session.get('messages');
+
+        //save our message
+        messages.push({
+            messageText: messageText,
+        });
+
+        Session.set('messages', messages);
+
+    }
+});
+
+Template.messageList.helpers({
+    allMessages: function() {
+        return Session.get('messages');
+    }
+});
+
+Template.registerHelper('messagesExist', function() {
+    return Session.get('messages').length > 0;
+});
 
 

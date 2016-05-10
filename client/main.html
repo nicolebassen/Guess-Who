@@ -18,7 +18,7 @@
         	</div>
         	<!-- Chat with opponent -->
         	<div class="row">
-        		{{> chatPanel }}
+                {{> addMessageForm}}
         	</div>
         </div>
 
@@ -141,17 +141,33 @@
     </div>
 </template>
 
-<template name="chatPanel">
+<template name="addMessageForm">
 	<div class="panel panel-default" id="chatPanel">
-		<h3>Chat Panel</h3>
-		<p>Chat panel goes here.</p>
-	</div>
+        <div id="chatMessages">
+            {{> messageList}}
+        </div>
+
+        <form class="newMessage">
+            <div class="form-group">
+                <input type="text" id="messageText" class="form-control">
+            </div>
+        </form>
+    </div>
+</template>
+
+
+<template name="messageList">
+    <ul class="list-group">
+        {{#each message in allMessages}}
+            <b>Player 1</b>: {{message.messageText}}<br>
+        {{/each}}
+    </ul>
 </template>
 
 <template name="infoPanel">
 	<div class="panel panel-default" id="infoPanel">
 		<h3>Info Panel</h3>
-		<p>Info panel goes here. Qui blandit praesent luptatum zzril delenit augue duis 
+		<p>Info panel goes here. Qui blandit praesent luptatum zzril delenit augue duis
 		dolore, te feugait nulla facilisi nam liber tempor.</p>
 	</div>
 </template>

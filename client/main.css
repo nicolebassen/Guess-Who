@@ -132,3 +132,19 @@ body{
 	-o-transform:rotateY(180deg);
 	transform:rotateY(180deg);
 }
+
+
+/*chat stuff*/
+
+.chat {
+	overflow: none;
+	position: absolute;
+    max-height: 200px;
+
+}
+
+#chatMessages {
+    max-height: 200px;
+	overflow:   auto;
+	position:   absolute;
+}
