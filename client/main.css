@@ -19,7 +19,7 @@ body{
 }
 
 /* panel right margins */
-#mainbox, #chatPanel {
+#mainbox, #chatPanel, #newMessage {
 	margin-right: 10px;
 }
 
@@ -36,25 +36,25 @@ body{
 	height: 15em;
 }
 
-#chatPanel {
-	height: 12em;
-}
-
 #infoPanel {
 	height: 30em;
+}
+
+#infoPanel ul#usersList li {
+	list-style-type: none;
 }
 
 #opponentBoard{
 	color: #fffff9;
 	background-color: #ff4c4c;
     padding: 5px;
-    height: 22em;
+    height: 23em;
 }
 
 #playerboard{
 	background-color: lightskyblue;
-	max-height: 36em;
-	padding: 10px 0 10px 10px;
+	max-height: 37em;
+	padding: 10px;
 }
 
 #player-row{
@@ -136,15 +136,11 @@ body{
 
 /*chat stuff*/
 
-.chat {
-	overflow: auto;
-	position: absolute;
-    max-height: 146px;
-
+#chatPanel {
+	height: 10em;
+	overflow-y:   scroll;
 }
 
-#chatpanel {
-    max-height: 146px;
-	overflow:   auto;
-	position:   absolute;
+#newMessage {
+	height: 2em;
 }

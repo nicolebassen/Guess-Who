@@ -5,11 +5,13 @@
 
 <head>
   <title>Guess Who?</title>
+  <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
     <div class="container">
-        <h1 id="mainTitle">Guess Who?</h1>
+        <h1 id="mainTitle">Guess Who?</h1><br>
         
         <div class="col-lg-9 col-md-9 col-sm-9">
         	<!-- Gameplay area -->
@@ -41,8 +43,7 @@
     <!-- jQuery script  -->
     <script src="jquery-1.12.2.min.js"></script>
     
-    <!-- Google fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
+    
 </body>
 
 <template name="mainbox">
@@ -55,31 +56,35 @@
             	<div class="row">
 
                     <img src="{{myTile.frontImage}}" id="myTile">
-                    <h4 class="text-center">{{myTile.name}}</h4>
+                    <h4 class="text-center">{{myTile.name}}</h4><br><br>
 
             	</div><!-- /photo div -->
             
             	<!-- stats div -->
             	<div class="row">
-            		<h3 class="text-center">Your Stats</h3>
+            		<h4 class="text-center">Player 1</h4>
                     <p>Wins: 0<br />
                     Losses: 0</p>
-                    <h3 class="text-center">Opponent Stats</h3>
+                    <h4 class="text-center">Player 2</h4>
                     <p>Wins: 0<br />
                     Losses: 0</p>
                 </div> <!-- /stats div -->
             </div> <!-- /photo+stats div -->
 
+
             <!-- tiles div -->
             <div class="col-lg-9 col-md-9 col-sm-9" id="playerboard">
             
+            	<div class="row text-center">
+            		<h4>{{gameMessage}}</h4>
+            	</div>
             	<!-- row #1 -->
             	<div class="row">
 					{{#each firstRow}}
                 	<div class="col-lg-2 col-md-2 col-sm-2">
                     	<div class="box" id="player-row">
                             <div class="flip-container">
-                                <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                <div class="flipper" onclick="{{flipTile}}">
                                     <div class="front">
                                         <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
                                         <p>{{this.name}}</p>
@@ -101,7 +106,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
-                                    <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                    <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
                                         <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
                                         <p>{{this.name}}</p>
@@ -123,7 +128,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
-                                    <div class="flipper" onclick="this.classList.toggle('flipped')">
+                                    <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
                                         <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
                                         <p>{{this.name}}</p>
@@ -139,19 +144,19 @@
                 	{{/each}}
                 </div> <!-- /row #3 -->
 
-            </div>
+            </div><!-- /tiles div -->
         </div>
     </div>
 </template>
 
 <template name="addMessageForm">
-	<div class="panel panel-default" id="chatInputPanel">
-        <form class="newMessage">
+	<!--<div class="panel panel-default" id="chatInputPanel">-->
+        <form class="newMessage" id="newMessage">
             <div class="form-group">
                 <input type="text" id="messageText" class="form-control">
             </div>
         </form>
-    </div>
+    <!--</div>-->
 </template>
 
 
@@ -167,9 +172,13 @@
 
 <template name="infoPanel">
 	<div class="panel panel-default" id="infoPanel">
-		<h3>Info Panel</h3>
-		<p>Info panel goes here. Qui blandit praesent luptatum zzril delenit augue duis
-		dolore, te feugait nulla facilisi nam liber tempor.</p>
+		<h3 class="text-center">Online Users</h3>
+		<ul id="usersList">
+			<li>username1</li>
+			<li>username2</li>
+			<li>guest1234</li>
+			<li>username3</li>
+		</ul>
 	</div>
 </template>
 
@@ -235,6 +244,13 @@
                 </div>
             {{/each}}
         </div> <!-- /row #3 -->
+        
+        <!-- display opponent's tile choice for testing -->     
+        <div class="row panel-body">
+        	<p class="text-center">
+        		The opponent chose {{opponentTile.name}} (tile id {{opponentTile.id}})
+        	</p>        
+        </div>
 	</div>
 </template>
 
