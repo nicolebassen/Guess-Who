@@ -148,3 +148,13 @@ body{
 
 /* tests */
 
+#rowThreeTest{
+	position: relative;
+	min-height: 1px;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+#player-row.box{
+
+}
