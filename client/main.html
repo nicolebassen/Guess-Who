@@ -80,18 +80,18 @@
             	</div>
             	<!-- row #1 -->
             	<div class="row">
-					{{#each item in firstRow}}
+					{{#each firstRow}}
                 	<div class="col-lg-2 col-md-2 col-sm-2">
                     	<div class="box" id="player-row">
                             <div class="flip-container">
                                 <div class="flipper" onclick="{{flipTile}}">
                                     <div class="front">
-                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{tilesData.backImage}}" class="playerTile" id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -102,18 +102,18 @@
                 
                 <!-- row #2 -->
             	<div class="row">
-					{{#each item in secondRow}}
+					{{#each secondRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{tilesData.backImage}}" class="playerTile" id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     </div>
                                 </div>
@@ -124,18 +124,18 @@
                 
                 <!-- row #3 -->
             	<div class="row">
-					{{#each item in thirdRow}}
+					{{#each thirdRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{tilesData.backImage}}" class="playerTile"  id="{{tilesData.id}}">
-                                        <p>{{tilesData.name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile"  id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     </div>
                                 </div>
@@ -164,6 +164,7 @@
     <div class="panel panel-default" id="chatPanel">
     <ul class="list-group">
         {{#each message in allMessages}}
+            <span class="time"><small>{{message.time}}</small></span>
             <b>Player 1</b>: {{message.messageText}}<br>
         {{/each}}
     </ul>
@@ -253,5 +254,4 @@
         </div>
 	</div>
 </template>
-
 

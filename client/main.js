@@ -3,12 +3,11 @@
 
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { tilesCollection } from '../collections/collections.js';
 
 import './main.html';
 
 
-/*var tiles = [
+var tiles = [
 	{
 		id: 0,
 		name: "Kim",
@@ -134,9 +133,9 @@ import './main.html';
 		name: "",
 		frontImage: "tileback.png"
 	}
-]*/
+];
 
-Session.set('tile', tiles); /*******/
+Session.set('tile', tiles);
 
 // keeps track of how many tiles are flipped over
 var tileCounter = 0;
@@ -145,21 +144,20 @@ var tileCounter = 0;
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // store all tiles in a variable
-var allTiles = Session.get('tile'); /*******/
+var allTiles = Session.get('tile');
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
 
 // tile that the player selects
-var myTile = allTiles[15]; /*******/
-Session.set('myTile', myTile); /*******/
+var myTile = allTiles[15];
+Session.set('myTile', myTile);
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
-var opponentTile = allTiles[random]; /*******/
+var opponentTile = allTiles[random];
 console.log("The opponent's tile is: " + opponentTile.name + ", ID: " + opponentTile.id);
 
-/*
 // store the three rows of tiles separately
 var firstRow = [];
 var secondRow = [];
@@ -170,19 +168,17 @@ for (var i = 0; i < 5; i++) {
 	firstRow[i] = allTiles[i];
 	secondRow[i] = allTiles[i + 5];
 	thirdRow[i] = allTiles[i + 10];
-}*/
-
-var image = tilesCollection.find({id: 0}, {'image': 1});
+}
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		return tilesCollection.find({id: {$lt: 5}}, {"sort": {"id": 1}}); //retrieve first row of tiles
+		return firstRow;
 	},
 	secondRow: function() {
-		return tilesCollection.find({id: {$gt: 4, $lt: 10}}, {"sort": {"id": 1}}); //retrieve second row of tiles
+		return secondRow;
 	},
 	thirdRow: function() {
-		return tilesCollection.find({id: {$gt: 9}}, {"sort": {"id": 1}}); //retrieve third row of tiles
+		return thirdRow;
 	},
 	myTile: function() {
 		return Session.get('myTile');
@@ -192,9 +188,6 @@ Template.mainbox.helpers({
 	},
 	gameMessage: function() {
 		return Session.get('gameMessage');
-	},
-	image: function() {
-		return image;
 	}
 });
 
@@ -222,48 +215,41 @@ Template.mainbox.events({
     	
         if (tileCounter == 0) {
         	// the tile the player is choosing
-        	Session.set('myTile', allTiles[id]); /*******/
+        	Session.set('myTile', allTiles[id]);
         	tileCounter++;
         	
         	Session.set('gameMessage', "Let's play!");
         	
         	// test
-        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")"); /*******/
+        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")");
+        } else {
         	Session.set('gameMessage', "");
         	
-        	var flipped = tilesCollection.find({'id': id}, {'flipped': 1});
-        	
         	// if image side of tile was facing up
-        	if (flipped % 2 == 0) {
-        		tilesCollection.update(
-   					{ 'id': id },
-   					{ $inc: {'flipped': 1}}
-   				);
+        	if (allTiles[id].flipped % 2 == 0) {
+        		allTiles[id].flipped++;	// switch flipped to true
         		tileCounter++;
         		
         		// test
         		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-        				allTiles[id].flipped);/*******/
+        				allTiles[id].flipped);
         	} 
         	// if blank side of tile was facing up
         	else {
-        		tilesCollection.update(
-   					{ 'id': id },
-   					{ $dec: {'flipped': 1}}
-   				);
+         		allTiles[id].flipped--; // switch flipped to false
          		tileCounter--;
          		
          		// test
          		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-         				allTiles[id].flipped);	/*******/
+         				allTiles[id].flipped);	
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
         
         if (tileCounter >= 15) {
-        	for (var i = 0; i < allTiles.length; i++) { /*******/
-        		if (allTiles[i].flipped == 0) { /*******/
-        			if (allTiles[i].id == opponentTile.id) { /*******/
+        	for (var i = 0; i < allTiles.length; i++) {
+        		if (allTiles[i].flipped == 0) {
+        			if (allTiles[i].id == opponentTile.id) {
         				Session.set('gameMessage', "That is your opponent's tile. You win!");
         				//window.alert("Game over. You win!!");     				
         				console.log("That is the opponent's tile. You win!!");
@@ -280,6 +266,7 @@ Template.mainbox.events({
 
 
 //chat stuff
+
 
 function scrollChat(){
 	var height = $('#chatPanel')[0].scrollHeight;
@@ -303,16 +290,25 @@ Template.addMessageForm.events({
 
         //get our data source (from session)
         var messages = Session.get('messages');
-
+        
+        var date = new Date();
+        var time = (date.getHours() % 12) + ":" + (date.getMinutes());
+        
+        if (date.getHours() > 12) {
+        	time += " PM";
+        } else {
+        	time += " AM";
+        }
+        
         //save our message
         messages.push({
             messageText: messageText,
+            time: time
         });
 
         Session.set('messages', messages);
-
-		scrollChat();
-
+        
+        scrollChat();
     }
 });
 
@@ -325,5 +321,4 @@ Template.messageList.helpers({
 Template.registerHelper('messagesExist', function() {
     return Session.get('messages').length > 0;
 });
-
 

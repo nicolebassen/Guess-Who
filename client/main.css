@@ -59,8 +59,8 @@ body{
 
 #player-row{
     padding: 10px;
-    padding-left: 1.75em;
-    height: 10.5em;
+    height: 11em;
+    padding-left: 1.5em;
 }
 
 #opponent-row{
@@ -146,10 +146,6 @@ body{
 	height: 2em;
 }
 
-
-/* tests */
-
-
-#player-row.box{
-
+#chatPanel .time {
+	color: rgb(180,180,180);
 }
