@@ -59,7 +59,8 @@ body{
 
 #player-row{
     padding: 10px;
-    height: 11em;
+    padding-left: 1.75em;
+    height: 10.5em;
 }
 
 #opponent-row{
@@ -148,12 +149,6 @@ body{
 
 /* tests */
 
-#rowThreeTest{
-	position: relative;
-	min-height: 1px;
-	padding-right: 2px;
-	padding-left: 2px;
-}
 
 #player-row.box{
 
