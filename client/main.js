@@ -136,7 +136,7 @@ import './main.html';
 	}
 ]*/
 
-Session.set('tile', tiles); *****
+Session.set('tile', tiles); /*******/
 
 // keeps track of how many tiles are flipped over
 var tileCounter = 0;
@@ -145,18 +145,18 @@ var tileCounter = 0;
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // store all tiles in a variable
-var allTiles = Session.get('tile'); *****
+var allTiles = Session.get('tile'); /*******/
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
 
 // tile that the player selects
-var myTile = allTiles[15]; ***** 
-Session.set('myTile', myTile); *****
+var myTile = allTiles[15]; /*******/
+Session.set('myTile', myTile); /*******/
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
-var opponentTile = allTiles[random]; *****
+var opponentTile = allTiles[random]; /*******/
 console.log("The opponent's tile is: " + opponentTile.name + ", ID: " + opponentTile.id);
 
 /*
@@ -172,7 +172,7 @@ for (var i = 0; i < 5; i++) {
 	thirdRow[i] = allTiles[i + 10];
 }*/
 
-var image = tilesCollection.find({id: 0}, {'image': 1}});
+var image = tilesCollection.find({id: 0}, {'image': 1});
 
 Template.mainbox.helpers({
 	firstRow: function() {
@@ -222,17 +222,16 @@ Template.mainbox.events({
     	
         if (tileCounter == 0) {
         	// the tile the player is choosing
-        	Session.set('myTile', allTiles[id]); *****
+        	Session.set('myTile', allTiles[id]); /*******/
         	tileCounter++;
         	
         	Session.set('gameMessage', "Let's play!");
         	
         	// test
-        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")"); *****
-        } else {
+        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")"); /*******/
         	Session.set('gameMessage', "");
         	
-        	var flipped = tilesCollection.find({'id': id}, {'flipped': 1}};
+        	var flipped = tilesCollection.find({'id': id}, {'flipped': 1});
         	
         	// if image side of tile was facing up
         	if (flipped % 2 == 0) {
@@ -244,7 +243,7 @@ Template.mainbox.events({
         		
         		// test
         		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-        				allTiles[id].flipped);*****
+        				allTiles[id].flipped);/*******/
         	} 
         	// if blank side of tile was facing up
         	else {
@@ -256,15 +255,15 @@ Template.mainbox.events({
          		
          		// test
          		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-         				allTiles[id].flipped);	*****
+         				allTiles[id].flipped);	/*******/
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
         
         if (tileCounter >= 15) {
-        	for (var i = 0; i < allTiles.length; i++) { *****
-        		if (allTiles[i].flipped == 0) { *****
-        			if (allTiles[i].id == opponentTile.id) { *****
+        	for (var i = 0; i < allTiles.length; i++) { /*******/
+        		if (allTiles[i].flipped == 0) { /*******/
+        			if (allTiles[i].id == opponentTile.id) { /*******/
         				Session.set('gameMessage', "That is your opponent's tile. You win!");
         				//window.alert("Game over. You win!!");     				
         				console.log("That is the opponent's tile. You win!!");

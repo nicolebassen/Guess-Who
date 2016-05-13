@@ -80,18 +80,18 @@
             	</div>
             	<!-- row #1 -->
             	<div class="row">
-					{{#each firstRow}}
+					{{#each item in firstRow}}
                 	<div class="col-lg-2 col-md-2 col-sm-2">
                     	<div class="box" id="player-row">
                             <div class="flip-container">
                                 <div class="flipper" onclick="{{flipTile}}">
                                     <div class="front">
-                                        <img src="{{image}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.backImage}}" class="playerTile" id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -102,18 +102,18 @@
                 
                 <!-- row #2 -->
             	<div class="row">
-					{{#each secondRow}}
+					{{#each item in secondRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.backImage}}" class="playerTile" id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                     </div>
                                 </div>
@@ -124,18 +124,18 @@
                 
                 <!-- row #3 -->
             	<div class="row">
-					{{#each thirdRow}}
+					{{#each item in thirdRow}}
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.frontImage}}" class="playerTile" id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile"  id="{{this.id}}">
-                                        <p>{{this.name}}</p>
+                                        <img src="{{tilesData.backImage}}" class="playerTile"  id="{{tilesData.id}}">
+                                        <p>{{tilesData.name}}</p>
                                     </div>
                                     </div>
                                 </div>
