@@ -140,7 +140,7 @@ var tiles = [
 ];
 
 
-console.log(tilesCollection.findOne());
+//console.log(tilesCollection.find());
 
 Session.set('tile', tiles);
 
@@ -214,7 +214,10 @@ Template.opponentBoard.helpers({
 });
 
 Template.mainbox.events({
-    'click .playerTile': function(event) {
+	'click #tilesButton': function(event) {
+		console.log(tilesCollection.find());
+	},
+	'click .playerTile': function(event) {
     	var id = event.currentTarget.id;
     	
     	// set tile flipped property to true

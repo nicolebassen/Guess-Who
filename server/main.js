@@ -13,27 +13,6 @@ Meteor.startup(() => {
   	tilesCollection.insert(tilesData[i]);
   }
   
-  
-});
-
-Meteor.methods({
-    msgInsert: function(message) {
-        message.updatedOn = new Date();
-        messageCollection.insert(message);
-    },
-    msgDelete: function(_id) {
-        activityCollection.remove({"_id": _id});
-    },
-    msgUpdate: function(updatedActivity) {
-        messageCollection.update({"_id": updatedMesage._id}, {"$set": {
-            "name": "",
-            "message": "",
-            "date": new Date()
-        }});
-    },
-    getSingleMessage: function(_id) {
-        return activityCollection.findOne({"_id": _id});
-    }
 });
 
 /*
