@@ -3,6 +3,10 @@
 
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { tilesCollection } from '../collections/collections.js';
+import { tilesData } from '../collections/collections.js';
+//import { messagesCollection } from '../collections/collections.js';
+import { usersCollection } from '../collections/collections.js';
 
 import './main.html';
 
@@ -134,6 +138,9 @@ var tiles = [
 		frontImage: "tileback.png"
 	}
 ];
+
+
+console.log(tilesCollection.findOne());
 
 Session.set('tile', tiles);
 
@@ -292,7 +299,15 @@ Template.addMessageForm.events({
         var messages = Session.get('messages');
         
         var date = new Date();
-        var time = (date.getHours() % 12) + ":" + (date.getMinutes());
+        var hours = date.getHours();
+        
+        if (hours == 0) {
+        	hours = 12;
+        } else {
+        	hours = hours % 12;
+        }
+        
+        var time = hours + ":" + (date.getMinutes());
         
         if (date.getHours() > 12) {
         	time += " PM";

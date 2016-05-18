@@ -4,6 +4,8 @@ import { Mongo } from "meteor/mongo";
 // export access to my collections
 // const: cannot re-assign
 export const tilesCollection = new Mongo.Collection("tiles");
+//export const messagesCollection = new Mongo.Collection("messages");
+export const usersCollection = new Mongo.Collection("users");
 
 // export access to any data to start our application
 export const tilesData = [
@@ -131,5 +133,44 @@ export const tilesData = [
 		id: 15,
 		name: "",
 		frontImage: "tileback.png"
+	}
+];
+
+var users = [
+	{
+		name: "username1",
+		wins: 0,
+		losses: 0,
+		online: true
+	},
+	{
+		name: "username2",
+		wins: 0,
+		losses: 0,
+		online: false
+	},
+	{
+		name: "username3",
+		wins: 0,
+		losses: 0,
+		online: true
+	},
+	{
+		name: "username4",
+		wins: 0,
+		losses: 0,
+		online: true
+	},
+	{
+		name: "username5",
+		wins: 0,
+		losses: 0,
+		online: false
+	},
+	{
+		name: "username6",
+		wins: 0,
+		losses: 0,
+		online: false
 	}
 ];
