@@ -4,145 +4,12 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { tilesCollection } from '../collections/collections.js';
-import { tilesData } from '../collections/collections.js';
-//import { messagesCollection } from '../collections/collections.js';
+import { messagesCollection } from '../collections/collections.js';
 import { usersCollection } from '../collections/collections.js';
 
 import './main.html';
 
-
-var tiles = [
-	{
-		id: 0,
-		name: "Kim",
-		frontImage: "kim.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 1,
-		name: "Nicole",
-		frontImage: "nicole.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 2,
-		name: "Chris",
-		frontImage: "christopher.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 3,
-		name: "Paige",
-		frontImage: "paigegreen.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 4,
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 5,
-		name: "Dinesh",
-		frontImage: "dinesh.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 6,
-		name: "Gilfoyle",
-		frontImage: "gilfoyle.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 7,
-		name: "Pam",
-		frontImage: "pam.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 8,
-		name: "Richard",
-		frontImage: "richard.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 9,
-		name: "Bob",
-		frontImage: "bob.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 10,
-		name: "Kim",
-		frontImage: "kim.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 11,
-		name: "Nicole",
-		frontImage: "nicole.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 12,
-		name: "Chris",
-		frontImage: "christopher.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 13,
-		name: "Richard",
-		frontImage: "richard.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 14,
-		name: "Barbie",
-		frontImage: "barbie.jpg",
-		backImage: "tileback.png",
-		opponentBackImage: "redtile.png",
-		flipped: 0
-	},
-	{
-		id: 15,
-		name: "",
-		frontImage: "tileback.png"
-	}
-];
-
-
-//console.log(tilesCollection.find());
-
-Session.set('tile', tiles);
+//Session.set('tile', tiles);
 
 // keeps track of how many tiles are flipped over
 var tileCounter = 0;
@@ -151,18 +18,20 @@ var tileCounter = 0;
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // store all tiles in a variable
-var allTiles = Session.get('tile');
+//var allTiles = Session.get('tile');
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
 
 // tile that the player selects
-var myTile = allTiles[15];
+var myTile = tilesCollection.find({"id": 15});
+//var myTile = allTiles[15];
 Session.set('myTile', myTile);
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
-var opponentTile = allTiles[random];
+var opponentTile = tilesCollection.find({"id": random});
+// opponentTile = allTiles[random];
 console.log("The opponent's tile is: " + opponentTile.name + ", ID: " + opponentTile.id);
 
 // store the three rows of tiles separately
@@ -171,24 +40,26 @@ var secondRow = [];
 var thirdRow = [];
 
 // fill in the three rows of tiles
+/*
 for (var i = 0; i < 5; i++) {
 	firstRow[i] = allTiles[i];
 	secondRow[i] = allTiles[i + 5];
 	thirdRow[i] = allTiles[i + 10];
-}
+}*/
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		return firstRow;
+		//console.log(tilesCollection.find({"id": { $lt: 5 }}).fetch();
+		return tilesCollection.find({"id": { $lt: 5 }});
 	},
 	secondRow: function() {
-		return secondRow;
+		return tilesCollection.find({"id": { $lt: 10, $gt: 4 }});
 	},
 	thirdRow: function() {
-		return thirdRow;
+		return tilesCollection.find({"id": { $lt: 15, $gt: 9 }});
 	},
 	myTile: function() {
-		return Session.get('myTile');
+		return myTile;
 	},
 	flipTile: function() {
 		return Session.get('flipTile');
@@ -200,13 +71,13 @@ Template.mainbox.helpers({
 
 Template.opponentBoard.helpers({
 	firstRow: function() {
-		return firstRow;
+		return tilesCollection.find({"id": { $lt: 5 }});
 	},
 	secondRow: function() {
-		return secondRow;
+		return tilesCollection.find({"id": { $lt: 10, $gt: 4 }});
 	},
 	thirdRow: function() {
-		return thirdRow;
+		return tilesCollection.find({"id": { $lt: 15, $gt: 9 }});
 	},
 	opponentTile: function() {
 		return opponentTile;
@@ -215,17 +86,22 @@ Template.opponentBoard.helpers({
 
 Template.mainbox.events({
 	'click #tilesButton': function(event) {
-		console.log(tilesCollection.find());
+		console.log(tilesCollection.find().fetch());
 	},
 	'click .playerTile': function(event) {
     	var id = event.currentTarget.id;
+    	var selectedTile = tilesCollection.findOne({"id": id});
+    	var selectedTileName = selectedTile.name;
+    	console.log(selectedTile);
+    	console.log(selectedTileName);
     	
     	// set tile flipped property to true
     	Session.set('flipTile', "this.classList.toggle('flipped')");
     	
         if (tileCounter == 0) {
         	// the tile the player is choosing
-        	Session.set('myTile', allTiles[id]);
+        	Session.set('myTile', selectedTile);
+        	//Session.set('myTile', allTiles[id]);
         	tileCounter++;
         	
         	Session.set('gameMessage', "Let's play!");
@@ -323,6 +199,14 @@ Template.addMessageForm.events({
             messageText: messageText,
             time: time
         });
+        
+        // add to messages collection
+        messagesCollection.insert({
+        	name: "Player1",
+        	message: messageText,
+        	time: time
+        });
+        console.log(messagesCollection.find().fetch()); // ***** not working
 
         Session.set('messages', messages);
         
@@ -332,7 +216,7 @@ Template.addMessageForm.events({
 
 Template.messageList.helpers({
 	allMessages: function() {
-		return Session.get('messages');
+		return messagesCollection.find();
 	}
 });
 
