@@ -13,6 +13,8 @@ export const messagesCollection = new Mongo.Collection("messages");
 export const usersCollection = new Mongo.Collection("users");
 
 // export access to any data to start our application
+
+/* TILES DATA */
 export const tilesData = [
 	{
 		id: 0,
@@ -141,6 +143,8 @@ export const tilesData = [
 	}
 ];
 
+/* USERS DUMMY DATA */
+
 export const usersDummyData = [
 	{
 		name: "Player1",
@@ -167,6 +171,8 @@ export const usersDummyData = [
 		online: false
 	}
 ];
+
+/* MESSAGES DATA */
 
 export const messagesData = [
 	{

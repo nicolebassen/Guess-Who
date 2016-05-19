@@ -18,18 +18,19 @@ var tileCounter = 0;
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // onclick event to flip a tile
-var flipTile = Session.set('flipTile', "");
+var flipTile = Session.set('flipTile', ""); 
 
 // tile that the player selects
-var myTile = tilesCollection.find({"id": 15});
-console.log("My Tile: " + myTile);
+var myTile = tilesCollection.find({"id": 15}); 
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = tilesCollection.find({"id": random});
 
 
-/* MAIN PANEL */
+/**********************
+	   MAIN PANEL
+***********************/
 
 Template.mainbox.events({
 	'click .playerTile': function(event) {
@@ -108,7 +109,9 @@ Template.mainbox.helpers({
 });
 
 
-/* OPPONENT'S BOARD */
+/**********************
+	OPPONENT'S BOARD
+***********************/
 
 Template.opponentBoard.helpers({
 	firstRow: function() {
@@ -126,7 +129,9 @@ Template.opponentBoard.helpers({
 });
 
 
-/* INFO PANEL */
+/**********************
+	   INFO PANEL
+***********************/
 
 Template.infoPanel.helpers({
 	onlineUsers: function() {
@@ -135,7 +140,10 @@ Template.infoPanel.helpers({
 });
 
 
-/* CHAT STUFF */
+
+/**********************
+	   CHAT STUFF
+***********************/
 
 function scrollChat(){
 	var height = $('#chatPanel')[0].scrollHeight;
@@ -167,14 +175,14 @@ Template.addMessageForm.events({
         	hours = hours % 12;
         }
         
-        if (minutes < 10) {
-        	minutes = "0" + minutes;
+        if (minutes < 10) { 
+        	minutes = "0" + minutes; 
         }
         
         var time = hours + ":" + minutes;
         
-        if (date.getHours() > 12) {
-        	time += " PM";
+        if (date.getHours() > 12) { 
+        	time += " PM"; 
         } else {
         	time += " AM";
         }

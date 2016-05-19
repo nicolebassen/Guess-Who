@@ -41,10 +41,13 @@
     </div>
     
     <!-- jQuery script  -->
-    <script src="jquery-1.12.2.min.js"></script>
-    
-    
+    <script src="jquery-1.12.2.min.js"></script>        
 </body>
+
+
+<!--*********************
+		MAIN PANEL 
+**********************-->
 
 <template name="mainbox">
     <div class="panel panel-default" id="mainbox">
@@ -55,8 +58,10 @@
             	<!-- photo div -->
             	<div class="row">
                     <div class="text-center">
+                    	{{#each myTile}}
                     	<img src="{{frontImage}}" id="myTile">
-                    	<h4 class="text-center">{{myTile}}</h4><br><br>
+                    	<h4 class="text-center">{{name}}</h4><br><br>
+                    	{{/each}}
                     </div>
             	</div><!-- /photo div -->
             
@@ -149,6 +154,11 @@
     </div>
 </template>
 
+
+<!--*********************
+	   SEND MESSAGE
+**********************-->
+
 <template name="addMessageForm">
 	<!--<div class="panel panel-default" id="chatInputPanel">-->
         <form class="newMessage" id="newMessage">
@@ -159,6 +169,10 @@
     <!--</div>-->
 </template>
 
+
+<!--*********************
+	 DISPLAY MESSAGES
+**********************-->
 
 <template name="messageList">
     <div class="panel panel-default" id="chatPanel">
@@ -171,16 +185,10 @@
         </div>
 </template>
 
-<template name="infoPanel">
-	<div class="panel panel-default" id="infoPanel">
-		<h3 class="text-center">Online Users</h3>
-		<ul id="usersList">
-			{{#each onlineUsers}}
-			<li>{{name}}</li>
-			{{/each}}
-		</ul>
-	</div>
-</template>
+
+<!--*********************
+	 OPPONENT'S BOARD
+**********************-->
 
 <template name="opponentBoard">
 	<div class="panel panel-default" id="opponentBoard">
@@ -248,11 +256,25 @@
         <!-- display opponent's tile choice for testing -->     
         <div class="row panel-body">
         {{#each opponentTile}}
-        	<p class="text-center">
-        		The opponent chose {{name}} (tile id {{id}})
-        	</p>  
+        	<p class="text-center">The opponent chose {{name}} (tile id {{id}})</p>  
         {{/each}}      
         </div>
+	</div>
+</template>
+
+
+<!--*********************
+		VIEW USERS
+**********************-->
+
+<template name="infoPanel">
+	<div class="panel panel-default" id="infoPanel">
+		<h3 class="text-center">Online Users</h3>
+		<ul id="usersList">
+			{{#each onlineUsers}}
+				<li>{{name}}</li>
+			{{/each}}
+		</ul>
 	</div>
 </template>
 
