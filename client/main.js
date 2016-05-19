@@ -14,7 +14,7 @@ import './main.html';
 // keeps track of how many tiles in main panel are flipped over
 var tileCounter = 0;
 
-// start game, results of game (win/loss)
+// initial game message to the user from the computer
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // onclick event to flip a tile

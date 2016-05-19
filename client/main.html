@@ -18,6 +18,7 @@
         	<div class="row">
         		{{> mainbox}}
         	</div>
+        	
         	<!-- Chat with opponent -->
         	<div class="row">
                 {{> messageList}}
@@ -33,6 +34,7 @@
         	<div class="row">
         		{{> opponentBoard }}
         	</div>
+        	
         	<!-- Online users -->
         	<div class="row">
         		{{> infoPanel }}
@@ -177,6 +179,7 @@
 <template name="messageList">
     <div class="panel panel-default" id="chatPanel">
     <ul class="list-group">
+    	<!-- Display messages stored in the database -->
         {{#each allMessages}}
             <span class="time"><small>{{time}}</small></span>
             <b>{{name}}</b>: {{message}}<br>
@@ -193,6 +196,7 @@
 <template name="opponentBoard">
 	<div class="panel panel-default" id="opponentBoard">
 		<h3 class="text-center">Opponent Board</h3>
+		
         <!-- row #1 -->
         <div class="row">
             {{#each firstRow}}
@@ -253,7 +257,7 @@
             {{/each}}
         </div> <!-- /row #3 -->
         
-        <!-- display opponent's tile choice for testing -->     
+        <!-- Display opponent's tile choice for testing -->     
         <div class="row panel-body">
         {{#each opponentTile}}
         	<p class="text-center">The opponent chose {{name}} (tile id {{id}})</p>  
@@ -271,6 +275,7 @@
 	<div class="panel panel-default" id="infoPanel">
 		<h3 class="text-center">Online Users</h3>
 		<ul id="usersList">
+			<!-- Display a list of online users stored in the database -->
 			{{#each onlineUsers}}
 				<li>{{name}}</li>
 			{{/each}}

@@ -15,6 +15,7 @@ export const usersCollection = new Mongo.Collection("users");
 // export access to any data to start our application
 
 /* TILES DATA */
+
 export const tilesData = [
 	{
 		id: 0,
