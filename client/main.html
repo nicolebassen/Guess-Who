@@ -12,7 +12,10 @@
 <body>
     <div class="container">
         <h1 id="mainTitle">Guess Who?</h1><br>
-        
+        {{> loginButtons}}
+        {{#if  currentUser}}
+
+
         <div class="col-lg-9 col-md-9 col-sm-9">
         	<!-- Gameplay area -->
         	<div class="row">
@@ -40,7 +43,12 @@
         		{{> infoPanel }}
         	</div>
         </div>
+            {{else}}
+            <h1 id="mainTitle">Please sign up <br>for an account<br>to play Guess Who? <br> Thank you!</h1>
+
+            {{/if}}
     </div>
+
     
     <!-- jQuery script  -->
     <script src="jquery-1.12.2.min.js"></script>        

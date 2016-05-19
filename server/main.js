@@ -15,18 +15,24 @@ Meteor.startup(() => {
   // remove any database values that are present
   messagesCollection.remove({});
   tilesCollection.remove({});
-  usersCollection.remove({});
+ // usersCollection.remove({});
   
   // add tiles data to tiles collection
   for (var i = 0; i < tilesData.length; i++) {
   	tilesCollection.insert(tilesData[i]);
   }
-  
+
+    /*
+
+    Commented out so you can do what you need with it
+
   // add users dummy data to users collection
   for (var i = 0; i < usersDummyData.length; i++) {
   	usersCollection.insert(usersDummyData[i]);
   }
-  
+  */
+
+
   // add messages data to messages collection
   for (var i = 0; i < messagesData.length; i++) {
   	messagesCollection.insert(messagesData[i]);

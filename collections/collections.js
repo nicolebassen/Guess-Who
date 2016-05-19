@@ -10,7 +10,7 @@ import { Mongo } from "meteor/mongo";
 // const: cannot re-assign
 export const tilesCollection = new Mongo.Collection("tiles");
 export const messagesCollection = new Mongo.Collection("messages");
-export const usersCollection = new Mongo.Collection("users");
+//export const usersCollection = new Mongo.Collection("users");
 
 // export access to any data to start our application
 
@@ -146,6 +146,11 @@ export const tilesData = [
 
 /* USERS DUMMY DATA */
 
+
+/*
+
+ Commented out so you can do what you need with it
+
 export const usersDummyData = [
 	{
 		name: "Player1",
@@ -172,6 +177,8 @@ export const usersDummyData = [
 		online: false
 	}
 ];
+
+*/
 
 /* MESSAGES DATA */
 

@@ -7,7 +7,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { tilesCollection } from '../collections/collections.js';
 import { messagesCollection } from '../collections/collections.js';
-import { usersCollection } from '../collections/collections.js';
+//import { usersCollection } from '../collections/collections.js';
 
 import './main.html';
 
@@ -133,13 +133,17 @@ Template.opponentBoard.helpers({
 	   INFO PANEL
 ***********************/
 
+/*
+
+ Commented out so you can do what you need with it
+
 Template.infoPanel.helpers({
 	onlineUsers: function() {
 		return usersCollection.find({"online":  true});
 	}
 });
 
-
+*/
 
 /**********************
 	   CHAT STUFF
@@ -207,4 +211,14 @@ Template.messageList.helpers({
 Template.registerHelper('messagesExist', function() {
     return Session.get('messages').length > 0;
 });
+
+
+/**********************
+ TEST ON SERVER CONSOLE
+ ***********************/
+
+if(Meteor.isServer){
+	//console.log(whatever.find().fetch() );
+
+}
 
