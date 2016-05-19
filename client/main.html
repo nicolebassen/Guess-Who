@@ -55,10 +55,8 @@
             	<!-- photo div -->
             	<div class="row">
                     <div class="text-center">
-                    {{#each myTile}}
-                    <img src="{{frontImage}}" id="myTile">
-                    <h4 class="text-center">{{name}}</h4><br><br>
-                    {{/each}}
+                    	<img src="{{frontImage}}" id="myTile">
+                    	<h4 class="text-center">{{myTile}}</h4><br><br>
                     </div>
             	</div><!-- /photo div -->
             
@@ -177,10 +175,9 @@
 	<div class="panel panel-default" id="infoPanel">
 		<h3 class="text-center">Online Users</h3>
 		<ul id="usersList">
-			<li>username1</li>
-			<li>username2</li>
-			<li>guest1234</li>
-			<li>username3</li>
+			{{#each onlineUsers}}
+			<li>{{name}}</li>
+			{{/each}}
 		</ul>
 	</div>
 </template>

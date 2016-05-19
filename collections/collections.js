@@ -1,3 +1,8 @@
+/*
+ 	Nicole Bassen and Kimberly Praxel
+ 	Guess Who? Meteor website
+*/
+
 // import the mongo object
 import { Mongo } from "meteor/mongo";
 
@@ -138,44 +143,32 @@ export const tilesData = [
 
 export const usersDummyData = [
 	{
-		name: "username1",
-		wins: 0,
-		losses: 0,
+		name: "Player1",
 		online: true
 	},
 	{
-		name: "username2",
-		wins: 0,
-		losses: 0,
+		name: "Player2",
 		online: false
 	},
 	{
-		name: "username3",
-		wins: 0,
-		losses: 0,
+		name: "Kimberly",
 		online: true
 	},
 	{
-		name: "username4",
-		wins: 0,
-		losses: 0,
+		name: "Nicole",
 		online: true
 	},
 	{
-		name: "username5",
-		wins: 0,
-		losses: 0,
+		name: "Player3",
 		online: false
 	},
 	{
-		name: "username6",
-		wins: 0,
-		losses: 0,
+		name: "Player4",
 		online: false
 	}
 ];
 
-export const messagesDummyData = [
+export const messagesData = [
 	{
 		name: "Guess Who",
 		message: "Use this panel to send messages to your opponent!"
