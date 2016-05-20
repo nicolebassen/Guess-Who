@@ -11,9 +11,16 @@
 
 <body>
     <div class="container">
-        <h1 id="mainTitle">Guess Who?</h1><br>
-        {{> loginButtons}}
+        <div class="navbar" align="right">
+            {{> loginButtons}}
+        </div>
+
+
         {{#if  currentUser}}
+
+        <h1 id="mainTitle">Guess Who?</h1><br>
+
+
 
 
         <div class="col-lg-9 col-md-9 col-sm-9">
@@ -44,7 +51,8 @@
         	</div>
         </div>
             {{else}}
-            <h1 id="mainTitle">Please sign up <br>for an account<br>to play Guess Who? <br> Thank you!</h1>
+            <h1 id="nonlogin"><br><br>Welcome to Guess Who?<br>Please sign up for <br>an account to play<br>
+                <br>Guess Who?</h1>
 
             {{/if}}
     </div>

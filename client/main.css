@@ -154,3 +154,20 @@ body{
 #chatPanel .time {
 	color: rgb(180,180,180);
 }
+
+/* navbar */
+#navbar{
+	text-align: right;
+}
+
+/* Non-Login */
+
+#nonlogin {
+	color: #ff4c4c;
+	font-size: 4.5em;
+	text-shadow: 2px 2px lightskyblue;
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: 0;
+	text-align: center;
+
+}

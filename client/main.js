@@ -222,3 +222,10 @@ if(Meteor.isServer){
 
 }
 
+/**********************
+ USER ACCOUNTS CONFIG
+ ***********************/
+
+Accounts.ui.config({
+	passwordSignupFields: 'USERNAME_AND_EMAIL'
+});
