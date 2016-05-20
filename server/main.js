@@ -15,7 +15,7 @@ Meteor.startup(() => {
   // remove any database values that are present
   messagesCollection.remove({});
   tilesCollection.remove({});
- // usersCollection.remove({});
+
   
   // add tiles data to tiles collection
   for (var i = 0; i < tilesData.length; i++) {

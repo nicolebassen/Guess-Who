@@ -21,3 +21,4 @@ twbs:bootstrap
 session
 accounts-password
 accounts-ui
+autopublish
