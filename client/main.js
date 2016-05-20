@@ -20,6 +20,17 @@ Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', ""); 
 
+// tracks the flip status of each tile
+var tileTracker = [];
+
+// initially set all tiles to false (not flipped)
+for (var i = 0; i < 15; i++) { 
+	tileTracker[i] = 0;
+}
+
+// store tile tracker in a session
+Session.set('tileTracker', tileTracker);
+
 // tile that the player selects
 var myTile = tilesCollection.find({"id": 15}); 
 
@@ -37,6 +48,7 @@ Template.mainbox.events({
     	var id = event.currentTarget.id;
     	var selectedTile = tilesCollection.findOne({"id": id});
     	var selectedTileName = tilesCollection.findOne({"id": id}, {"name": 1});
+    	var newTileTracker = Session.get('tileTracker');
     	console.log(selectedTile);
     	console.log(selectedTileName);
     	
@@ -52,18 +64,20 @@ Template.mainbox.events({
         	Session.set('gameMessage', "Let's play!");
         } else {
         	Session.set('gameMessage', "");
-        	var flipped = tilesCollection.findOne({"id": id}, {"flipped": 1});
+        	var flipped = newTileTracker[id];
         	console.log("Flipped: " + flipped);
         	// if image side of tile was facing up
         	if (flipped % 2 == 0) {
-        		allTiles[id].flipped++;	// switch flipped to true
+        		newTileTracker[id]++;	// switch flipped to true
         		tileCounter++;
+        		console.log("Flipped: " + flipped);
         		
         	} 
         	// if blank side of tile was facing up
         	else {
-         		allTiles[id].flipped--; // switch flipped to false
+         		newTileTracker[id]--; // switch flipped to false
          		tileCounter--;
+         		console.log("Flipped: " + flipped);
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
