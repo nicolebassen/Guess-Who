@@ -14,6 +14,26 @@ Meteor.startup(() => {
   } 
 });
 
+// 
+Meteor.methods({
+    messageInsert: function(message) {
+        messageCollection.insert(message);
+    },
+    messageDelete: function(_id) {
+        messageCollection.remove({"_id": _id});
+    },
+    messageUpdate: function(updatedActivity) {
+        messageCollection.update({"_id": updatedMessage._id}, {"$set": {
+            "messageText": updatedMessage.messageText
+        }});
+    }
+});
+
+
+Meteor.publish('messages', function() {
+    //sort by most recent changes
+    return messageCollection.find();
+});
 
 Accounts.onCreateUser(function (options, user) {
     if (options.profile){
