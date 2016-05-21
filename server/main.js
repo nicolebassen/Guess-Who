@@ -14,7 +14,7 @@ Meteor.startup(() => {
   } 
 });
 
-// 
+// secure methods for inserting, deleting, and updating messages
 Meteor.methods({
     messageInsert: function(message) {
         messageCollection.insert(message);
@@ -28,7 +28,6 @@ Meteor.methods({
         }});
     }
 });
-
 
 Meteor.publish('messages', function() {
     //sort by most recent changes

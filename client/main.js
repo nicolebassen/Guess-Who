@@ -8,6 +8,11 @@ import { messagesCollection } from '../collections/collections.js';
 
 import './main.html';
 
+Meteor.subscribe('messages');
+
+/**********************
+	  TILES DATA
+***********************/
 
 var tiles = [
 	{
@@ -137,16 +142,14 @@ var tiles = [
 	}
 ];
 
-Session.set('tile', tiles);
+Session.set('tile', tiles); // store tiles data in a session
+var allTiles = Session.get('tile'); // store tiles session in a variable
 
 // keeps track of how many tiles are flipped over
 var tileCounter = 0;
 
 // start game, results of game (win/loss)
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
-
-// store all tiles in a variable
-var allTiles = Session.get('tile');
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
@@ -158,7 +161,6 @@ Session.set('myTile', myTile);
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
-console.log("The opponent's tile is: " + opponentTile.name + ", ID: " + opponentTile.id);
 
 // store the three rows of tiles separately
 var firstRow = [];
@@ -304,13 +306,7 @@ Template.addMessageForm.events({
         var messages = Session.get('messages');
         
         var date = new Date();
-        var time = (date.getHours() % 12) + ":" + (date.getMinutes());
-        
-        if (date.getHours() > 12) {
-        	time += " PM";
-        } else {
-        	time += " AM";
-        }
+        var time = date.toLocaleTimeString();
         
         //save our message
         messagesCollection.insert({
