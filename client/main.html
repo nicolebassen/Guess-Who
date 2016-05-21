@@ -62,7 +62,6 @@
     <script src="jquery-1.12.2.min.js"></script>        
 </body>
 
-
 <!--*********************
 		MAIN PANEL 
 **********************-->
@@ -76,10 +75,8 @@
             	<!-- photo div -->
             	<div class="row">
                     <div class="text-center">
-                    	{{#each myTile}}
-                    	<img src="{{frontImage}}" id="myTile">
-                    	<h4 class="text-center">{{name}}</h4><br><br>
-                    	{{/each}}
+                    <img src="{{myTile.frontImage}}" id="myTile">
+                    <h4 class="text-center">{{myTile.name}}</h4><br><br>
                     </div>
             	</div><!-- /photo div -->
             
@@ -109,12 +106,12 @@
                             <div class="flip-container">
                                 <div class="flipper" onclick="{{flipTile}}">
                                     <div class="front">
-                                        <img src="{{frontImage}}" class="playerTile" id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{backImage}}" class="playerTile" id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -131,12 +128,12 @@
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{frontImage}}" class="playerTile" id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{backImage}}" class="playerTile" id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     </div>
                                 </div>
@@ -153,12 +150,12 @@
                                 <div class="flip-container">
                                     <div class="flipper" onclick="{{flipTile}}">
                                         <div class="front">
-                                        <img src="{{frontImage}}" class="playerTile" id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     <div class="back">
-                                        <img src="{{backImage}}" class="playerTile"  id="{{id}}">
-                                        <p>{{name}}</p>
+                                        <img src="{{this.backImage}}" class="playerTile"  id="{{this.id}}">
+                                        <p>{{this.name}}</p>
                                     </div>
                                     </div>
                                 </div>
@@ -171,7 +168,6 @@
         </div>
     </div>
 </template>
-
 
 <!--*********************
 	   SEND MESSAGE
@@ -187,7 +183,6 @@
     <!--</div>-->
 </template>
 
-
 <!--*********************
 	 DISPLAY MESSAGES
 **********************-->
@@ -198,21 +193,15 @@
     	<!-- Display messages stored in the database -->
         {{#each allMessages}}
             <span class="time"><small>{{time}}</small></span>
-            <b>{{name}}</b>: {{message}}<br>
+            <b>{{this.name}}</b>: {{this.messageText}}<br>
         {{/each}}
     </ul>
         </div>
 </template>
 
-
-<!--*********************
-	 OPPONENT'S BOARD
-**********************-->
-
 <template name="opponentBoard">
 	<div class="panel panel-default" id="opponentBoard">
 		<h3 class="text-center">Opponent Board</h3>
-		
         <!-- row #1 -->
         <div class="row">
             {{#each firstRow}}
@@ -221,10 +210,10 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{frontImage}}" width="50" height="70">
+                                    <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{opponentBackImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>
@@ -241,10 +230,10 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{frontImage}}" width="50" height="70">
+                                    <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{opponentBackImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>
@@ -261,10 +250,10 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{frontImage}}" width="50" height="70">
+                                    <img src="{{this.frontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
-                                    <img src="{{opponentBackImage}}" width="50" height="70">
+                                    <img src="{{this.opponentBackImage}}" width="50" height="70">
                                 </div>
                             </div>
                         </div>
@@ -273,15 +262,14 @@
             {{/each}}
         </div> <!-- /row #3 -->
         
-        <!-- Display opponent's tile choice for testing -->     
+        <!-- display opponent's tile choice for testing -->     
         <div class="row panel-body">
-        {{#each opponentTile}}
-        	<p class="text-center">The opponent chose {{name}} (tile id {{id}})</p>  
-        {{/each}}      
+        	<p class="text-center">
+        		The opponent chose {{opponentTile.name}} (tile id {{opponentTile.id}})
+        	</p>        
         </div>
 	</div>
 </template>
-
 
 <!--*********************
 		VIEW USERS
@@ -298,4 +286,3 @@
 		</ul>
 	</div>
 </template>
-

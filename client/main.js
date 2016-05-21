@@ -1,83 +1,238 @@
-/*
- 	Nicole Bassen and Kimberly Praxel
- 	Guess Who? Meteor website
- */
+// Nicole Bassen and Kimberly Praxel
+// Guess Who? Meteor website
 
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { tilesCollection } from '../collections/collections.js';
 import { messagesCollection } from '../collections/collections.js';
-//import { usersCollection } from '../collections/collections.js';
 
 import './main.html';
 
-// keeps track of how many tiles in main panel are flipped over
+
+var tiles = [
+	{
+		id: 0,
+		name: "Kim",
+		frontImage: "kim.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 1,
+		name: "Nicole",
+		frontImage: "nicole.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 2,
+		name: "Chris",
+		frontImage: "christopher.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 3,
+		name: "Paige",
+		frontImage: "paigegreen.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 4,
+		name: "Bob",
+		frontImage: "bob.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 5,
+		name: "Dinesh",
+		frontImage: "dinesh.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 6,
+		name: "Gilfoyle",
+		frontImage: "gilfoyle.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 7,
+		name: "Pam",
+		frontImage: "pam.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 8,
+		name: "Richard",
+		frontImage: "richard.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 9,
+		name: "Bob",
+		frontImage: "bob.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 10,
+		name: "Kim",
+		frontImage: "kim.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 11,
+		name: "Nicole",
+		frontImage: "nicole.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 12,
+		name: "Chris",
+		frontImage: "christopher.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 13,
+		name: "Richard",
+		frontImage: "richard.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 14,
+		name: "Barbie",
+		frontImage: "barbie.jpg",
+		backImage: "tileback.png",
+		opponentBackImage: "redtile.png",
+		flipped: 0
+	},
+	{
+		id: 15,
+		name: "",
+		frontImage: "tileback.png"
+	}
+];
+
+Session.set('tile', tiles);
+
+// keeps track of how many tiles are flipped over
 var tileCounter = 0;
 
-// initial game message to the user from the computer
+// start game, results of game (win/loss)
 Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
+// store all tiles in a variable
+var allTiles = Session.get('tile');
+
 // onclick event to flip a tile
-var flipTile = Session.set('flipTile', ""); 
-
-// tracks the flip status of each tile
-var tileTracker = [];
-
-// initially set all tiles to false (not flipped)
-for (var i = 0; i < 15; i++) { 
-	tileTracker[i] = 0;
-}
-
-// store tile tracker in a session
-Session.set('tileTracker', tileTracker);
+var flipTile = Session.set('flipTile', "");
 
 // tile that the player selects
-var myTile = tilesCollection.find({"id": 15}); 
+var myTile = allTiles[15];
+Session.set('myTile', myTile);
 
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
-var opponentTile = tilesCollection.find({"id": random});
+var opponentTile = allTiles[random];
+console.log("The opponent's tile is: " + opponentTile.name + ", ID: " + opponentTile.id);
 
+// store the three rows of tiles separately
+var firstRow = [];
+var secondRow = [];
+var thirdRow = [];
+
+// fill in the three rows of tiles
+for (var i = 0; i < 5; i++) {
+	firstRow[i] = allTiles[i];
+	secondRow[i] = allTiles[i + 5];
+	thirdRow[i] = allTiles[i + 10];
+}
 
 /**********************
 	   MAIN PANEL
 ***********************/
 
+Template.mainbox.helpers({
+	firstRow: function() {
+		return firstRow;
+	},
+	secondRow: function() {
+		return secondRow;
+	},
+	thirdRow: function() {
+		return thirdRow;
+	},
+	myTile: function() {
+		return Session.get('myTile');
+	},
+	flipTile: function() {
+		return Session.get('flipTile');
+	},
+	gameMessage: function() {
+		return Session.get('gameMessage');
+	}
+});
+
 Template.mainbox.events({
-	'click .playerTile': function(event) {
+    'click .playerTile': function(event) {
     	var id = event.currentTarget.id;
-    	var selectedTile = tilesCollection.findOne({"id": id});
-    	var selectedTileName = tilesCollection.findOne({"id": id}, {"name": 1});
-    	var newTileTracker = Session.get('tileTracker');
-    	console.log(selectedTile);
-    	console.log(selectedTileName);
     	
     	// set tile flipped property to true
     	Session.set('flipTile', "this.classList.toggle('flipped')");
     	
         if (tileCounter == 0) {
         	// the tile the player is choosing
-        	myTile = selectedTile;
-        	//Session.set('myTile', allTiles[id]);
+        	Session.set('myTile', allTiles[id]);
         	tileCounter++;
         	
         	Session.set('gameMessage', "Let's play!");
+        	
+        	// test
+        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")");
         } else {
         	Session.set('gameMessage', "");
-        	var flipped = newTileTracker[id];
-        	console.log("Flipped: " + flipped);
+        	
         	// if image side of tile was facing up
-        	if (flipped % 2 == 0) {
-        		newTileTracker[id]++;	// switch flipped to true
+        	if (allTiles[id].flipped % 2 == 0) {
+        		allTiles[id].flipped++;	// switch flipped to true
         		tileCounter++;
-        		console.log("Flipped: " + flipped);
         		
+        		// test
+        		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
+        				allTiles[id].flipped);
         	} 
         	// if blank side of tile was facing up
         	else {
-         		newTileTracker[id]--; // switch flipped to false
+         		allTiles[id].flipped--; // switch flipped to false
          		tileCounter--;
-         		console.log("Flipped: " + flipped);
+         		
+         		// test
+         		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
+         				allTiles[id].flipped);	
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
@@ -100,28 +255,6 @@ Template.mainbox.events({
     }
 });
 
-Template.mainbox.helpers({
-	firstRow: function() {
-		//console.log(tilesCollection.find({"id": { $lt: 5 }}).fetch();
-		return tilesCollection.find({"id": { $lt: 5 }});
-	},
-	secondRow: function() {
-		return tilesCollection.find({"id": { $lt: 10, $gt: 4 }});
-	},
-	thirdRow: function() {
-		return tilesCollection.find({"id": { $lt: 15, $gt: 9 }});
-	},
-	myTileName: function() {
-		return myTile;
-	},
-	flipTile: function() {
-		return Session.get('flipTile');
-	},
-	gameMessage: function() {
-		return Session.get('gameMessage');
-	}
-});
-
 
 /**********************
 	OPPONENT'S BOARD
@@ -129,13 +262,13 @@ Template.mainbox.helpers({
 
 Template.opponentBoard.helpers({
 	firstRow: function() {
-		return tilesCollection.find({"id": { $lt: 5 }});
+		return firstRow;
 	},
 	secondRow: function() {
-		return tilesCollection.find({"id": { $lt: 10, $gt: 4 }});
+		return secondRow;
 	},
 	thirdRow: function() {
-		return tilesCollection.find({"id": { $lt: 15, $gt: 9 }});
+		return thirdRow;
 	},
 	opponentTile: function() {
 		return opponentTile;
@@ -144,27 +277,12 @@ Template.opponentBoard.helpers({
 
 
 /**********************
-	   INFO PANEL
-***********************/
-
-/*
-
- Commented out so you can do what you need with it
-
-Template.infoPanel.helpers({
-	onlineUsers: function() {
-		return usersCollection.find({"online":  true});
-	}
-});
-
-*/
-
-/**********************
 	   CHAT STUFF
 ***********************/
 
 function scrollChat(){
 	var height = $('#chatPanel')[0].scrollHeight;
+
 	$('#chatPanel').scrollTop(height);
 };
 
@@ -175,41 +293,30 @@ Template.addMessageForm.onCreated(function() {
 
 Template.addMessageForm.events({
     'submit .newMessage': function(event, template) {
-        //prevent the form from refreshing the page
+        //prevent the from from refreshing the page
         event.preventDefault();
 
         //get our form value (message text)
         var messageText = $('#messageText').val();
         $('#messageText').val(''); // remove text from our message box
+
+        //get our data source (from session)
+        var messages = Session.get('messages');
         
-        // create a timestamp
         var date = new Date();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
+        var time = (date.getHours() % 12) + ":" + (date.getMinutes());
         
-        if (hours == 0) {
-        	hours = 12;
-        } else {
-        	hours = hours % 12;
-        }
-        
-        if (minutes < 10) { 
-        	minutes = "0" + minutes; 
-        }
-        
-        var time = hours + ":" + minutes;
-        
-        if (date.getHours() > 12) { 
-        	time += " PM"; 
+        if (date.getHours() > 12) {
+        	time += " PM";
         } else {
         	time += " AM";
         }
         
-        // add message data to messages collection
+        //save our message
         messagesCollection.insert({
-        	name: "Player1",
-        	message: messageText,
-        	time: time
+			name: "Player 1",
+            messageText: messageText,
+            time: time
         });
         
         scrollChat();
@@ -218,17 +325,13 @@ Template.addMessageForm.events({
 
 Template.messageList.helpers({
 	allMessages: function() {
-		return messagesCollection.find();
+		return messagesCollection.find({});
 	}
 });
 
 Template.registerHelper('messagesExist', function() {
     return Session.get('messages').length > 0;
 });
-
-
-
-
 
 
 
