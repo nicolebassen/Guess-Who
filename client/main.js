@@ -283,6 +283,8 @@ Template.opponentBoard.helpers({
 	   CHAT STUFF
 ***********************/
 
+Meteor.subscribe("playerMessages");
+
 function scrollChat(){
 	var height = $('#chatPanel')[0].scrollHeight;
 
@@ -303,18 +305,10 @@ Template.addMessageForm.events({
         var messageText = $('#messageText').val();
         $('#messageText').val(''); // remove text from our message box
 
-        //get our data source (from session)
-        var messages = Session.get('messages');
-        
-        var date = new Date();
-        var time = date.toLocaleTimeString();
-        
-        //save our message
-        messagesCollection.insert({
-			name: "Player 1",
-            messageText: messageText,
-            time: time
-        });
+
+		Meteor.call('playerMessages', messageText);
+
+		$('#messageText').val("");
         
         scrollChat();
     }
@@ -322,18 +316,23 @@ Template.addMessageForm.events({
 
 Template.messageList.helpers({
 	allMessages: function() {
-		return messagesCollection.find({});
+		return messages.find();
 	}
 });
 
+
+// Scroll chat any time it's rendered on screen
+Template.messageList.onRendered(function() {
+	scrollChat();
+});
+
+
 Template.registerHelper('messagesExist', function() {
-    return Session.get('messages').length > 0;
+	return Session.get('messages').length > 0;
 });
 
 
 
-
-Meteor.subscribe("messages");
 
 
 

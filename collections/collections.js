@@ -13,9 +13,10 @@ export const messagesCollection = new Mongo.Collection("messages");
 
 /* MESSAGES DATA */
 
-export const messagesData = [
-	{
-		name: "Guess Who Game",
-		messageText: "Use this panel to send messages to your opponent!"
-	}
-];
+
+ export const messagesData = [
+ {
+ name: "Guess Who Game",
+ messageText: "Use this panel to send messages to your opponent!"
+ }
+ ];
