@@ -333,32 +333,9 @@ Template.registerHelper('messagesExist', function() {
 
 
 
-/******************************
- ALLOW SERVER TO BE ON CLIENT
- ******************************/
-
-if(Meteor.isClient){
-	Meteor.subscribe('tiles');
-	Meteor.subscribe('chatbox');
-}
+Meteor.subscribe("messages");
 
 
-
-/**********************
- TEST ON SERVER CONSOLE
- ***********************/
-
-if(Meteor.isServer){
-	//console.log(whatever.find().fetch() );
-	Meteor.publish('tiles', function () {
-		return tilesCollection.findAll();
-	})
-
-	Meteor.publish('chatbox', function(){
-		return messagesCollection.findAll();
-	});
-
-}
 
 /**********************
  USER ACCOUNTS CONFIG
