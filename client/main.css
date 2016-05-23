@@ -2,13 +2,14 @@
 
 body{
 	background-color: #0D4F8B;
+	background-color: lightskyblue;
 }
 
 .mainTitle {
 	color: #ffffb2;
 	font-size: 4.5em;
 	text-shadow: 2px 2px lightskyblue;
-	text-shadow: 2px 2px black, -1px -1px #ff4c4c;
+	text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
 	font-family: 'Raleway', sans-serif;
 	margin-bottom: 0;
 }
@@ -27,6 +28,7 @@ body{
 
 #mainbox {
 	height: 40em;
+	background-color: #6ca4c8;
 }
 
 #mainbox img.playerTile {
@@ -55,6 +57,8 @@ body{
 
 #playerboard{
 	background-color: lightskyblue;
+	background-color: #fffff9;
+	
 	max-height: 37em;
 	padding: 10px;
 }
