@@ -138,7 +138,7 @@ var tiles = [
 	{
 		id: 15,
 		name: "",
-		frontImage: "tileback.png"
+		frontImage: "qmark-red-tile.png"
 	}
 ];
 
@@ -161,6 +161,7 @@ Session.set('myTile', myTile);
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
+console.log("The opponent chose " + opponentTile.name + " (ID" + opponentTile.id + ")");
 
 // store the three rows of tiles separately
 var firstRow = [];

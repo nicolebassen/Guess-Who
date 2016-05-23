@@ -12,13 +12,13 @@
 <body>
     <div class="container">
         <div class="navbar" align="right">
-            {{> loginButtons}}
+            <button class="panel panel-default">{{> loginButtons}}</button>
         </div>
 
 
         {{#if  currentUser}}
 
-        <h1 id="mainTitle">Guess Who?</h1><br>
+        <h1 class="mainTitle">Guess Who?</h1><br>
 
 
 
@@ -51,7 +51,7 @@
         	</div>
         </div>
             {{else}}
-            <h1 id="nonlogin"><br><br>Welcome to Guess Who?<br>Please sign up for <br>an account to play<br>
+            <h1 id="nonlogin" class="mainTitle"><br><br>Welcome to Guess Who?<br>Please sign up for <br>an account to play<br>
                 <br>Guess Who?</h1>
 
             {{/if}}
@@ -262,12 +262,13 @@
             {{/each}}
         </div> <!-- /row #3 -->
         
-        <!-- display opponent's tile choice for testing -->     
+        <!-- display opponent's tile choice for testing     
         <div class="row panel-body">
         	<p class="text-center">
         		The opponent chose {{opponentTile.name}} (tile id {{opponentTile.id}})
         	</p>        
         </div>
+		-->
 	</div>
 </template>
 
