@@ -17,13 +17,13 @@ Meteor.startup(() => {
 // secure methods for inserting, deleting, and updating messages
 Meteor.methods({
     messageInsert: function(message) {
-        messageCollection.insert(message);
+        messagesCollection.insert(message);
     },
     messageDelete: function(_id) {
-        messageCollection.remove({"_id": _id});
+        messagesCollection.remove({"_id": _id});
     },
     messageUpdate: function(updatedActivity) {
-        messageCollection.update({"_id": updatedMessage._id}, {"$set": {
+        messagesCollection.update({"_id": updatedMessage._id}, {"$set": {
             "messageText": updatedMessage.messageText
         }});
     }
@@ -31,7 +31,7 @@ Meteor.methods({
 
 Meteor.publish('messages', function() {
     //sort by most recent changes
-    return messageCollection.find();
+    return messagesCollection.find();
 });
 
 Accounts.onCreateUser(function (options, user) {
