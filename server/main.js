@@ -16,7 +16,7 @@ Meteor.startup(() => {
      }
 
 
-    Meteor.publish('playerMessages', function () {
+    Meteor.publish('messageInsert', function () {
         //sort by most recent changes
         return messagesCollection.find({public: true});
     });
@@ -26,13 +26,18 @@ Meteor.startup(() => {
 // secure methods for inserting, deleting, and updating messages
     Meteor.methods({
 
-        messageInsert: function (message) {
-            messagesCollection.insert(message);
+        'messageInsert': function (message) {
+            messagesCollection.insert({
+                public: true,
+                name: message.name,
+                messageText: message.message,
+				time: message.time
+            });
         },
-        messageDelete: function (_id) {
-            messagesCollection.remove({"_id": _id});
+        messageDelete: function (message) {
+            messagesCollection.remove({"_id": message._id});
         },
-        messageUpdate: function (updatedActivity) {
+        messageUpdate: function (updatedMessage) {
             messagesCollection.update({"_id": updatedMessage._id}, {
                 "$set": {
                     "messageText": updatedMessage.messageText
@@ -40,11 +45,12 @@ Meteor.startup(() => {
             });
         },
 
-        'playerMessages': function () {
-            messages.insert({
+        'playerMessages': function (message) {
+            messagesCollection.insert({
                 public: true,
-                name: username,
-                messageText: messages
+                name: message.name,
+                messageText: message.message,
+				time: message.time
             });
         }
     });
@@ -56,6 +62,8 @@ Meteor.startup(() => {
         } else {
             user.profile = {};
         }
+		user.profile.wins = 0;
+		user.profile.losses = 0;
         return user;
     });
 

@@ -161,7 +161,7 @@ Session.set('myTile', myTile);
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
-console.log("The opponent chose " + opponentTile.name + " (ID" + opponentTile.id + ")");
+console.log("The opponent chose " + opponentTile.name + " (ID " + opponentTile.id + ")");
 
 // store the three rows of tiles separately
 var firstRow = [];
@@ -244,12 +244,10 @@ Template.mainbox.events({
         	for (var i = 0; i < allTiles.length; i++) {
         		if (allTiles[i].flipped == 0) {
         			if (allTiles[i].id == opponentTile.id) {
-        				Session.set('gameMessage', "That is your opponent's tile. You win!");
-        				//window.alert("Game over. You win!!");     				
+        				Session.set('gameMessage', "That is your opponent's tile. You win!");				
         				console.log("That is the opponent's tile. You win!!");
         			} else {
         				Session.set('gameMessage', "That is not your opponent's tile. You lose!");
-        				//window.alert("Game over. You lose!!");    
         				console.log("That is not the opponent's tile. You lose!");
         			}
 				}
@@ -283,7 +281,7 @@ Template.opponentBoard.helpers({
 	   CHAT STUFF
 ***********************/
 
-Meteor.subscribe("playerMessages");
+Meteor.subscribe("messageInsert");
 
 function scrollChat(){
 	var height = $('#chatPanel')[0].scrollHeight;
@@ -296,6 +294,9 @@ Template.addMessageForm.onCreated(function() {
     Session.setDefault('messages', []);
 });
 
+// test 
+console.log(messagesCollection.find().fetch());
+console.log(Meteor.userId);
 Template.addMessageForm.events({
     'submit .newMessage': function(event, template) {
         //prevent the from from refreshing the page
@@ -304,11 +305,20 @@ Template.addMessageForm.events({
         //get our form value (message text)
         var messageText = $('#messageText').val();
         $('#messageText').val(''); // remove text from our message box
+		var date = new Date();
+		var time = date.toLocaleTimeString();
+		
+		// create a message object to insert into the collection
+		var newMessage = {
+			name: Meteor.userId,
+			message: messageText,
+			time: time
+		}
 
+		// add message object to the messages collection
+		Meteor.call('messageInsert', newMessage);
 
-		Meteor.call('playerMessages', messageText);
-
-		$('#messageText').val("");
+		//$('#messageText').val("");
         
         scrollChat();
     }
@@ -316,7 +326,7 @@ Template.addMessageForm.events({
 
 Template.messageList.helpers({
 	allMessages: function() {
-		return messages.find();
+		return messagesCollection.find();
 	}
 });
 
