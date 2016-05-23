@@ -2,12 +2,15 @@
 
 body{
 	background-color: #ffffb2;
+	background-color: #0D4F8B;
 }
 
 #mainTitle {
 	color: #ff4c4c;
+	color: #ffffb2;
 	font-size: 4.5em;
 	text-shadow: 2px 2px lightskyblue;
+	text-shadow: 2px 2px #ff4c4c, -2px -2px black;
 	font-family: 'Raleway', sans-serif;
 	margin-bottom: 0;
 }
