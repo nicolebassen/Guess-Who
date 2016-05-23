@@ -225,8 +225,8 @@ Template.mainbox.events({
         		tileCounter++;
         		
         		// test
-        		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-        				allTiles[id].flipped);
+        		//console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
+        		//		allTiles[id].flipped);
         	} 
         	// if blank side of tile was facing up
         	else {
@@ -234,8 +234,8 @@ Template.mainbox.events({
          		tileCounter--;
          		
          		// test
-         		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " + 
-         				allTiles[id].flipped);	
+         	//console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
+         	//			allTiles[id].flipped);
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
