@@ -175,6 +175,7 @@ for (var i = 0; i < 5; i++) {
 	thirdRow[i] = allTiles[i + 10];
 }
 
+
 /**********************
 	   MAIN PANEL
 ***********************/
@@ -306,11 +307,11 @@ Template.addMessageForm.events({
         $('#messageText').val(''); // remove text from our message box
 		var date = new Date();
 		var time = date.toLocaleTimeString();
-		//var name = Meteor.users.find({"_id": this.userId}, {"name": 1});
-		
+		var currentUsername = Meteor.user().username;
+
 		// create a message object to insert into the collection
 		var newMessage = {
-			name: "Test",
+			name: currentUsername,
 			message: messageText,
 			time: time
 		}
