@@ -143,6 +143,9 @@ var tiles = [
 	}
 ];
 
+// tracks whether game is still going
+Session.set('gameOver', false);
+
 Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
 
@@ -162,6 +165,7 @@ Session.set('myTile', myTile);
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
+console.log("The opponent's tile is " + opponentTile.name + "; ID " + opponentTile.id);
 
 // store the three rows of tiles separately
 var firstRow = [];
@@ -203,52 +207,53 @@ Template.mainbox.helpers({
 
 Template.mainbox.events({
     'click .playerTile': function(event) {
-    	var id = event.currentTarget.id;
+		var id = event.currentTarget.id;
+		
+		if (tileCounter < 14) {
+			// set tile flipped property to true
+			Session.set('flipTile', "this.classList.toggle('flipped')");
     	
-    	// set tile flipped property to true
-    	Session.set('flipTile', "this.classList.toggle('flipped')");
-    	
-        if (tileCounter == 0) {
-        	// the tile the player is choosing
-        	Session.set('myTile', allTiles[id]);
-        	tileCounter++;
+			if (tileCounter == 0) {
+				// the tile the player is choosing
+				Session.set('myTile', allTiles[id]);
+				tileCounter++;
         	
-        	Session.set('gameMessage', "Let's play!");
-        } else {
-        	Session.set('gameMessage', "");
+				Session.set('gameMessage', "Let's play!");
+			} else {
+				Session.set('gameMessage', "");
         	
-        	// if image side of tile was facing up
-        	if (allTiles[id].flipped % 2 == 0) {
-        		allTiles[id].flipped++;	// switch flipped to true
-        		tileCounter++;
-        		
-        		// test
-        		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
-        				allTiles[id].flipped);
-        	} 
-        	// if blank side of tile was facing up
-        	else {
-         		allTiles[id].flipped--; // switch flipped to false
-         		tileCounter--;
-         		
-         		// test
-         	console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
-         				allTiles[id].flipped);
-         	}
-        }
-        console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
-        
-        if (tileCounter >= 15) {
-        	for (var i = 0; i < allTiles.length; i++) {
-        		if (allTiles[i].flipped == 0) {
-        			if (allTiles[i].id == opponentTile.id) {
-        				Session.set('gameMessage', "That is your opponent's tile. You win!");				
-        			} else {
-        				Session.set('gameMessage', "That is not your opponent's tile. You lose!");
-        			}
+				// if image side of tile was facing up
+				if (allTiles[id].flipped % 2 == 0) {
+					allTiles[id].flipped++;	// switch flipped to true
+					tileCounter++;
+				} 
+				// if blank side of tile was facing up
+				else {
+					allTiles[id].flipped--; // switch flipped to false
+					tileCounter--;
 				}
 			}
-        }  
+			console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
+        } else {
+			allTiles[id].flipped++; // change flipped property of the last tile flipped
+			
+			// find the remaining (unflipped) tile and compare to opponent's tile
+			for (var i = 0; i < allTiles.length; i++) {
+				if (allTiles[i].flipped == 0) {
+					if (allTiles[i].id == opponentTile.id) {
+						Session.set('gameMessage', "That is your opponent's tile. You win!");
+						// TODO increase win count for current user and loss count for opponent
+					} else {
+						Session.set('gameMessage', "That is not your opponent's tile. You lose!");
+						// TODO increase win count for opponent and loss count for current user
+						
+					}
+				}
+			}
+			
+			Session.set('flipTile', ''); // can no longer flip tiles
+			Session.set('gameOver', true);	// game is over
+		}
     }
 });
 
@@ -348,32 +353,15 @@ Template.infoPanel.helpers({
 		return Session.get('viewUsername');
    }
 });
-
-function toggle_visibility(id) {
-       var e = document.getElementById(id);
-       if(e.style.display == 'block')
-          e.style.display = 'none';
-       else
-          e.style.display = 'block';
-    }
-
-// toggle visibility of online users list and user data
-function toggleVisibility(target, otherDiv) {
-    if (target.style.display == 'block') {
-        target.style.display = 'none';
-		otherDiv.style.display = 'block';
-	} else {
-        target.style.display = 'block';
-		otherDiv.style.display = 'none';
-    }
-}
 	
 Template.infoPanel.events({
+	// when the user clicks on a username, hide online users and display user info
 	'click .userItem': function(event) {
 		event.preventDefault();
 		
 		var id = event.currentTarget.id;
-		console.log(id);
+		var currentTargetName = Meteor.users.findOne({"_id": id}, {"username": 1});
+		Session.set('viewUsername', currentTargetName.username);
 		
 		var onlineUsers = document.getElementById('onlineUsers');
 		var userInfo = document.getElementById('userInfo');
@@ -381,12 +369,9 @@ Template.infoPanel.events({
 		onlineUsers.style.display = 'none';
 		userInfo.style.display = 'block';
    },
+   // when the user clicks 'back', hide user info and display online users
    'click #backToUsers': function(event) {
 		event.preventDefault();
-		
-		var id = event.currentTarget.id;
-		var target = event.currentTarget;
-		console.log(id);
 		
 		var onlineUsers = document.getElementById('onlineUsers');
 		var userInfo = document.getElementById('userInfo');
