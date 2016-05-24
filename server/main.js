@@ -27,7 +27,7 @@ Meteor.startup(() => {
 	
     Meteor.publish('messageInsert', function () {
         //sort by most recent changes
-        return messagesCollection.find({public: true});
+        return messagesCollection.find({});
     });
 	
 	Meteor.publish('allMessages'), function() {
