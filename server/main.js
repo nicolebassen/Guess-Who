@@ -15,9 +15,8 @@ Meteor.startup(() => {
      messagesCollection.insert(messagesData[i]);
      }
 
-	 
+	// all user accounts
 	Meteor.publish('allUsers', function() {
-        //all users
         return Meteor.users.find({});
     });
 	
@@ -30,6 +29,10 @@ Meteor.startup(() => {
         //sort by most recent changes
         return messagesCollection.find({public: true});
     });
+	
+	Meteor.publish('allMessages'), function() {
+		return messagesCollection.find({});
+	}
 
 
 
@@ -44,23 +47,14 @@ Meteor.startup(() => {
 				time: message.time
             });
         },
-        messageDelete: function (message) {
+        'messageDelete': function (message) {
             messagesCollection.remove({"_id": message._id});
         },
-        messageUpdate: function (updatedMessage) {
+        'messageUpdate': function (updatedMessage) {
             messagesCollection.update({"_id": updatedMessage._id}, {
                 "$set": {
                     "messageText": updatedMessage.messageText
                 }
-            });
-        },
-
-        'playerMessages': function (message) {
-            messagesCollection.insert({
-                public: true,
-                name: message.name,
-                messageText: message.message,
-				time: message.time
             });
         }
     });

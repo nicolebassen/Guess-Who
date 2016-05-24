@@ -291,7 +291,8 @@ function scrollChat(){
 
 //save some initial data for our messaging application
 Template.addMessageForm.onCreated(function() {
-    Session.setDefault('messages', []);
+    //Session.setDefault('messages', []);
+	Meteor.subscribe('allMessages');
 });
 
 
@@ -305,10 +306,11 @@ Template.addMessageForm.events({
         $('#messageText').val(''); // remove text from our message box
 		var date = new Date();
 		var time = date.toLocaleTimeString();
+		//var name = Meteor.users.find({"_id": this.userId}, {"name": 1});
 		
 		// create a message object to insert into the collection
 		var newMessage = {
-			name: Meteor.userId,
+			name: "Test",
 			message: messageText,
 			time: time
 		}
@@ -324,10 +326,9 @@ Template.addMessageForm.events({
 
 Template.messageList.helpers({
 	allMessages: function() {
-		return messagesCollection.find();
+		return messagesCollection.find({});
 	}
 });
-
 
 // Scroll chat any time it's rendered on screen
 Template.messageList.onRendered(function() {
@@ -342,11 +343,6 @@ Template.registerHelper('messagesExist', function() {
 /**********************
 	USERS LIST
  ***********************/
-/*
-Template.infoPanel.onCreated(function () {
-   this.subscribe('users');
-});
-*/
 
 Template.infoPanel.helpers({
    /*users: function() {
@@ -357,11 +353,9 @@ Template.infoPanel.helpers({
 		target.classList.toggle('showUserInfo');
    },*/
    onlineUsersList: function() {
-		return Meteor.users.find({ "status.online": true });
+		return Meteor.users.find({ "status.online": true }); // users that are logged in
    }
 });
-
-
 
 
 /**********************
