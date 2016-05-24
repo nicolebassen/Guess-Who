@@ -171,19 +171,12 @@ body{
 
 
 /* User info */
-/*
-.showUsers #usersList {
+
+a.userItem:hover, a#backToUsers {
+	text-decoration: none;
 }
-.showUsers #userInfo {
+
+#userInfo {
 	display: none;
 }
-
-.showUserInfo #usersList {
-	display: none;
-}
-.showUserInfo #userInfo {
-}
-*/
-
-
 

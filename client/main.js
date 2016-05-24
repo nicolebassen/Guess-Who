@@ -214,9 +214,6 @@ Template.mainbox.events({
         	tileCounter++;
         	
         	Session.set('gameMessage', "Let's play!");
-        	
-        	// test
-        	console.log("You chose: " + allTiles[id].id + " (" + allTiles[id].name + ")");
         } else {
         	Session.set('gameMessage', "");
         	
@@ -226,8 +223,8 @@ Template.mainbox.events({
         		tileCounter++;
         		
         		// test
-        		//console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
-        		//		allTiles[id].flipped);
+        		console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
+        				allTiles[id].flipped);
         	} 
         	// if blank side of tile was facing up
         	else {
@@ -235,8 +232,8 @@ Template.mainbox.events({
          		tileCounter--;
          		
          		// test
-         	//console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
-         	//			allTiles[id].flipped);
+         	console.log(allTiles[id].name + ": " + allTiles[id].id + ", flipped: " +
+         				allTiles[id].flipped);
          	}
         }
         console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
@@ -246,10 +243,8 @@ Template.mainbox.events({
         		if (allTiles[i].flipped == 0) {
         			if (allTiles[i].id == opponentTile.id) {
         				Session.set('gameMessage', "That is your opponent's tile. You win!");				
-        				console.log("That is the opponent's tile. You win!!");
         			} else {
         				Session.set('gameMessage', "That is not your opponent's tile. You lose!");
-        				console.log("That is not the opponent's tile. You lose!");
         			}
 				}
 			}
@@ -290,12 +285,9 @@ function scrollChat(){
 	$('#chatPanel').scrollTop(height);
 };
 
-//save some initial data for our messaging application
 Template.addMessageForm.onCreated(function() {
-    //Session.setDefault('messages', []);
 	Meteor.subscribe('allMessages');
 });
-
 
 Template.addMessageForm.events({
     'submit .newMessage': function(event, template) {
@@ -318,8 +310,6 @@ Template.addMessageForm.events({
 
 		// add message object to the messages collection
 		Meteor.call('messageInsert', newMessage);
-
-		//$('#messageText').val("");
         
         scrollChat();
     }
@@ -342,19 +332,67 @@ Template.registerHelper('messagesExist', function() {
 });
 
 /**********************
-	USERS LIST
+	  USERS LIST
  ***********************/
+
+Session.set('viewUsername', "");
 
 Template.infoPanel.helpers({
    /*users: function() {
        return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
-   },
-   'click .userItem': function() {
-		var target = event.currentTarget();
-		target.classList.toggle('showUserInfo');
    },*/
    onlineUsersList: function() {
 		return Meteor.users.find({ "status.online": true }); // users that are logged in
+   },
+   viewUsername: function() {
+		return Session.get('viewUsername');
+   }
+});
+
+function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+
+// toggle visibility of online users list and user data
+function toggleVisibility(target, otherDiv) {
+    if (target.style.display == 'block') {
+        target.style.display = 'none';
+		otherDiv.style.display = 'block';
+	} else {
+        target.style.display = 'block';
+		otherDiv.style.display = 'none';
+    }
+}
+	
+Template.infoPanel.events({
+	'click .userItem': function(event) {
+		event.preventDefault();
+		
+		var id = event.currentTarget.id;
+		console.log(id);
+		
+		var onlineUsers = document.getElementById('onlineUsers');
+		var userInfo = document.getElementById('userInfo');
+		
+		onlineUsers.style.display = 'none';
+		userInfo.style.display = 'block';
+   },
+   'click #backToUsers': function(event) {
+		event.preventDefault();
+		
+		var id = event.currentTarget.id;
+		var target = event.currentTarget;
+		console.log(id);
+		
+		var onlineUsers = document.getElementById('onlineUsers');
+		var userInfo = document.getElementById('userInfo');
+		
+		userInfo.style.display = 'none';
+		onlineUsers.style.display = 'block';
    }
 });
 

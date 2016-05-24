@@ -284,12 +284,21 @@
 
 <template name="infoPanel">
 	<div class="panel panel-default" id="infoPanel">
+	  <div id="onlineUsers">
 		<h3 class="text-center">Online Users</h3>
 		  <ul id="usersList">
 			<!-- Display a list of online users stored in the database -->
 			{{#each onlineUsersList}}
-				<li class="userItem" id="{{this._id}}">{{username}}</li>
+				<li class="userItem"><a class="userItem" id="{{this._id}}">{{username}}</a></li>
 			{{/each}}
 		  </ul>
+	  </div>
+		  
+	  <div id="userInfo">
+		  <p><small><a id="backToUsers">Back</a></small></p>
+		  <h3>Test: {{viewUsername}}</h3>
+		  <p>Wins: 0<br>
+		  Losses: 0</p>
+	  </div>
 	</div>
 </template>
