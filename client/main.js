@@ -202,6 +202,9 @@ Template.mainbox.helpers({
 	},
 	gameMessage: function() {
 		return Session.get('gameMessage');
+	},
+	currentUser: function() {
+		return Meteor.user().username;
 	}
 });
 

@@ -4,6 +4,21 @@ body{
 	background-color: lightskyblue;
 }
 
+#navigationBar {
+	color: white;
+	margin-bottom: 0;
+	background-color: #6ca4c8;
+	border: none;
+}
+
+#loginButton {
+	margin-right: 5px;
+}
+
+a.navOption {
+	color: white;
+}
+
 .mainTitle {
 	color: #ffffb2;
 	font-size: 4.5em;
@@ -187,5 +202,9 @@ a.userItem:hover, a#backToUsers {
 
 #userInfo {
 	display: none;
+}
+
+.userDisplayName {
+	text-transform: capitalize;
 }
 

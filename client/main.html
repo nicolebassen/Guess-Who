@@ -10,48 +10,62 @@
 </head>
 
 <body>
+	<nav class='navbar navbar-default' id="navigationBar">
+           <ul class='nav navbar-nav'>
+               <li> <a class='navbar-brand navOption' href='/'> Guess Who? </a> </li>
+               <li> <a class='navOption' href='/users'> Find Friends </a> </li>
+               <li> <a class='navOption' href='/games'> Play Guess Who? </a> </li>
+           </ul>
+
+           <div class='collapse navbar-collapse' id='navigation'>
+               <ul class='nav navbar-nav navbar-right' id="loginButton">
+                   {{> loginButtons }}
+               </ul>
+           </div>
+    </nav>
+	
     <div class="container">
-	  
-        <div class="navbar" align="right">
-            <button class="panel panel-default">{{> loginButtons}}</button>
-        </div>
 
+		<!-- if user is logged in, display game board and other data -->
         {{#if  currentUser}}
-
-        <h1 class="mainTitle">Guess Who?</h1><br>
-
-        <div class="col-lg-9 col-md-9 col-sm-9">
-        	<!-- Gameplay area -->
-        	<div class="row">
-        		{{> mainbox}}
-        	</div>
-        	
-        	<!-- Chat with opponent -->
-        	<div class="row">
-                {{> messageList}}
-        	</div>
-            <div class="row">
-                {{> addMessageForm}}
-            </div>
-        </div>
-
+		  <h1 class="mainTitle">Guess Who?</h1><br>
+  
+		  <div class="col-lg-9 col-md-9 col-sm-9">
+			  <!-- Gameplay area -->
+			  <div class="row">
+				  {{> mainbox}}
+			  </div>
+			  
+			  <!-- Chat with opponent -->
+			  <div class="row">
+				  {{> messageList}}
+			  </div>
+			  <div class="row">
+				  {{> addMessageForm}}
+			  </div>
+		  </div>
         
-		<div class="col-lg-3 col-md-3 col-sm-3">
-			<!-- Opponent's tiles -->
-        	<div class="row">
-        		{{> opponentBoard }}
-        	</div>
-        	
-        	<!-- Online users -->
-        	<div class="row">
-        		{{> infoPanel }}
-        	</div>
-        </div>
-            {{else}}
-            <h1 id="nonlogin" class="mainTitle"><br><br>Welcome to Guess Who?<br>Please sign up for <br>an account to play<br>
-                <br>Guess Who?</h1>
-
-            {{/if}}
+		  <div class="col-lg-3 col-md-3 col-sm-3">
+			  <!-- Opponent's tiles -->
+			  <div class="row">
+				  {{> opponentBoard }}
+			  </div>
+			  
+			  <!-- Online users -->
+			  <div class="row">
+				  {{> infoPanel }}
+			  </div>
+		  </div>
+		  
+		<!-- user is not logged in; display login/sign up message -->
+        {{else}}
+            <h1 id="nonlogin" class="mainTitle"><br><br>
+			  Welcome to Guess Who?<br>
+			  Please sign up for<br>
+			  an account to play<br>
+              <br>Guess Who?
+			</h1>
+        {{/if}}
     </div>
 
     
@@ -79,10 +93,10 @@
             
             	<!-- stats div -->
             	<div class="row">
-            		<h4 class="text-center">Player 1</h4>
+            		<h4 class="text-center userDisplayName">{{currentUser}}</h4>
                     <p>Wins: 0<br />
                     Losses: 0</p>
-                    <h4 class="text-center">Player 2</h4>
+                    <h4 class="text-center userDisplayName">Computer</h4>
                     <p>Wins: 0<br />
                     Losses: 0</p>
                 </div> <!-- /stats div -->
@@ -174,7 +188,7 @@
 	<!--<div class="panel panel-default" id="chatInputPanel">-->
         <form class="newMessage" id="newMessage">
             <div class="form-group">
-                <input type="text" id="messageText" class="form-control">
+                <input type="text" id="messageText" class="form-control" placeholder="Type a message">
             </div>
         </form>
     <!--</div>-->
@@ -190,7 +204,7 @@
     	<!-- Display messages stored in the database -->
         {{#each allMessages}}
             <span class="time"><small>{{time}}</small></span>
-            <b>{{this.name}}</b>: {{this.messageText}}<br>
+            <b><span class="userDisplayName">{{this.name}}</span></b>: {{this.messageText}}<br>
         {{/each}}
     </ul>
         </div>
@@ -285,14 +299,14 @@
 		  <ul id="usersList">
 			<!-- Display a list of online users stored in the database -->
 			{{#each onlineUsersList}}
-				<li class="userItem"><a class="userItem" id="{{this._id}}">{{username}}</a></li>
+				<li class="userItem"><a class="userItem userDisplayName" id="{{this._id}}">{{username}}</a></li>
 			{{/each}}
 		  </ul>
 	  </div>
 		  
 	  <div id="userInfo">
 		  <p><small><a id="backToUsers">Back</a></small></p>
-		  <h3>{{viewUsername}}</h3>
+		  <h3 class="userDisplayName">{{viewUsername}}</h3>
 		  <p>Wins: 0<br>
 		  Losses: 0</p>
 		  <button class="btn btn-default" id="playButton">Play!</button>
