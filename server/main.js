@@ -21,6 +21,11 @@ Meteor.startup(() => {
         return Meteor.users.find({});
     });
 	
+	// tracks online status of users
+	Meteor.publish("userStatus", function() {
+	  return Meteor.users.find({ "status.online": true });
+	});
+	
     Meteor.publish('messageInsert', function () {
         //sort by most recent changes
         return messagesCollection.find({public: true});

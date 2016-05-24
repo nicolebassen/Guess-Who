@@ -9,6 +9,7 @@ import { messagesCollection } from '../collections/collections.js';
 import './main.html';
 
 Meteor.subscribe("allUsers");
+Meteor.subscribe('userStatus');
 
 /**********************
 	  TILES DATA
@@ -356,7 +357,7 @@ Template.infoPanel.helpers({
 		target.classList.toggle('showUserInfo');
    },*/
    onlineUsersList: function() {
-		return Meteor.users.find({"online": true}, {"name": 1});
+		return Meteor.users.find({ "status.online": true });
    }
 });
 
