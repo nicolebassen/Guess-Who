@@ -142,15 +142,6 @@ var tiles = [
 	}
 ];
 
-// TESTING IN BROWSER CONSOLE
-/*
-console.log(Meteor.users.find().fetch()); // users list
-console.log("The opponent chose " + opponentTile.name + " (ID " + opponentTile.id + ")"); // opponent tile
-// test 
-console.log(messagesCollection.find().fetch());
-console.log(Meteor.userId);*/
-
-
 Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
 
@@ -357,15 +348,15 @@ Template.infoPanel.onCreated(function () {
 */
 
 Template.infoPanel.helpers({
-   users: function() {
+   /*users: function() {
        return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
    },
    'click .userItem': function() {
 		var target = event.currentTarget();
 		target.classList.toggle('showUserInfo');
-   },
-   userData: function() {
-		return Meteor.users.find({"_id": Meteor.userId});
+   },*/
+   onlineUsersList: function() {
+		return Meteor.users.find({"online": true}, {"name": 1});
    }
 });
 

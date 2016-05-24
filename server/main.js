@@ -16,7 +16,7 @@ Meteor.startup(() => {
      }
 
 	 
-	Meteor.publish('allUsers', function () {
+	Meteor.publish('allUsers', function() {
         //all users
         return Meteor.users.find({});
     });

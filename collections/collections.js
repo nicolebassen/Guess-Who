@@ -8,8 +8,8 @@ import { Mongo } from "meteor/mongo";
 
 // export access to my collections
 // const: cannot re-assign
-export const tilesCollection = new Mongo.Collection("tiles");
-export const messagesCollection = new Mongo.Collection("messages");
+export const messagesCollection = new Mongo.Collection("messages"); // stores messages
+export const gamesCollection = new Mongo.Collection("games"); // stores game data
 
 /* MESSAGES DATA */
 
