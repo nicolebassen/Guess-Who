@@ -168,3 +168,21 @@ body{
 	text-align: center;
 
 }
+
+
+/* User info */
+.showUsers #usersList {
+}
+.showUsers #userInfo {
+	display: none;
+}
+
+.showUserInfo #usersList {
+	display: none;
+}
+.showUserInfo #userInfo {
+}
+
+
+
+

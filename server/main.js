@@ -15,7 +15,12 @@ Meteor.startup(() => {
      messagesCollection.insert(messagesData[i]);
      }
 
-
+	 
+	Meteor.publish('allUsers', function () {
+        //all users
+        return Meteor.users.find({});
+    });
+	
     Meteor.publish('messageInsert', function () {
         //sort by most recent changes
         return messagesCollection.find({public: true});

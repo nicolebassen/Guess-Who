@@ -8,7 +8,7 @@ import { messagesCollection } from '../collections/collections.js';
 
 import './main.html';
 
-Meteor.subscribe('messages');
+Meteor.subscribe("allUsers");
 
 /**********************
 	  TILES DATA
@@ -142,6 +142,15 @@ var tiles = [
 	}
 ];
 
+// TESTING IN BROWSER CONSOLE
+/*
+console.log(Meteor.users.find().fetch()); // users list
+console.log("The opponent chose " + opponentTile.name + " (ID " + opponentTile.id + ")"); // opponent tile
+// test 
+console.log(messagesCollection.find().fetch());
+console.log(Meteor.userId);*/
+
+
 Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
 
@@ -161,7 +170,6 @@ Session.set('myTile', myTile);
 // computer opponent randomly selects a tile
 var random = Math.floor(Math.random() * 15);
 var opponentTile = allTiles[random];
-console.log("The opponent chose " + opponentTile.name + " (ID " + opponentTile.id + ")");
 
 // store the three rows of tiles separately
 var firstRow = [];
@@ -294,9 +302,7 @@ Template.addMessageForm.onCreated(function() {
     Session.setDefault('messages', []);
 });
 
-// test 
-console.log(messagesCollection.find().fetch());
-console.log(Meteor.userId);
+
 Template.addMessageForm.events({
     'submit .newMessage': function(event, template) {
         //prevent the from from refreshing the page
@@ -341,7 +347,27 @@ Template.registerHelper('messagesExist', function() {
 	return Session.get('messages').length > 0;
 });
 
+/**********************
+	USERS LIST
+ ***********************/
+/*
+Template.infoPanel.onCreated(function () {
+   this.subscribe('users');
+});
+*/
 
+Template.infoPanel.helpers({
+   users: function() {
+       return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
+   },
+   'click .userItem': function() {
+		var target = event.currentTarget();
+		target.classList.toggle('showUserInfo');
+   },
+   userData: function() {
+		return Meteor.users.find({"_id": Meteor.userId});
+   }
+});
 
 
 
