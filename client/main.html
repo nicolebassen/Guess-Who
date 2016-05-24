@@ -10,21 +10,23 @@
 </head>
 
 <body>
-	<nav class='navbar navbar-default' id="navigationBar">
-           <ul class='nav navbar-nav'>
-               <li> <a class='navbar-brand navOption' href='/'> Guess Who? </a> </li>
-               <li> <a class='navOption' href='/users'> Find Friends </a> </li>
-               <li> <a class='navOption' href='/games'> Play Guess Who? </a> </li>
-           </ul>
 
-           <div class='collapse navbar-collapse' id='navigation'>
-               <ul class='nav navbar-nav navbar-right' id="loginButton">
-                   {{> loginButtons }}
-               </ul>
-           </div>
-    </nav>
 	
     <div class="container">
+
+        <nav class='navbar navbar-default' id="navigationBar">
+            <ul class='nav navbar-nav'>
+                <li> <a class='navbar-brand navOption' href='/'> Guess Who? </a> </li>
+                <li> <a class='navOption' href='/users'> Find Friends </a> </li>
+                <li> <a class='navOption' href='/games'> Play Guess Who? </a> </li>
+            </ul>
+
+            <div class='collapse navbar-collapse' id='navigation'>
+                <ul class='nav navbar-nav navbar-right' id="loginButton">
+                    {{> loginButtons }}
+                </ul>
+            </div>
+        </nav>
 
 		<!-- if user is logged in, display game board and other data -->
         {{#if  currentUser}}
