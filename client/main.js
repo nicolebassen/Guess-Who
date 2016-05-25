@@ -20,7 +20,7 @@ var tiles = [
 		id: 0,
 		name: "Kim",
 		frontImage: "kim.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -28,7 +28,7 @@ var tiles = [
 		id: 1,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -36,7 +36,7 @@ var tiles = [
 		id: 2,
 		name: "Chris",
 		frontImage: "christopher.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -44,7 +44,7 @@ var tiles = [
 		id: 3,
 		name: "Paige",
 		frontImage: "paigegreen.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -52,7 +52,7 @@ var tiles = [
 		id: 4,
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -60,7 +60,7 @@ var tiles = [
 		id: 5,
 		name: "Dinesh",
 		frontImage: "dinesh.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -68,7 +68,7 @@ var tiles = [
 		id: 6,
 		name: "Gilfoyle",
 		frontImage: "gilfoyle.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -76,7 +76,7 @@ var tiles = [
 		id: 7,
 		name: "Pam",
 		frontImage: "pam.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -84,7 +84,7 @@ var tiles = [
 		id: 8,
 		name: "Richard",
 		frontImage: "richard.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -92,7 +92,7 @@ var tiles = [
 		id: 9,
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -100,7 +100,7 @@ var tiles = [
 		id: 10,
 		name: "Kim",
 		frontImage: "kim.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -108,7 +108,7 @@ var tiles = [
 		id: 11,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -116,7 +116,7 @@ var tiles = [
 		id: 12,
 		name: "Chris",
 		frontImage: "christopher.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -124,7 +124,7 @@ var tiles = [
 		id: 13,
 		name: "Richard",
 		frontImage: "richard.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
@@ -132,7 +132,7 @@ var tiles = [
 		id: 14,
 		name: "Barbie",
 		frontImage: "barbie.jpg",
-		backImage: "tileback.png",
+		backImage: "qmark-blue-tile.png",
 		opponentBackImage: "redtile.png",
 		flipped: 0
 	},
