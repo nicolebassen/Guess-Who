@@ -204,11 +204,15 @@ Template.mainbox.helpers({
 		return Session.get('gameMessage');
 	},
 	currentUser: function() {
-		return Meteor.user().username;
+		return Meteor.user();
+	},
+	opponent: function() {
+		return Meteor.users.findOne({"username": "computer"});
 	}
 });
 
 Template.mainbox.events({
+	
     'click .playerTile': function(event) {
 		var id = event.currentTarget.id;
 		
@@ -243,13 +247,22 @@ Template.mainbox.events({
 			// find the remaining (unflipped) tile and compare to opponent's tile
 			for (var i = 0; i < allTiles.length; i++) {
 				if (allTiles[i].flipped == 0) {
+					
+					// temporary opponent is computer
+					var opponent = Meteor.users.findOne({"username": "computer"}, {"_id": 1});
+					
 					if (allTiles[i].id == opponentTile.id) {
 						Session.set('gameMessage', "That is your opponent's tile. You win!");
-						// TODO increase win count for current user and loss count for opponent
+						
+						// update win count for user and loss count for opponent
+						Meteor.call('winsIncrement', Meteor.userId());
+						Meteor.call('lossesIncrement', opponent._id);
 					} else {
 						Session.set('gameMessage', "That is not your opponent's tile. You lose!");
-						// TODO increase win count for opponent and loss count for current user
 						
+						// update loss count for user and win count for opponent
+						Meteor.call('lossesIncrement', Meteor.userId());
+						Meteor.call('winsIncrement', opponent._id);
 					}
 				}
 			}
@@ -343,44 +356,56 @@ Template.registerHelper('messagesExist', function() {
 	  USERS LIST
  ***********************/
 
-Session.set('viewUsername', "");
+Session.set('viewUsername', null);
+Session.set('viewUserWins', null);
+Session.set('viewUserLosses', null);
 
 Template.infoPanel.helpers({
    /*users: function() {
        return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
    },*/
    onlineUsersList: function() {
-		return Meteor.users.find({ "status.online": true }); // users that are logged in
+		return Meteor.users.find({$or: [{"status.online": true}, {"username": "computer"}] }); // users that are logged in
    },
    viewUsername: function() {
 		return Session.get('viewUsername');
+   },
+   viewUserWins: function() {
+		return Session.get('viewUserWins');
+   },
+   viewUserLosses: function() {
+		return Session.get('viewUserLosses');
    }
 });
 	
 Template.infoPanel.events({
-	// when the user clicks on a username, hide online users and display user info
+	// when the user clicks on a username
 	'click .userItem': function(event) {
 		event.preventDefault();
 		
 		var id = event.currentTarget.id;
-		var currentTargetName = Meteor.users.findOne({"_id": id}, {"username": 1});
-		Session.set('viewUsername', currentTargetName.username);
+		var viewUser = Meteor.users.findOne({"_id": id}, {"username": 1});
+		
+		// set target user data in sessions to return and display in info panel
+		Session.set('viewUsername', viewUser.username);
+		Session.set('viewUserWins', viewUser.profile.wins);
+		Session.set('viewUserLosses', viewUser.profile.losses);
 		
 		var onlineUsers = document.getElementById('onlineUsers');
 		var userInfo = document.getElementById('userInfo');
 		
-		onlineUsers.style.display = 'none';
-		userInfo.style.display = 'block';
+		onlineUsers.style.display = 'none'; // hide online users list
+		userInfo.style.display = 'block'; // show target user data
    },
-   // when the user clicks 'back', hide user info and display online users
+   // when the user clicks 'back'
    'click #backToUsers': function(event) {
 		event.preventDefault();
 		
 		var onlineUsers = document.getElementById('onlineUsers');
 		var userInfo = document.getElementById('userInfo');
 		
-		userInfo.style.display = 'none';
-		onlineUsers.style.display = 'block';
+		userInfo.style.display = 'none'; // hide user data
+		onlineUsers.style.display = 'block'; // show online users list
    }
 });
 
