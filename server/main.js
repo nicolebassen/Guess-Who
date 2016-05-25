@@ -30,10 +30,9 @@ Meteor.startup(() => {
         return messagesCollection.find({});
     });
 	
-	Meteor.publish('allMessages'), function() {
+	Meteor.publish('allMessages', function() {
 		return messagesCollection.find({});
-	}
-
+	});
 
 
 // secure methods for inserting, deleting, and updating messages
@@ -54,6 +53,21 @@ Meteor.startup(() => {
             messagesCollection.update({"_id": updatedMessage._id}, {
                 "$set": {
                     "messageText": updatedMessage.messageText
+                }
+            });
+        },
+        // increments the given field of the given user by 1
+        'winsIncrement': function (_id) {
+            Meteor.users.update({"_id": _id}, {
+                "$inc": {
+                    "profile.wins" : 1
+                }
+            });
+        },
+        'lossesIncrement': function (_id) {
+            Meteor.users.update({"_id": _id}, {
+                "$inc": {
+                    "profile.losses" : 1
                 }
             });
         }

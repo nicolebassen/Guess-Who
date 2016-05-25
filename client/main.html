@@ -95,12 +95,12 @@
             
             	<!-- stats div -->
             	<div class="row">
-            		<h4 class="text-center userDisplayName">{{currentUser}}</h4>
-                    <p>Wins: 0<br />
-                    Losses: 0</p>
-                    <h4 class="text-center userDisplayName">Computer</h4>
-                    <p>Wins: 0<br />
-                    Losses: 0</p>
+            		<h4 class="text-center userDisplayName">{{currentUser.username}}</h4>
+                    <p>Wins: {{currentUser.profile.wins}}<br />
+                    Losses: {{currentUser.profile.losses}}</p>
+                    <h4 class="text-center userDisplayName">{{opponent.username}}</h4>
+                    <p>Wins: {{opponent.profile.wins}}<br />
+                    Losses: {{opponent.profile.losses}}</p>
                 </div> <!-- /stats div -->
             </div> <!-- /photo+stats div -->
 
@@ -309,8 +309,8 @@
 	  <div id="userInfo">
 		  <p><small><a id="backToUsers">Back</a></small></p>
 		  <h3 class="userDisplayName">{{viewUsername}}</h3>
-		  <p>Wins: 0<br>
-		  Losses: 0</p>
+		  <p>Wins: {{viewUserWins}}<br>
+		  Losses: {{viewUserLosses}}</p>
 		  <button class="btn btn-default" id="playButton">Play!</button>
 	  </div>
 	</div>
