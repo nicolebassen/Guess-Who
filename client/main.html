@@ -16,7 +16,7 @@
 
         <nav class='navbar navbar-default' id="navigationBar">
             <ul class='nav navbar-nav'>
-                <li> <a class='navbar-brand navOption' href='/'> Guess Who? </a> </li>
+                <li> <a class='navbar-brand navOption' id="mainTitle" href='/'> Guess Who? </a> </li>
                 <li> <a class='navOption' href='/users'> Find Friends </a> </li>
                 <li> <a class='navOption' href='/games'> Play Guess Who? </a> </li>
             </ul>
@@ -30,7 +30,7 @@
 
 		<!-- if user is logged in, display game board and other data -->
         {{#if  currentUser}}
-		  <h1 class="mainTitle">Guess Who?</h1><br>
+		  <br>
   
 		  <div class="col-lg-9 col-md-9 col-sm-9">
 			  <!-- Gameplay area -->

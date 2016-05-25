@@ -19,6 +19,14 @@ a.navOption {
 	color: white;
 }
 
+#mainTitle {
+	color: #ffffb2;
+	font-size: 2.5em;
+	text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: 0;
+}
+
 .mainTitle {
 	color: #ffffb2;
 	font-size: 4.5em;
