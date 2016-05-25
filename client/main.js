@@ -20,120 +20,120 @@ var tiles = [
 		id: 0,
 		name: "Kim",
 		frontImage: "kim.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 1,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 2,
 		name: "Chris",
 		frontImage: "christopher.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 3,
 		name: "Paige",
 		frontImage: "paigegreen.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 4,
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 5,
 		name: "Dinesh",
 		frontImage: "dinesh.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 6,
 		name: "Gilfoyle",
 		frontImage: "gilfoyle.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 7,
 		name: "Pam",
 		frontImage: "pam.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 8,
 		name: "Richard",
 		frontImage: "richard.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 9,
 		name: "Bob",
 		frontImage: "bob.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 10,
 		name: "Kim",
 		frontImage: "kim.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 11,
 		name: "Nicole",
 		frontImage: "nicole.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 12,
 		name: "Chris",
 		frontImage: "christopher.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 13,
 		name: "Richard",
 		frontImage: "richard.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
 		id: 14,
 		name: "Barbie",
 		frontImage: "barbie.jpg",
-		backImage: "qmark-blue-tile.png",
-		opponentBackImage: "redtile.png",
+		backImage: "qmark-red-tile-sm.png",
+		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
