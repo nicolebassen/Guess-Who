@@ -22,3 +22,4 @@ session
 accounts-password
 accounts-ui
 mizzao:user-status
+iron:router
