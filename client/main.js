@@ -18,8 +18,8 @@ Meteor.subscribe('userStatus');
 var tiles = [
 	{
 		id: 0,
-		name: "Kim",
-		frontImage: "kim.jpg",
+		name: "Jami",
+		frontImage: "jami.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
