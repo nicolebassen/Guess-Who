@@ -287,15 +287,27 @@
 <!--*********************
 	    HOME PAGE: /
 **********************-->
+<template name="home">
+  <div class="container">
+	{{> navigation}}
+	
+	<h1 class="nonlogin mainTitle"><br><br>
+			  Welcome to Guess Who?<br>
+			</h1>
+  </div>
+</template>
+
+<!--***************************
+	    LOGIN PAGE: /login
+****************************-->
 
 <template name="login">
   <div class="container">
 	{{> navigation}}
 	
-	<h1 id="nonlogin" class="mainTitle"><br><br>
-			  Welcome to Guess Who?<br>
-			  Please sign up for<br>
-			  an account to play<br>
+	<h1 class="nonlogin mainTitle"><br><br>
+			  Please sign up or<br>
+			  log in to play<br>
               <br>Guess Who?
 			</h1>
   </div>
@@ -347,12 +359,13 @@
 <template name="instructions">
   <div class="container">
 	{{> navigation}}
+	
 	<div class="panel panel-default" id="instructionsPanel">
 	  <h3>Instructions</h3>
 	  <ol>
         <li>Step one</li>
-		<li>Step one</li>
-		<li>Step one</li>
+		<li>Step two</li>
+		<li>Step three</li>
 	  </ol>
 	</div>	
   </div>

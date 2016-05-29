@@ -35,6 +35,11 @@ a.navOption {
 	margin-bottom: 0;
 }
 
+#loginTitle {
+	color: #ffffb2;
+	margin-left: 10px;
+}
+
 #mainbox, #chatPanel, #infoPanel, #opponentBoard, #instructionsPanel {
 	padding: 10px;
 	margin-bottom: 10px;
@@ -192,8 +197,8 @@ a.navOption {
 
 /* Non-Login */
 
-#nonlogin {
-	color: ffffb2;
+.nonlogin {
+	color: #ffffb2;
 	font-size: 4.5em;
 	text-shadow: 2px 2px black;
 	font-family: 'Raleway', sans-serif;
