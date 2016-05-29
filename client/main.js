@@ -34,8 +34,8 @@ var tiles = [
 	},
 	{
 		id: 2,
-		name: "Chris",
-		frontImage: "christopher.jpg",
+		name: "Josh",
+		frontImage: "jhawks.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
@@ -50,8 +50,8 @@ var tiles = [
 	},
 	{
 		id: 4,
-		name: "Bob",
-		frontImage: "bob.jpg",
+		name: "Archer",
+		frontImage: "archer.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
@@ -82,8 +82,8 @@ var tiles = [
 	},
 	{
 		id: 8,
-		name: "Richard",
-		frontImage: "richard.jpg",
+		name: "Gurman",
+		frontImage: "gurman.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
@@ -106,8 +106,8 @@ var tiles = [
 	},
 	{
 		id: 11,
-		name: "Nicole",
-		frontImage: "nicole.jpg",
+		name: "Clark",
+		frontImage: "jclark.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
