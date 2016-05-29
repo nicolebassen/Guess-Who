@@ -6,7 +6,7 @@ body{
 
 #navigationBar {
 	color: white;
-	margin-bottom: 0;
+	margin-bottom: 10px;
 	background-color: #6ca4c8;
 	border: none;
 }

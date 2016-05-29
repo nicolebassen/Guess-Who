@@ -2,7 +2,7 @@
 
 // define routes
 Router.route('/', function() {
-    this.render('home');
+    this.render('login');
 });
 
 Router.route('/game', function() {
