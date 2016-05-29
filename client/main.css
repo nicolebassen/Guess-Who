@@ -35,11 +35,12 @@ a.navOption {
 	margin-bottom: 0;
 }
 
-#mainbox, #chatPanel, #infoPanel, #opponentBoard {
+#mainbox, #chatPanel, #infoPanel, #opponentBoard, #instructionsPanel {
 	padding: 10px;
 	margin-bottom: 10px;
 	background-color: #fffff9;
 	border: none;
+	
 }
 
 /* panel right margins */
@@ -47,7 +48,7 @@ a.navOption {
 	margin-right: 10px;
 }
 
-#mainbox {
+#mainbox, #instructionsPanel {
 	height: 40em;
 	background-color: #6ca4c8;
 }
@@ -215,4 +216,5 @@ a.userItem:hover, a#backToUsers {
 .userDisplayName {
 	text-transform: capitalize;
 }
+
 

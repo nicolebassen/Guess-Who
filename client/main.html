@@ -5,77 +5,16 @@
 
 <head>
   <title>Guess Who?</title>
+  
   <!-- Google fonts -->
   <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
+  
+  <!-- jQuery script -->
   <script src="jquery-1.12.2.min.js"></script> 
 </head>
-<!--
-<body>
 
-	
-    <div class="container">
 
-        <nav class='navbar navbar-default' id="navigationBar">
-            <ul class='nav navbar-nav'>
-                <li> <a class='navbar-brand navOption' id="mainTitle" href='/'> Guess Who? </a> </li>
-                <li> <a class='navOption' href='/users'> Find Friends </a> </li>
-                <li> <a class='navOption' href='/game'> Play Guess Who? </a> </li>
-				<li> <a class='navOption' href='/instructions'> Instructions </a> </li>
-            </ul>
-
-            <div class='collapse navbar-collapse' id='navigation'>
-                <ul class='nav navbar-nav navbar-right' id="loginButton">
-                    {{> loginButtons }}
-                </ul>
-            </div>
-        </nav>
-
-		<!-- if user is logged in, display game board and other data 
-        {{#if  currentUser}}
-		  <br>
-  
-		  <div class="col-lg-9 col-md-9 col-sm-9">
-			  <!-- Gameplay area 
-			  <div class="row">
-				  {{> mainbox}}
-			  </div>
-			  
-			  <!-- Chat with opponent 
-			  <div class="row">
-				  {{> messageList}}
-			  </div>
-			  <div class="row">
-				  {{> addMessageForm}}
-			  </div>
-		  </div>
-        
-		  <div class="col-lg-3 col-md-3 col-sm-3">
-			  <!-- Opponent's tiles 
-			  <div class="row">
-				  {{> opponentBoard }}
-			  </div>
-			  
-			  <!-- Online users 
-			  <div class="row">
-				  {{> infoPanel }}
-			  </div>
-		  </div>
-		  
-		<!-- user is not logged in; display login/sign up message 
-        {{else}}
-            <h1 id="nonlogin" class="mainTitle"><br><br>
-			  Welcome to Guess Who?<br>
-			  Please sign up for<br>
-			  an account to play<br>
-              <br>Guess Who?
-			</h1>
-        {{/if}}
-    </div> <!-- /container 
-
-    
-    <!-- jQuery script  
-    <script src="jquery-1.12.2.min.js"></script>        
-</body>-->
+<!-- 	TEMPLATES 	  -->
 
 
 <!--*********************
@@ -86,7 +25,7 @@
   <nav class='navbar navbar-default' id="navigationBar">
       <ul class='nav navbar-nav'>
         <li> <a class='navbar-brand navOption' id="mainTitle" href='/'> Guess Who? </a> </li>
-        <li> <a class='navOption' href='/users'> Find Friends </a> </li>
+        <li> <a class='navOption' href='#'> Find Friends </a> </li>
         <li> <a class='navOption' href='/game'> Play Guess Who? </a> </li>
 		<li> <a class='navOption' href='/instructions'> Instructions </a> </li>
       </ul>
@@ -243,6 +182,7 @@
 <!--*********************
 	 OPPONENT BOARD
 **********************-->
+
 <template name="opponentBoard">
 	<div class="panel panel-default" id="opponentBoard">
 		<h3 class="text-center">Opponent Board</h3>
@@ -343,12 +283,15 @@
 	</div>
 </template>
 
+
 <!--*********************
 	    HOME PAGE: /
 **********************-->
+
 <template name="login">
   <div class="container">
 	{{> navigation}}
+	
 	<h1 id="nonlogin" class="mainTitle"><br><br>
 			  Welcome to Guess Who?<br>
 			  Please sign up for<br>
@@ -358,9 +301,11 @@
   </div>
 </template>
 
+
 <!--************************
 	  GAME PAGE: /game
 *************************-->
+
 <template name="game">
   <div class="container">
 	{{> navigation}}
@@ -394,6 +339,7 @@
   </div>
 </template>
 
+
 <!--************************************
     INSTRUCTIONS PAGE: /instructions
 *************************************-->
@@ -401,12 +347,13 @@
 <template name="instructions">
   <div class="container">
 	{{> navigation}}
-	
-	<h3>Instructions</h3>
-	<ol>
+	<div class="panel panel-default" id="instructionsPanel">
+	  <h3>Instructions</h3>
+	  <ol>
         <li>Step one</li>
 		<li>Step one</li>
 		<li>Step one</li>
-    </ol>
+	  </ol>
+	</div>	
   </div>
 </template>
