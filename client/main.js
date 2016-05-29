@@ -409,6 +409,15 @@ Template.infoPanel.events({
    }
 });
 
+/**********************
+	  HIGH SCORES
+ ***********************/
+Template.highScores.helpers({
+	highScoresUsers: function() {
+		console.log(Meteor.users.find({}, {"sort": {"profile.wins": -1}, "limit": 2}));;
+		return Meteor.users.find({}, {"sort": {"profile.wins": -1}, "limit": 10});
+	}
+});
 
 /**********************
  USER ACCOUNTS CONFIG

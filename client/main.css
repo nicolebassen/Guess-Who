@@ -222,4 +222,17 @@ a.userItem:hover, a#backToUsers {
 	text-transform: capitalize;
 }
 
+/* High Scores */
 
+li.heading {
+	background-color: #ff4c4c;
+	border: none;
+	color: white;
+	font-size: larger;
+}
+
+#highScoresPanel {
+	height: 50em;
+	background-color: #6ca4c8;
+	border: none;
+}

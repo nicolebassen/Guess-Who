@@ -28,6 +28,7 @@
         <li> <a class='navOption' href='#'> Find Friends </a> </li>
         <li> <a class='navOption' href='/game'> Play Guess Who? </a> </li>
 		<li> <a class='navOption' href='/instructions'> Instructions </a> </li>
+		<li> <a class='navOption' href='/highscores'> High Scores </a> </li>
       </ul>
 	  
       <div class='collapse navbar-collapse' id='navigation'>
@@ -361,12 +362,43 @@
 	{{> navigation}}
 	
 	<div class="panel panel-default" id="instructionsPanel">
+	  <div class="col-xs-10 col-xs-offset-1">
 	  <h3>Instructions</h3>
 	  <ol>
         <li>Step one</li>
 		<li>Step two</li>
 		<li>Step three</li>
 	  </ol>
+	  </div>
+	</div>	
+  </div>
+</template>
+
+<!--************************************
+    HIGH SCORES PAGE: /highscores
+*************************************-->
+
+<template name="highScores">
+  <div class="container">
+	{{> navigation}}
+	
+	<div class="panel panel-default" id="highScoresPanel">
+	  <div class="col-xs-10 col-xs-offset-1">
+	  <h3>High Scores</h3>
+	  <ol class="list-group">
+		<li class="list-group-item heading">
+		  Username
+		  <span class="pull-right"><strong>Wins</strong> / Losses</span>
+		</li>
+		{{#each highScoresUsers}}
+        <li class="list-group-item">
+		  {{username}}
+		  <span class="pull-right">
+			<strong>{{profile.wins}}</strong> / {{profile.losses}}</span>
+		</li>
+		{{/each}}
+	  </ol>
+	  </div>
 	</div>	
   </div>
 </template>
