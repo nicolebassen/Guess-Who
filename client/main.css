@@ -53,7 +53,7 @@ a.navOption {
 	margin-right: 10px;
 }
 
-#mainbox, #instructionsPanel {
+#mainbox {
 	height: 40em;
 	background-color: #6ca4c8;
 }
@@ -235,4 +235,11 @@ li.heading {
 	height: 50em;
 	background-color: #6ca4c8;
 	border: none;
+}
+
+/* Instructions */
+
+#instructionsPanel {
+	height: 43em;
+	background-color: #6ca4c8;
 }
