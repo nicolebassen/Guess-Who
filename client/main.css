@@ -239,6 +239,45 @@ li.heading {
 /* Instructions */
 
 #instructionsPanel {
-	height: 43em;
-	background-color: #6ca4c8;
+     height: 43em;
+     background-color: #6ca4c8;
+ }
+
+
+
+
+/* 3d box effect */
+#mainbox{
+
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+
+	padding: 10px 20px;
+	background: -moz-linear-gradient(
+			top,
+			#6ca4c8 0%,
+            #69a5c8 50%,
+            #6baac8 92%,
+            #6cadc8);
+	background: -webkit-gradient(
+			linear, left top, left bottom,
+			from(#679ec8),
+			color-stop(0.50, #6398c8),
+			color-stop(0.92, #5e92c8),
+			to(#5989c8));
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #4c7dc8;
+	-moz-box-shadow:
+			0px 1px 1px rgba(000,000,000,0.5),
+			inset 1px 2px 0px rgba(255, 255, 255, 0.77);
+	-webkit-box-shadow:
+			0px 1px 1px rgba(000,000,000,0.5),
+			inset 1px 2px 0px rgba(255,255,255,0.77);
+	box-shadow:
+			0px 2px 2px rgba(000,000,000,0.5),
+			inset 1px 2px 0px rgba(255,255,255,0.77);
+
 }
