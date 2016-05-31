@@ -178,7 +178,7 @@ a.navOption {
 
 #chatPanel {
 	height: 10em;
-	overflow-y:   scroll;
+	overflow-y: scroll;
 }
 
 #newMessage {
@@ -318,10 +318,10 @@ li.heading {
 
 }
 
-#chatPanel{
+#chatPanel.panel.panel-default{
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 1px solid #f4eaff;
     -moz-box-shadow:
             0px 1px 1px rgba(000,000,000,0.5),
@@ -380,4 +380,21 @@ li.heading {
     box-shadow:
             0px 1px 1px rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(184, 216, 255, 0.77);
+}
+
+
+#messageText.form-control{
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 8px;
+    border: 1px solid #f4eaff;
+    -moz-box-shadow:
+            0px 1px 1px rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(255, 232, 252, 0.77);
+    -webkit-box-shadow:
+            0px 1px 1px rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(255, 232, 252, 0.77);
+    box-shadow:
+            0px 1px 1px rgba(000,000,000,0.5),
+            inset 1px 1px 0px rgba(255, 232, 252, 0.77);
 }
