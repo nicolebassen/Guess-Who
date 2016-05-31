@@ -266,18 +266,18 @@ li.heading {
 			color-stop(0.50, #6398c8),
 			color-stop(0.92, #5e92c8),
 			to(#5989c8));
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
     border-radius: 16px;
 	border: 1px solid #4c7dc8;
 	-moz-box-shadow:
-			0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
 			inset 1px 2px 0px rgba(184, 216, 255, 0.77);
 	-webkit-box-shadow:
-			0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
 			inset 1px 2px 0px rgba(184, 216, 255,0.77);
 	box-shadow:
-			0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px rgba(000,000,000,0.5),
 			inset 1px 2px 0px rgba(184, 216, 255, 0.77);
 
 }
@@ -302,99 +302,99 @@ li.heading {
             color-stop(0.50, #ff444d),
             color-stop(0.92, #ff3d4c),
             to(#ff374b));
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
     border-radius: 16px;
     border: 1px solid #ff5359;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 138, 162, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 138, 162, 0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 138, 162, 0.77);
 
 }
 
 #chatPanel.panel.panel-default{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
     border-radius: 16px;
     border: 1px solid #f4eaff;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
 }
 
 #infoPanel{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
     border-radius: 16px;
     border: 1px solid #f4eaff;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
 }
 
 #playerboard{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 8px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
     border: 1px solid #f4eaff;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 1px 0px rgba(255, 232, 252, 0.77);
 }
 
 #navigationBar{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
     border-radius: 16px;
     border: 1px solid #4c7dc8;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(184, 216, 255, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(184, 216, 255,0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(184, 216, 255, 0.77);
 }
 
 
 #messageText.form-control{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 8px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
     border: 1px solid #f4eaff;
     -moz-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+			5px 5px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     -webkit-box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+            5px 5px 5px rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 232, 252, 0.77);
     box-shadow:
-            0px 1px 1px rgba(000,000,000,0.5),
+            5px 5px 5px rgba(000,000,000,0.5),
             inset 1px 1px 0px rgba(255, 232, 252, 0.77);
 }
