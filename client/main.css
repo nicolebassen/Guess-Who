@@ -119,8 +119,9 @@ a.navOption {
 }
 
 #opponentBoard img {
-	border-radius: 3px;
-}
+     border-radius: 3px;
+ }
+
 
 #playerTiles{
     margin-left: 22px;
