@@ -10,7 +10,11 @@
   <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
   
   <!-- jQuery script -->
-  <script src="jquery-1.12.2.min.js"></script> 
+  <script src="jquery-1.12.2.min.js"></script>
+
+
+    <!-- font awesome icons -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 
@@ -269,7 +273,8 @@
 		  <ul id="usersList">
 			<!-- Display a list of online users stored in the database -->
 			{{#each onlineUsersList}}
-				<li class="userItem"><a class="userItem userDisplayName" id="{{this._id}}">{{username}}</a></li>
+				<li class="userItem"><i class="fa fa-user"></i>&nbsp;
+                    <a class="userItem userDisplayName" id="{{this._id}}">{{username}}</a></li>
 			{{/each}}
 		  </ul>
 	  </div>
@@ -409,7 +414,7 @@
 		  <span class="pull-right"><strong>Wins</strong> / Losses</span>
 		</li>
 		{{#each highScoresUsers}}
-        <li class="list-group-item">
+        <li class="list-group-item"><i class="fa fa-user"></i>
 		  {{username}}
 		  <span class="pull-right">
 			<strong>{{profile.wins}}</strong> / {{profile.losses}}</span>
