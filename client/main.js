@@ -90,8 +90,8 @@ var tiles = [
 	},
 	{
 		id: 9,
-		name: "Bob",
-		frontImage: "bob.jpg",
+		name: "Sahba",
+		frontImage: "sahba.jpg",
 		backImage: "qmark-red-tile-sm.png",
 		opponentBackImage: "qmark-blue-tile.png",
 		flipped: 0
