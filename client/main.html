@@ -15,6 +15,8 @@
 
     <!-- font awesome icons -->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- w3schools styles -->
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 </head>
 
 
@@ -408,19 +410,22 @@
 	<div class="panel panel-default" id="highScoresPanel">
 	  <div class="col-xs-10 col-xs-offset-1">
 	  <h3>High Scores</h3>
-	  <ol class="list-group">
-		<li class="list-group-item heading">
-		  Username
-		  <span class="pull-right"><strong>Wins</strong> / Losses</span>
-		</li>
+          <table class="w3-table w3-striped w3-bordered w3-card-4">
+              <thead>
+              <tr class="w3-blue">
+                  <th>Username</th>
+                  <th><span class="pull-right"><strong>Wins</strong> / Losses</span></th>
+              </tr>
+              </thead>
+
 		{{#each highScoresUsers}}
-        <li class="list-group-item"><i class="fa fa-user"></i>
-		  {{username}}
-		  <span class="pull-right">
-			<strong>{{profile.wins}}</strong> / {{profile.losses}}</span>
-		</li>
+        <tr>
+		 <td><i class="fa fa-user"></i> {{username}}</td>
+		  <td><span class="pull-right"><strong>{{profile.wins}}</strong> / {{profile.losses}}</span></td>
+
+		</tr>
 		{{/each}}
-	  </ol>
+	  </table>
 	  </div>
 	</div>	
   </div>
