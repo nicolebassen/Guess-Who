@@ -33,11 +33,18 @@ Meteor.startup(() => {
 	Meteor.publish('allMessages', function() {
 		return messagesCollection.find({});
 	});
+    
+    Meteor.publish('allGames'), function() {
+        return gamesCollection.find({});
+    }
 
 
 // secure methods for inserting, deleting, and updating messages
     Meteor.methods({
-
+        
+        'gameInsert': function(game) {
+            return gamesCollection.insert(game);
+        },
         'messageInsert': function (message) {
             messagesCollection.insert({
                 public: true,

@@ -279,6 +279,15 @@
                     <a class="userItem userDisplayName" id="{{this._id}}">{{username}}</a></li>
 			{{/each}}
 		  </ul>
+		<br>
+		
+		<h3 class="text-center">Games</h3>
+		  <ul id="gamesList">
+			<!-- Display a list of games in progress or waiting for opponents -->
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		  </ul>
 	  </div>
 		  
 	  <div id="userInfo">
@@ -286,7 +295,7 @@
 		  <h3 class="userDisplayName">{{viewUsername}}</h3>
 		  <p>Wins: {{viewUserWins}}<br>
 		  Losses: {{viewUserLosses}}</p>
-		  <button class="btn btn-default" id="playButton">Play!</button>
+		  <button class="btn btn-default playButton" id="{{viewUsername}}">Play!</button>
 	  </div>
 	</div>
 </template>

@@ -8,8 +8,11 @@ import { messagesCollection } from '../collections/collections.js';
 
 import './main.html';
 
+// SUBSCRIPTIONS
+
 Meteor.subscribe("allUsers");
 Meteor.subscribe('userStatus');
+Meteor.subscribe("allGames");
 
 /**********************
 	  TILES DATA
@@ -406,7 +409,15 @@ Template.infoPanel.events({
 		
 		userInfo.style.display = 'none'; // hide user data
 		onlineUsers.style.display = 'block'; // show online users list
-   }
+   },
+   // attempt to start a game with another player
+   'click button.playGame': function(event) {
+		var opponentName = event.currentTarget.id;
+		if (Meteor.user() == opponentName) {
+            window.alert("Start game?");
+        }
+		console.log("Clicked play button");
+	}
 });
 
 /**********************
