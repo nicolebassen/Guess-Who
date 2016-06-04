@@ -218,6 +218,19 @@ Template.mainbox.events({
     'click .playerTile': function(event) {
 		var id = event.currentTarget.id;
 		
+		// store current game document
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().partOfGame});
+		
+		// if current user is player 1
+		if (currentGame.player1 == Meteor.user()) {
+            var allTiles = currentGame.player1Board; // store player 1 board
+        }
+		// if current user is player 2
+		else if (currentGame.player2 == Meteor.user()) {
+            var allTiles = currentGame.player2Board; // store player 2 board
+        }
+		
+		
 		if (tileCounter < 14) {
 			// set tile flipped property to true
 			Session.set('flipTile', "this.classList.toggle('flipped')");
@@ -253,6 +266,8 @@ Template.mainbox.events({
 					// temporary opponent is computer
 					var opponent = Meteor.users.findOne({"username": "computer"}, {"_id": 1});
 					
+					// TODO: REMOVE GAME FROM COLLECTION
+					
 					if (allTiles[i].id == opponentTile.id) {
 						Session.set('gameMessage', "That is your opponent's tile. You win!");
 						
@@ -272,7 +287,12 @@ Template.mainbox.events({
 			Session.set('flipTile', ''); // can no longer flip tiles
 			Session.set('gameOver', true);	// game is over
 		}
-    }
+    },
+	// remove the current game from the collection
+	'click #leaveGame': function(event) {
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().partOfGame});
+		Meteor.call('removeGame', currentGame);
+	}
 });
 
 
@@ -317,6 +337,9 @@ Template.addMessageForm.events({
         //prevent the from from refreshing the page
         event.preventDefault();
 
+		if (test) {
+            //code
+        }
         //get our form value (message text)
         var messageText = $('#messageText').val();
         $('#messageText').val(''); // remove text from our message box
@@ -427,11 +450,13 @@ Template.infoPanel.events({
 			player2: null,
 			gameStarted: false,
 			player1Board: tiles,
-			player2Board: tiles
+			player2Board: tiles,
+			messages: []
 		};
 
 		Meteor.call('gameInsert', newGame, function(error, result) {
 			alert('Match created successfully: ' + result);
+			Meteor.user().partOfGame = result;
 		});
     },
 	'click a.joinGame': function(event) {

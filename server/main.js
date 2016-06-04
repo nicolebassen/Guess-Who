@@ -63,6 +63,9 @@ Meteor.startup(() => {
     
             return game;
          },
+         'removeGame': function(game) {
+            gamesCollection.remove({"_id": game._id});
+         },
         'updateTile': function(user) {
             //update the chosen card
             Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
@@ -72,6 +75,7 @@ Meteor.startup(() => {
             matchesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
          },
         'messageInsert': function (message) {
+            //gamesCollection.insert({"})
             messagesCollection.insert({
                 public: true,
                 name: message.name,
@@ -113,6 +117,7 @@ Meteor.startup(() => {
         } else {
             user.profile = {};
         }
+        user.profile.partOfGame = null;
 		user.profile.wins = 0;
 		user.profile.losses = 0;
         return user;
