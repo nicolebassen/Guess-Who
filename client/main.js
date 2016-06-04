@@ -12,7 +12,6 @@ import './main.html';
 
 Meteor.subscribe("allUsers");
 Meteor.subscribe('userStatus');
-Meteor.subscribe('allGames');
 
 /**********************
 	  TILES DATA
@@ -330,7 +329,7 @@ Template.addMessageForm.events({
 			name: currentUsername,
 			message: messageText,
 			time: time
-		}
+		};
 
 		// add message object to the messages collection
 		Meteor.call('messageInsert', newMessage);
@@ -363,6 +362,10 @@ Session.set('viewUsername', null);
 Session.set('viewUserWins', null);
 Session.set('viewUserLosses', null);
 
+Template.infoPanel.onCreated(function() {
+	Meteor.subscribe('allGames');
+});
+
 Template.infoPanel.helpers({
    /*users: function() {
        return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
@@ -380,7 +383,7 @@ Template.infoPanel.helpers({
 		return Session.get('viewUserLosses');
    },
    gamesList: function() {
-		return gamesCollection.find();
+		return gamesCollection.find({});
    }
 });
 	
@@ -419,7 +422,10 @@ Template.infoPanel.events({
 
 		//create the new game
 		var newGame = {
+			date: new Date(),
 			player1: user,
+			player2: null,
+			gameStarted: false,
 			player1Board: tiles,
 			player2Board: tiles
 		};

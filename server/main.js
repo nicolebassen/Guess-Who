@@ -41,19 +41,36 @@ Meteor.startup(() => {
 
     // secure methods for inserting, deleting, and updating messages
     Meteor.methods({
+         // create a new game with one user and an empty slot 
         'gameInsert': function (newGame) {
-            gamesCollection.insert({
-                date: new Date(),
-                player1: newGame.player1,
-                player2: null,
-                gameStarted: false,
-                player1Board: newGame.player1Board,
-                player2Board: newGame.player2Board
-            });
+            return gamesCollection.insert(newGame);
         },
-        'addToGame': function(game) {
-            Meteor.users.update({});
-        },
+        // add a second user to the game
+        'addToGame': function(user, gameId) {
+            //update user profile
+            Meteor.users.update({"_id": user._id}, {"$set": {"profile.partOfMatch": user.profile.partOfMatch}});
+    
+            //remove from any existing game
+            gamesCollection.update({"player1._id": user._id}, {"$set": {"player1": null}});
+            gamesCollection.update({"player2._id": user._id}, {"$set": {"player2": null}});
+    
+            //add to game
+            var game = gamesCollection.findOne({"_id": gameId});
+    
+            game.player2 = user;
+    
+            gameCollection.update({"_id": game._id}, {"$set": {"player1": game.player1, "player2": game.player2}})
+    
+            return game;
+         },
+        'updateTile': function(user) {
+            //update the chosen card
+            Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
+    
+            //update your record in the match document
+            matchesCollection.update({"user1._id": user._id}, {"$set": {"user1": user}});
+            matchesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
+         },
         'messageInsert': function (message) {
             messagesCollection.insert({
                 public: true,
