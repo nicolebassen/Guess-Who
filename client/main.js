@@ -429,7 +429,7 @@ Template.infoPanel.events({
 		});
     },
 	'click a.joinGame': function(event) {
-		/*var matchId = $(event.target).data('id');
+		var matchId = $(event.target).data('id');
 
 		var user = Meteor.user();
 
@@ -442,7 +442,7 @@ Template.infoPanel.events({
 			user.profile.partOfMatch = matchId;
 		}
 
-		//Meteor.call('addToMatch', user, matchId);*/
+		Meteor.call('addToMatch', user, matchId);
 	}
 });
 

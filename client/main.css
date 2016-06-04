@@ -4,50 +4,50 @@
 
 
 body{
-	background-color: lightskyblue;
+    background-color: lightskyblue;
 }
 
 #navigationBar {
-	color: white;
-	margin-bottom: 10px;
-	background-color: #6ca4c8;
-	border: none;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #6ca4c8;
+    border: none;
 }
 
 #loginButton {
-	margin-right: 5px;
+    margin-right: 5px;
 }
 
 a.navOption {
-	color: white;
+    color: white;
 }
 
 #mainTitle {
-	color: #ffffb2;
-	font-size: 2.5em;
-	text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
-	font-family: 'Raleway', sans-serif;
-	margin-bottom: 0;
+    color: #ffffb2;
+    font-size: 2.5em;
+    text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0;
 }
 
 .mainTitle {
-	color: #ffffb2;
-	font-size: 4.5em;
-	text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
-	font-family: 'Raleway', sans-serif;
-	margin-bottom: 0;
+    color: #ffffb2;
+    font-size: 4.5em;
+    text-shadow: -2px -2px #6ca4c8, 2px 2px #ff4c4c;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0;
 }
 
 #loginTitle {
-	color: #ffffb2;
-	margin-left: 10px;
+    color: #ffffb2;
+    margin-left: 10px;
 }
 
 #mainbox, #chatPanel, #infoPanel, #opponentBoard, #instructionsPanel {
-	padding: 10px;
-	margin-bottom: 10px;
-	background-color: #fffff9;
-	border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fffff9;
+    border: none;
 }
 
 p{
@@ -60,26 +60,26 @@ p{
 
 /* panel right margins */
 #mainbox, #chatPanel, #newMessage {
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 #mainbox {
-	height: 40em;
-	background-color: #6ca4c8;
+    height: 40em;
+    background-color: #6ca4c8;
 }
 
 #mainbox img {
-	border-radius: 6px;
+    border-radius: 6px;
 }
 
 #mainbox img.playerTile {
-	max-height: 10em;
-	max-width: 6em;
-	box-shadow: 1px 1px 2px gray;
+    max-height: 10em;
+    max-width: 6em;
+    box-shadow: 1px 1px 2px gray;
 }
 
 #mainbox #myTile {
-	height: 15em;
+    height: 15em;
     border-radius: 16px;
 
     -moz-box-shadow:
@@ -94,24 +94,24 @@ p{
 }
 
 #infoPanel {
-	height: 30em;
+    height: 30em;
 }
 
 #infoPanel ul#usersList li {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #opponentBoard{
-	color: #fffff9;
-	background-color: #ff4c4c;
+    color: #fffff9;
+    background-color: #ff4c4c;
     padding: 5px;
     height: 23em;
 }
 
 #playerboard{
-	background-color: #fffff9;
-	max-height: 37em;
-	padding: 10px;
+    background-color: #fffff9;
+    max-height: 37em;
+    padding: 10px;
 
 }
 
@@ -127,8 +127,8 @@ p{
 }
 
 #opponentBoard img {
-     border-radius: 3px;
- }
+    border-radius: 3px;
+}
 
 
 #playerTiles{
@@ -142,97 +142,97 @@ p{
 
 /* entire container, keeps perspective */
 .flip-container{
-	/*perspective*/
-	-webkit-perspective:1000;
-	-moz-perspective:1000;
-	-ms-perspective:1000;
-	-o-perspective:1000;
-	perspective:1000;
+    /*perspective*/
+    -webkit-perspective:1000;
+    -moz-perspective:1000;
+    -ms-perspective:1000;
+    -o-perspective:1000;
+    perspective:1000;
 }
 /* flip the pane when hovered */
 .flipped {
-	/*transform*/
-	-webkit-transform:rotateY(180deg);
-	-moz-transform:rotateY(180deg);
-	-ms-transform:rotateY(180deg);
-	-o-transform:rotateY(180deg);
-	transform:rotateY(180deg);
+    /*transform*/
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    transform:rotateY(180deg);
 }
 .flip-container, .front, .back{
-	width:50px;
-	height:50px;
+    width:50px;
+    height:50px;
 }
 /* flip speed goes here */
 .flipper {
-	/*transition*/
-	-webkit-transition:0.6s;
-	-moz-transition:0.6s;
-	-o-transition:0.6s;
-	transition:0.6s;
-	/*transform-style*/
-	-webkit-transform-style:preserve-3d;
-	-moz-transform-style:preserve-3d;
-	-ms-transform-style:preserve-3d;
-	-o-transform-style:preserve-3d;
-	transform-style:preserve-3d;
-	position:relative;
+    /*transition*/
+    -webkit-transition:0.6s;
+    -moz-transition:0.6s;
+    -o-transition:0.6s;
+    transition:0.6s;
+    /*transform-style*/
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    transform-style:preserve-3d;
+    position:relative;
 }
 /* hide back of pane during swap */
 .front, .back{
-	/*backface-visibility*/
-	-webkit-backface-visibility:hidden;
-	-moz-backface-visibility:hidden;
-	-ms-backface-visibility:hidden;
-	-o-backface-visibility:hidden;
-	backface-visibility:hidden;
-	position:absolute;
-	top:0;
-	left:0;
+    /*backface-visibility*/
+    -webkit-backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    -o-backface-visibility:hidden;
+    backface-visibility:hidden;
+    position:absolute;
+    top:0;
+    left:0;
 }
 /* front pane, placed above back */
 .front{
-	z-index:2;
+    z-index:2;
 }
 /* back, initially hidden pane */
 .back{
-	/*transform*/
-	-webkit-transform:rotateY(180deg);
-	-moz-transform:rotateY(180deg);
-	-ms-transform:rotateY(180deg);
-	-o-transform:rotateY(180deg);
-	transform:rotateY(180deg);
+    /*transform*/
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    transform:rotateY(180deg);
 }
 
 
 /*chat stuff*/
 
 #chatPanel {
-	height: 10em;
-	overflow-y: scroll;
+    height: 10em;
+    overflow-y: scroll;
 }
 
 #newMessage {
-	height: 2em;
+    height: 2em;
 }
 
 #chatPanel .time {
-	color: rgb(180,180,180);
+    color: rgb(180,180,180);
 }
 
 /* navbar */
 #navbar{
-	float: right;
+    float: right;
 }
 
 /* Non-Login */
 
 .nonlogin {
-	color: #ffffb2;
-	font-size: 4.5em;
-	text-shadow: 2px 2px black;
-	font-family: 'Raleway', sans-serif;
-	margin-bottom: 0;
-	text-align: center;
+    color: #ffffb2;
+    font-size: 4.5em;
+    text-shadow: 2px 2px black;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0;
+    text-align: center;
 
 }
 
@@ -240,30 +240,30 @@ p{
 /* User info */
 
 a.userItem:hover, a#backToUsers {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #userInfo {
-	display: none;
+    display: none;
 }
 
 .userDisplayName {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 /* High Scores */
 
 li.heading {
-	background-color: #ff4c4c;
-	border: none;
-	color: white;
-	font-size: larger;
+    background-color: #ff4c4c;
+    border: none;
+    color: white;
+    font-size: larger;
 }
 
 #highScoresPanel {
-	height: 50em;
-	background-color: #6ca4c8;
-	border: none;
+    height: 50em;
+    background-color: #6ca4c8;
+    border: none;
 }
 
 /* Instructions */
@@ -301,7 +301,7 @@ li.heading {
     box-shadow:
             3px 3px 5px  rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(184, 216, 255, 0.77);
- }
+}
 
 
 
@@ -309,36 +309,36 @@ li.heading {
 /* 3d box effect */
 #mainbox{
 
-	text-align:center;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+    text-align:center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 
 
-	background: -moz-linear-gradient(
-			top,
-			#6ca4c8 0%,
+    background: -moz-linear-gradient(
+            top,
+            #6ca4c8 0%,
             #69a5c8 50%,
             #6baac8 92%,
             #6cadc8);
-	background: -webkit-gradient(
-			linear, left top, left bottom,
-			from(#679ec8),
-			color-stop(0.50, #6398c8),
-			color-stop(0.92, #5e92c8),
-			to(#5989c8));
-	-moz-border-radius: 16px;
-	-webkit-border-radius: 16px;
+    background: -webkit-gradient(
+            linear, left top, left bottom,
+            from(#679ec8),
+            color-stop(0.50, #6398c8),
+            color-stop(0.92, #5e92c8),
+            to(#5989c8));
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
     border-radius: 16px;
-	border: 1px solid #4c7dc8;
-	-moz-box-shadow:
+    border: 1px solid #4c7dc8;
+    -moz-box-shadow:
             4px 4px 5px    rgba(000,000,000,0.5),
-			inset 1px 2px 0px rgba(184, 216, 255, 0.77);
-	-webkit-box-shadow:
+            inset 1px 2px 0px rgba(184, 216, 255, 0.77);
+    -webkit-box-shadow:
             4px 4px 5px   rgba(000,000,000,0.5),
-			inset 1px 2px 0px rgba(184, 216, 255,0.77);
-	box-shadow:
-			4px 4px 5px  rgba(000,000,000,0.5),
-			inset 1px 2px 0px rgba(184, 216, 255, 0.77);
+            inset 1px 2px 0px rgba(184, 216, 255,0.77);
+    box-shadow:
+            4px 4px 5px  rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(184, 216, 255, 0.77);
 
 }
 
