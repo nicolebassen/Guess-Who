@@ -5,6 +5,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { tilesCollection } from '../collections/collections.js';
 import { messagesCollection } from '../collections/collections.js';
+import { gamesCollection } from '../collections/collections.js';
 
 import './main.html';
 
