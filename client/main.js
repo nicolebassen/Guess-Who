@@ -12,7 +12,7 @@ import './main.html';
 
 Meteor.subscribe("allUsers");
 Meteor.subscribe('userStatus');
-Meteor.subscribe("allGames");
+Meteor.subscribe('allGames');
 
 /**********************
 	  TILES DATA
@@ -378,6 +378,9 @@ Template.infoPanel.helpers({
    },
    viewUserLosses: function() {
 		return Session.get('viewUserLosses');
+   },
+   gamesList: function() {
+		return gamesCollection.find();
    }
 });
 	
@@ -410,13 +413,36 @@ Template.infoPanel.events({
 		userInfo.style.display = 'none'; // hide user data
 		onlineUsers.style.display = 'block'; // show online users list
    },
-   // attempt to start a game with another player
-   'click button.playGame': function(event) {
-		var opponentName = event.currentTarget.id;
-		if (Meteor.user() == opponentName) {
-            window.alert("Start game?");
-        }
-		console.log("Clicked play button");
+   // create a new game with current user and an empty slot
+	'click button.newGameButton': function(event) {
+		var user = Meteor.user();
+
+		//create the new game
+		var newGame = {
+			player1: user,
+			player1Board: tiles,
+			player2Board: tiles
+		};
+
+		Meteor.call('gameInsert', newGame, function(error, result) {
+			alert('Match created successfully: ' + result);
+		});
+    },
+	'click a.joinGame': function(event) {
+		/*var matchId = $(event.target).data('id');
+
+		var user = Meteor.user();
+
+		//save the match the user is part of to profile
+		if (Meteor.user().profile == undefined) {
+			user.profile = {
+				partOfMatch: matchId
+			};
+		} else {
+			user.profile.partOfMatch = matchId;
+		}
+
+		//Meteor.call('addToMatch', user, matchId);*/
 	}
 });
 

@@ -6,13 +6,13 @@
 import { Meteor } from 'meteor/meteor';
 import { messagesCollection } from '../collections/collections.js';
 import { messagesData } from '../collections/collections.js';
-
+import { gamesCollection } from '../collections/collections.js';
 
 Meteor.startup(() => {
 
      messagesCollection.remove({});
      for (var i = 0; i < messagesData.length; i++) {
-     messagesCollection.insert(messagesData[i]);
+        messagesCollection.insert(messagesData[i]);
      }
 
 	// all user accounts
@@ -34,16 +34,25 @@ Meteor.startup(() => {
 		return messagesCollection.find({});
 	});
     
-    Meteor.publish('allGames'), function() {
+    Meteor.publish('allGames', function() {
         return gamesCollection.find({});
-    }
+    });
 
 
-// secure methods for inserting, deleting, and updating messages
+    // secure methods for inserting, deleting, and updating messages
     Meteor.methods({
-        
-        'gameInsert': function(game) {
-            return gamesCollection.insert(game);
+        'gameInsert': function (newGame) {
+            gamesCollection.insert({
+                date: new Date(),
+                player1: newGame.player1,
+                player2: null,
+                gameStarted: false,
+                player1Board: newGame.player1Board,
+                player2Board: newGame.player2Board
+            });
+        },
+        'addToGame': function(game) {
+            Meteor.users.update({});
         },
         'messageInsert': function (message) {
             messagesCollection.insert({
