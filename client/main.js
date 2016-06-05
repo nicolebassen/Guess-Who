@@ -359,25 +359,33 @@ Template.addMessageForm.events({
         //prevent the from from refreshing the page
         event.preventDefault();
 
-		if (test) {
-            //code
-        }
-        //get our form value (message text)
-        var messageText = $('#messageText').val();
-        $('#messageText').val(''); // remove text from our message box
-		var date = new Date();
-		var time = date.toLocaleTimeString();
-		var currentUsername = Meteor.user().username;
-
-		// create a message object to insert into the collection
-		var newMessage = {
-			name: currentUsername,
-			message: messageText,
-			time: time
-		};
-
-		// add message object to the messages collection
-		Meteor.call('messageInsert', newMessage);
+		if (Meteor.user().profile.partOfGame == null) {
+            $('#messageText').val(''); // remove text from our message box
+			
+			var errorMessage = {
+				name: "Guess Who Game",
+				message: "You must join a game before sending messages to your opponent.",
+			};
+			
+			Meteor.call('messageInsert', errorMessage);
+        } else {
+			//get our form value (message text)
+			var messageText = $('#messageText').val();
+			$('#messageText').val(''); // remove text from our message box
+			var date = new Date();
+			var time = date.toLocaleTimeString();
+			var currentUsername = Meteor.user().username;
+	
+			// create a message object to insert into the collection
+			var newMessage = {
+				name: currentUsername,
+				message: messageText,
+				time: time
+			};
+	
+			// add message object to the messages collection
+			Meteor.call('messageInsert', newMessage);
+		}
         
         scrollChat();
     }
