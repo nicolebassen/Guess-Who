@@ -7,6 +7,8 @@ import { Meteor } from 'meteor/meteor';
 import { messagesCollection } from '../collections/collections.js';
 import { messagesData } from '../collections/collections.js';
 import { gamesCollection } from '../collections/collections.js';
+import { matchesCollection } from '../collections/collections.js';
+
 
 Meteor.startup(() => {
 
@@ -64,16 +66,16 @@ Meteor.startup(() => {
             return game;
          },
          'removeGame': function(game) {
-            gamesCollection.remove({"_id": game._id});
-            Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
+             Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
+             gamesCollection.remove({"_id": game._id});
          },
         'updateTile': function(user) {
             //update the chosen card
             Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
     
             //update your record in the match document
-            matchesCollection.update({"user1._id": user._id}, {"$set": {"user1": user}});
-            matchesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
+            gamesCollection.update({"user1._id": user._id}, {"$set": {"user1": user}});
+            gamesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
          },
         'messageInsert': function (message) {
             //gamesCollection.insert({"})

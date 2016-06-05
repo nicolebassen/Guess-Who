@@ -10,6 +10,7 @@ import { Mongo } from "meteor/mongo";
 // const: cannot re-assign
 export const messagesCollection = new Mongo.Collection("messages"); // stores messages
 export const gamesCollection = new Mongo.Collection("games"); // stores game data
+export const matchesCollection = new Mongo.Collection("matches"); // stores match data
 
 /* MESSAGES DATA */
 
