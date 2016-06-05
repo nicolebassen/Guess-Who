@@ -186,6 +186,9 @@ Session.set('opponent', null);
 Session.set('currentUserRole', null);
 Session.set('opponentRole', null);
 
+Session.set('player1', null);
+Session.set('player2', null);
+
 //var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 
 /**********************
@@ -194,12 +197,14 @@ Session.set('opponentRole', null);
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		if (Meteor.user() == currentGame.player1) {
+		/*
+		console.log(Meteor.user().profile.partOfGame);
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (Session.get('player1') == Meteor.user()) {
             return currentGame.player1Board.firstRow;
-        } else if (Meteor.user() == currentGame.player2) {
+        } else {
             return currentGame.player2Board.firstRow;
-        }
+        }*/
 	},
 	secondRow: function() {
 		return secondRow;
@@ -220,12 +225,10 @@ Template.mainbox.helpers({
 		return Meteor.user();
 	},
 	player1: function() {
-		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		return currentGame.player1;
+		return Session.get('player1');
 	},
 	player2: function() {
-		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		return currentGame.player2;
+		return Session.get('player2');
 	}
 });
 
@@ -309,12 +312,8 @@ Template.mainbox.events({
 	// remove the current game from the collection
 	'click #leaveGame': function(event) {
 		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		var opponent = Session.get('opponent');
-		console.log(opponent);
-		Meteor.call('removeGame', currentGame, opponent);
+		Meteor.call('removeGame', currentGame);
 		// show create new button
-		// set partOfGame to null
-		//Meteor.users.update({"_id": Meteor.userId()}, {$set: {"partOfGame": null}});
 	}
 });
 
@@ -497,11 +496,10 @@ Template.infoPanel.events({
 				console.log(user.profile.partOfGame);
 			});
 	
-			Session.set('currentUserRole', 'player1');
-			Session.set('opponentRole', 'player2');
+			Session.set('player1', Meteor.user());
 			console.log(Session.get('currentUserRole'));
-            var opponent = currentGame.player2;
-			Session.set('opponent', opponent);
+            //var opponent = currentGame.player2;
+			//Session.set('opponent', opponent);
 		}
 		// hide create new button
     },
@@ -518,8 +516,7 @@ Template.infoPanel.events({
 			Meteor.call('addToGame', user, gameId);
         }
 		
-		Session.set('currentUserRole', 'player2');
-		Session.set('opponentRole', 'player1');
+		//Session.set('player2', Meteor.user());
 
 		//save the match the user is part of to profile
 		/*if (Meteor.user().profile.partOfGame == null) {

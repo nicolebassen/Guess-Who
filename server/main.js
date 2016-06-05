@@ -65,10 +65,7 @@ Meteor.startup(() => {
          },
          'removeGame': function(game) {
             gamesCollection.remove({"_id": game._id});
-            Meteor.users.update({"_id": Meteor.userId()}, {$set: {"profile.partOfGame": null}});
-            Meteor.users.update({"username": opponent}, {$set: {"profile.partOfGame": null}});
-            Session.set('currentUserRole', null);
-			Session.set('opponentRole', null);
+            Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
          },
         'updateTile': function(user) {
             //update the chosen card
