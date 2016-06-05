@@ -291,7 +291,16 @@
 		  <ul id="displayGames">
 			<!-- Display a list of games in progress or waiting for opponents -->
 			{{#each gamesList}}
-			  <li id="{{_id}}">{{player1.username}} vs. {{player2.username}}
+			  <li>{{player1.username}} vs.
+			  {{#if matchReady this}}
+				{{player2.username}}
+			  {{else}}
+				{{#if playerInGame this}}
+				  (waiting for opponent)
+				{{else}}
+				  <a href="#" class="joinGame" id="{{_id}}">Join</a>
+				{{/if}}
+			  {{/if}}
 			  </li>
 			{{/each}}
 		  </ul>

@@ -182,6 +182,8 @@ for (var i = 0; i < 5; i++) {
 	thirdRow[i] = allTiles[i + 10];
 }
 
+Session.set('currentUser', Meteor.user());
+Session.set('opponent', null);
 
 /**********************
 	   MAIN PANEL
@@ -294,9 +296,12 @@ Template.mainbox.events({
 	// remove the current game from the collection
 	'click #leaveGame': function(event) {
 		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		Meteor.call('removeGame', currentGame);
+		var opponent = Session.get('opponent');
+		console.log(opponent);
+		Meteor.call('removeGame', currentGame, opponent);
 		// show create new button
 		// set partOfGame to null
+		//Meteor.users.update({"_id": Meteor.userId()}, {$set: {"partOfGame": null}});
 	}
 });
 
@@ -449,7 +454,7 @@ Template.infoPanel.events({
 		var user = Meteor.user();
 
 		// IF USER NOT IN MATCH
-		//if (user.profile.partOfGame == null) {
+		if (user.profile.partOfGame == null) {
             //create the new game
 			var newGame = {
 				date: new Date(),
@@ -460,33 +465,47 @@ Template.infoPanel.events({
 				player2Board: tiles,
 				messages: []
 			};
-
+			var currentGame;
 			Meteor.call('gameInsert', newGame, function(error, result) {
 				//user.profile.partOfGame = result;
+				currentGame = result;
 				Meteor.users.update({"_id": user._id}, {$set: {
-					"profile.partOfGame": result
+					"profile.partOfGame": currentGame
 				}});
 				//console.log(result);
 				console.log(user.profile.partOfGame);
 			});
-		//}
+	
+            var opponent = currentGame.player2;
+			Session.set('opponent', opponent);
+		}
 		// hide create new button
     },
 	'click a.joinGame': function(event) {
-		var gameId = $(event.target).data('id');
+		//
+		var gameId = event.currentTarget.id;
+		console.log(event.currentTarget.id);
 
 		var user = Meteor.user();
+		if (user.profile.partOfGame == null) {
+			var currentGame = gamesCollection.findOne({"_id": gameId});
+            var opponent = currentGame.player1;
+			Session.set('opponent', opponent);
+			Meteor.call('addToGame', user, gameId);
+        }
+		
+		console.log(opponent);
 
 		//save the match the user is part of to profile
-		if (Meteor.user().profile == undefined) {
+		/*if (Meteor.user().profile.partOfGame == null) {
 			user.profile = {
-				partOfGame: matchId
+				partOfGame: gameId
 			};
 		} else {
-			user.profile.partOfGame = matchId;
-		}
+			user.profile.partOfGame = gameId;
+		}*/
 
-		Meteor.call('addToGame', user, matchId);
+		
 		// hide create new button
 	}
 });
@@ -501,7 +520,7 @@ Template.registerHelper('matchReady', function() {
 		if (match)
 		{
 			//check if two players are in the match
-			return match.user1 && match.user2;
+			return match.player1 && match.player2;
 		}	
 	}
 

@@ -48,7 +48,7 @@ Meteor.startup(() => {
         // add a second user to the game
         'addToGame': function(user, gameId) {
             //update user profile
-            Meteor.users.update({"_id": user._id}, {"$set": {"profile.partOfMatch": user.profile.partOfMatch}});
+            Meteor.users.update({"_id": user._id}, {"$set": {"profile.partOfGame": gameId}});
     
             //remove from any existing game
             gamesCollection.update({"player1._id": user._id}, {"$set": {"player1": null}});
@@ -59,11 +59,13 @@ Meteor.startup(() => {
     
             game.player2 = user;
     
-            gameCollection.update({"_id": game._id}, {"$set": {"player1": game.player1, "player2": game.player2}})
+            gamesCollection.update({"_id": game._id}, {"$set": {"player1": game.player1, "player2": game.player2}})
     
             return game;
          },
-         'removeGame': function(game) {
+         'removeGame': function(game, opponent) {
+            Meteor.users.update({"_id": Meteor.userId()}, {$set: {"profile.partOfGame": null}});
+            Meteor.users.update({"username": opponent}, {$set: {"partOfGame": null}});
             gamesCollection.remove({"_id": game._id});
          },
         'updateTile': function(user) {
