@@ -291,8 +291,8 @@
 		  <ul id="displayGames">
 			<!-- Display a list of games in progress or waiting for opponents -->
 			{{#each gamesList}}
-			  <li>Testing
-			  {{player1.username}}, {{player2.username}}</li>
+			  <li id="{{_id}}">{{player1.username}} vs. {{player2.username}}
+			  </li>
 			{{/each}}
 		  </ul>
 	  </div>

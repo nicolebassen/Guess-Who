@@ -251,6 +251,20 @@ a.userItem:hover, a#backToUsers {
     text-transform: capitalize;
 }
 
+button.newGameButton {
+    display:block;
+    margin: auto;
+}
+
+ul#displayGames {
+    text-align: center;
+    padding-left: 0;
+}
+
+ul#displayGames li {
+    list-style-type: none;
+}
+
 /* High Scores */
 
 li.heading {
