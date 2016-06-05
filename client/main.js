@@ -182,8 +182,11 @@ for (var i = 0; i < 5; i++) {
 	thirdRow[i] = allTiles[i + 10];
 }
 
-Session.set('currentUser', Meteor.user());
 Session.set('opponent', null);
+Session.set('currentUserRole', null);
+Session.set('opponentRole', null);
+
+//var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 
 /**********************
 	   MAIN PANEL
@@ -191,7 +194,12 @@ Session.set('opponent', null);
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		return firstRow;
+		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (Meteor.user() == currentGame.player1) {
+            return currentGame.player1Board.firstRow;
+        } else if (Meteor.user() == currentGame.player2) {
+            return currentGame.player2Board.firstRow;
+        }
 	},
 	secondRow: function() {
 		return secondRow;
@@ -211,8 +219,13 @@ Template.mainbox.helpers({
 	currentUser: function() {
 		return Meteor.user();
 	},
-	opponent: function() {
-		return Meteor.users.findOne({"username": "computer"});
+	player1: function() {
+		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		return currentGame.player1;
+	},
+	player2: function() {
+		currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		return currentGame.player2;
 	}
 });
 
@@ -461,8 +474,16 @@ Template.infoPanel.events({
 				player1: user,
 				player2: null,
 				gameStarted: false,
-				player1Board: tiles,
-				player2Board: tiles,
+				player1Board: {
+					firstRow: firstRow,
+					secondRow: secondRow,
+					thirdRow: thirdRow
+				},
+				player2Board: {
+					firstRow: firstRow,
+					secondRow: secondRow,
+					thirdRow: thirdRow
+				},
 				messages: []
 			};
 			var currentGame;
@@ -476,6 +497,9 @@ Template.infoPanel.events({
 				console.log(user.profile.partOfGame);
 			});
 	
+			Session.set('currentUserRole', 'player1');
+			Session.set('opponentRole', 'player2');
+			console.log(Session.get('currentUserRole'));
             var opponent = currentGame.player2;
 			Session.set('opponent', opponent);
 		}
@@ -494,7 +518,8 @@ Template.infoPanel.events({
 			Meteor.call('addToGame', user, gameId);
         }
 		
-		console.log(opponent);
+		Session.set('currentUserRole', 'player2');
+		Session.set('opponentRole', 'player1');
 
 		//save the match the user is part of to profile
 		/*if (Meteor.user().profile.partOfGame == null) {
