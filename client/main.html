@@ -64,19 +64,16 @@
             		<h4 class="text-center userDisplayName">{{currentUser.username}}</h4>
                     <p>Wins: {{currentUser.profile.wins}}<br />
                     Losses: {{currentUser.profile.losses}}</p>
-					{{/if}}
 					{{#if matchReady}}
                     <h4 class="text-center userDisplayName">{{player2.username}}</h4>
                     <p>Wins: {{player2.profile.wins}}<br />
                     Losses: {{player2.profile.losses}}</p>
 					{{/if}}
+					<br>
+					<button class="btn btn-default" id="leaveGame">Leave Game</button>
+					{{/if}}
                 </div> <!-- /stats div -->
-				<br>
-				<!-- allow user to leave the current game -->
-				<div class="row">
-				  <button class="btn btn-default" id="leaveGame">Leave Game</button>
-				</div>
-		
+				
             </div> <!-- /photo+stats div -->
 
 
@@ -86,9 +83,8 @@
             	<div class="row text-center">
 				  {{#if matchReady}}
             		<h4>{{gameMessage}}</h4>
-				  {{#else}}
+				  {{else}}
 					<h4>{{preGameMessage}}</h4>
-				  {{/else}}
 				  {{/if}}
             	</div>
             	<!-- row #1 -->
@@ -295,16 +291,16 @@
 		<br>
 		
 		<h3 class="text-center">Games</h3>
-		<button class="btn btn-default newGameButton">Create New</button>
+		
 		  <ul id="displayGames">
 			<!-- Display a list of games in progress or waiting for opponents -->
 			{{#each gamesList}}
-			  <li>{{player1.username}} vs.
+			  <li><span class="userInGame">{{player1.username}}</span> vs.
 			  {{#if matchReady this}}
-				{{player2.username}}
+				<span class="userInGame">{{player2.username}}</span>
 			  {{else}}
 				{{#if playerInGame this}}
-				  empty
+				  <span id="emptySlot">empty</span>
 				{{else}}
 				  <a href="#" class="joinGame" id="{{_id}}">Join</a>
 				{{/if}}
@@ -312,6 +308,7 @@
 			  </li>
 			{{/each}}
 		  </ul>
+		  <button class="btn btn-default newGameButton">Create New</button>
 	  </div>
 		  
 	  <div id="userInfo">

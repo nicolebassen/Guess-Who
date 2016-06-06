@@ -61,7 +61,7 @@ Meteor.startup(() => {
     
             game.player2 = user;
     
-            gamesCollection.update({"_id": game._id}, {"$set": {"player2": user.username}});
+            gamesCollection.update({"_id": game._id}, {"$set": {"player2": user}});
 
             return game;
          },
@@ -70,13 +70,24 @@ Meteor.startup(() => {
              Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
              gamesCollection.remove({"_id": game._id});
          },
-        'updateTile': function(user) {
+        'setTile': function(user, tileId) {
+            var currentGame = gamesCollection.findOne({"_id": user.partOfGame});
+            
+            // determine which player's tile is being set and update the collection
+            if (currentGame.player1 == user) {
+               var tile = currentGame.player1Board.tileId;
+               console.log("TILE: " + tile);
+                gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
+                  "player1Tile": tile}});
+            } else if (currentGame.player2 == user) {
+               gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
+                  "player2Tile": tile}});
+            }
             //update the chosen card
-            Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
-    
-            //update your record in the match document
-            gamesCollection.update({"user1._id": user._id}, {"$set": {"user1": user}});
-            gamesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
+            //Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
+         },
+         'flipTile': function(user) {
+            
          },
         'messageInsert': function (message, gameId) {
             gamesCollection.update({"_id": gameId}, {$push: {

@@ -274,8 +274,10 @@ a.userItem:hover, a#backToUsers {
 }
 
 button.newGameButton {
-    display:block;
-    margin: auto;
+    position:absolute;
+    bottom: 20px;
+    width: 70%;
+    left: 15%;
 }
 
 ul#displayGames {
@@ -285,6 +287,23 @@ ul#displayGames {
 
 ul#displayGames li {
     list-style-type: none;
+}
+
+a.joinGame {
+    color: #ff4c4c;
+    font-weight: bold;
+    font-size: larger;
+}
+
+span.userInGame {
+    color: #ff4c4c;
+    text-transform: capitalize;
+    font-size: larger;
+}
+
+span#emptySlot {
+    color: gray;
+    font-size: larger;
 }
 
 /* High Scores */

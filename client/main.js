@@ -169,7 +169,7 @@ Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
 
 // keeps track of how many tiles are flipped over
-var tileCounter = 0;
+Session.set('tileCounter', 0);
 
 // start game, results of game (win/loss)
 Session.set('preGameMessage', "Create or join a game to play!");
@@ -210,24 +210,46 @@ if (currentGame.player1 == Meteor.user()) {
 } else {
     var userBoard = currentGame.player2Board;
 	var opponentBoard = currentGame.player1Board;
-}*/
-
+}
+*/
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		//return userBoard.firstRow;
-		return firstRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player1 == Meteor.user()) {
+			var userBoard = currentGame.player1Board;
+		} else {
+			var userBoard = currentGame.player2Board;
+		}
+		return userBoard.firstRow;
 	},
 	secondRow: function() {
-		//return userBoard.secondRow;
-		return secondRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player1 == Meteor.user()) {
+			var userBoard = currentGame.player1Board;
+		} else {
+			var userBoard = currentGame.player2Board;
+		}
+		return userBoard.secondRow;
+		//return secondRow;
 	},
 	thirdRow: function() {
-		//return userBoard.thirdRow;
-		return thirdRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player1 == Meteor.user()) {
+			var userBoard = currentGame.player1Board;
+		} else {
+			var userBoard = currentGame.player2Board;
+		}
+		return userBoard.thirdRow;
+		//return thirdRow;
 	},
 	myTile: function() {
-		return Session.get('myTile');
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player1 == Meteor.user()) {
+            return currentGame.player1Tile;
+        } else if (currentGame.player2 == Meteor.user()) {
+            return currentGame.player2Tile;
+        } 
 	},
 	flipTile: function() {
 		return Session.get('flipTile');
@@ -242,8 +264,10 @@ Template.mainbox.helpers({
 		return Meteor.user();
 	},
 	player2: function() {
-		var currentGame = gamesCollection.find({"_id": Meteor.user().profile.partOfGame});
-		return Meteor.users.find({"username": currentGame.player2});
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		console.log(currentGame.fetch());
+		console.log(currentGame.player2);
+		return currentGame.player2;
 	}
 });
 
@@ -264,16 +288,17 @@ Template.mainbox.events({
             var allTiles = currentGame.player2Board; // store player 2 board
         }
 		
-		
+		var tileCounter = Session.get('tileCounter');
+		console.log(tileCounter);
 		if (tileCounter < 14) {
 			// set tile flipped property to true
 			Session.set('flipTile', "this.classList.toggle('flipped')");
-    	
+			
 			if (tileCounter == 0) {
 				// the tile the player is choosing
-				Session.set('myTile', allTiles[id]);
-				tileCounter++;
-        	
+				Meteor.call('setTile', Meteor.user(), id);
+				Session.set('tileCounter', tileCounter + 1);
+				
 				Session.set('gameMessage', "Let's play!");
 			} else {
 				Session.set('gameMessage', "");
@@ -335,16 +360,39 @@ Template.mainbox.events({
 
 Template.opponentBoard.helpers({
 	firstRow: function() {
-		return firstRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player2 == Meteor.user()) {
+			var opponentBoard = currentGame.player1Board;
+		} else {
+			var opponentBoard = currentGame.player2Board;
+		}
+		return opponentBoard.firstRow;
 	},
 	secondRow: function() {
-		return secondRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player2 == Meteor.user()) {
+			var opponentBoard = currentGame.player1Board;
+		} else {
+			var opponentBoard = currentGame.player2Board;
+		}
+		return opponentBoard.secondRow;
 	},
 	thirdRow: function() {
-		return thirdRow;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player2 == Meteor.user()) {
+			var opponentBoard = currentGame.player1Board;
+		} else {
+			var opponentBoard = currentGame.player2Board;
+		}
+		return opponentBoard.thirdRow;
 	},
 	opponentTile: function() {
-		return opponentTile;
+		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+		if (currentGame.player2 == Meteor.user()) {
+            return currentGame.player1Tile;
+        } else if (currentGame.player2 == Meteor.user()) {
+            return currentGame.player2Tile;
+        } 
 	}
 });
 
@@ -489,6 +537,8 @@ Template.infoPanel.events({
 				player1: user,
 				player2: null,
 				gameStarted: false,
+				player1Tile: null,
+				player2Tile: null,
 				player1Board: {
 					firstRow: firstRow,
 					secondRow: secondRow,
@@ -564,7 +614,6 @@ Template.registerHelper('playerInGame', function() {
  ***********************/
 Template.highScores.helpers({
 	highScoresUsers: function() {
-		console.log(Meteor.users.find({}, {"sort": {"profile.wins": -1}, "limit": 2}));;
 		return Meteor.users.find({}, {"sort": {"profile.wins": -1}, "limit": 10});
 	}
 });
