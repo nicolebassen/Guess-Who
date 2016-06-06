@@ -289,21 +289,13 @@ ul#displayGames li {
     list-style-type: none;
 }
 
-a.joinGame {
-    color: #ff4c4c;
-    font-weight: bold;
-    font-size: larger;
-}
-
 span.userInGame {
-    color: #ff4c4c;
+    color: #6ca4c8;
     text-transform: capitalize;
-    font-size: larger;
 }
 
-span#emptySlot {
+.emptySlot {
     color: gray;
-    font-size: larger;
 }
 
 /* High Scores */

@@ -300,9 +300,9 @@
 				<span class="userInGame">{{player2.username}}</span>
 			  {{else}}
 				{{#if playerInGame this}}
-				  <span id="emptySlot">empty</span>
+				  <span class="emptySlot">empty</span>
 				{{else}}
-				  <a href="#" class="joinGame" id="{{_id}}">Join</a>
+				  <a href="#" class="emptySlot" id="{{_id}}"><b>join</b></a>
 				{{/if}}
 			  {{/if}}
 			  </li>
