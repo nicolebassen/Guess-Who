@@ -183,15 +183,6 @@ for (var i = 0; i < 5; i++) {
 	secondRow[i] = allTiles[i + 5];
 	thirdRow[i] = allTiles[i + 10];
 }
-/*
-Session.set('opponent', null);
-Session.set('currentUserRole', null);
-Session.set('opponentRole', null);
-
-Session.set('player1', null);
-Session.set('player2', null);
-*/
-//var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 
 /**********************
 	   MAIN PANEL
@@ -230,13 +221,14 @@ Template.mainbox.helpers({
 		return Session.get('gameMessage');
 	},
 	preGameMessage: function() {
-		return Session.set('preGameMessage');
+		return Session.get('preGameMessage');
 	},
 	currentUser: function() {
 		return Meteor.user();
 	},
 	player2: function() {
-		return Session.get('player2');
+		var currentGame = gamesCollection.find({"_id": Meteor.user().profile.partOfGame});
+		return Meteor.users.find({"username": currentGame.player2});
 	}
 });
 
@@ -293,10 +285,6 @@ Template.mainbox.events({
 					// temporary opponent is computer
 					var opponent = Meteor.users.findOne({"username": "computer"}, {"_id": 1});
 					
-					// TODO: REMOVE GAME FROM COLLECTION
-					// show create new button
-					// set partOfGame to null
-					
 					if (allTiles[i].id == opponentTile.id) {
 						Session.set('gameMessage', "That is your opponent's tile. You win!");
 						
@@ -322,7 +310,6 @@ Template.mainbox.events({
 		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 		Meteor.call('removeGame', currentGame);
 		Session.set('preGameMessage', null);
-		// show create new button
 	}
 });
 
@@ -429,9 +416,6 @@ Template.infoPanel.onCreated(function() {
 });
 
 Template.infoPanel.helpers({
-   /*users: function() {
-       return Meteor.users.find({ username: { $not: (Meteor.user() || {}).username } });
-   },*/
    onlineUsersList: function() {
 		return Meteor.users.find({$or: [{"status.online": true}, {"username": "computer"}] }); // users that are logged in
    },
@@ -482,7 +466,7 @@ Template.infoPanel.events({
 	'click button.newGameButton': function(event) {
 		var user = Meteor.user();
 
-		// IF USER NOT IN MATCH
+		// if user is not in a match
 		if (user.profile.partOfGame == null) {
             //create the new game
 			var newGame = {
@@ -504,23 +488,16 @@ Template.infoPanel.events({
 			};
 			var currentGame;
 			Meteor.call('gameInsert', newGame, function(error, result) {
-				//user.profile.partOfGame = result;
 				currentGame = result;
 				Meteor.users.update({"_id": user._id}, {$set: {
 					"profile.partOfGame": currentGame
 				}});
-				//console.log(result);
-				console.log(user.profile.partOfGame);
 			});
 	
 			Session.set('preGameMessage', "Waiting for an opponent...");
-			Session.set('player1', Meteor.user());
-			console.log(Session.get('currentUserRole'));
-            //var opponent = currentGame.player2;
-			//Session.set('opponent', opponent);
 		}
-		// hide create new button
     },
+	// when a user joins a game
 	'click a.joinGame': function(event) {
 		// store the ID of the game the user has joined
 		var gameId = event.currentTarget.id;
@@ -532,20 +509,6 @@ Template.infoPanel.events({
 			Session.set('opponent', opponent);
 			Meteor.call('addToGame', user, gameId);
         }
-		
-		//Session.set('player2', Meteor.user());
-
-		//save the match the user is part of to profile
-		/*if (Meteor.user().profile.partOfGame == null) {
-			user.profile = {
-				partOfGame: gameId
-			};
-		} else {
-			user.profile.partOfGame = gameId;
-		}*/
-
-		
-		// hide create new button
 	}
 });
 

@@ -70,9 +70,11 @@
                     <p>Wins: {{currentUser.profile.wins}}<br />
                     Losses: {{currentUser.profile.losses}}</p>
 					{{/if}}
+					{{#if matchReady}}
                     <h4 class="text-center userDisplayName">{{player2.username}}</h4>
                     <p>Wins: {{player2.profile.wins}}<br />
                     Losses: {{player2.profile.losses}}</p>
+					{{/if}}
                 </div> <!-- /stats div -->
 				<br>
 				<!-- allow user to leave the current game -->
