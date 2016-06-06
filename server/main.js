@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { messagesCollection } from '../collections/collections.js';
 import { messagesData } from '../collections/collections.js';
 import { gamesCollection } from '../collections/collections.js';
-import { matchesCollection } from '../collections/collections.js';
+
 
 
 Meteor.startup(() => {

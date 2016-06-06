@@ -6,7 +6,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { tilesCollection } from '../collections/collections.js';
 import { messagesCollection } from '../collections/collections.js';
 import { gamesCollection } from '../collections/collections.js';
-import { matchesCollection } from '../collections/collections.js';
+
 
 import './main.html';
 
@@ -25,7 +25,8 @@ var tiles = [
 		name: "Jami",
 		frontImage: "jami.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+		opponentBackImage: "xmark-blue-tile.png",
+		opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -33,7 +34,8 @@ var tiles = [
 		name: "Nicole",
 		frontImage: "nicole.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -41,7 +43,8 @@ var tiles = [
 		name: "Josh",
 		frontImage: "jhawks.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -49,7 +52,8 @@ var tiles = [
 		name: "Paige",
 		frontImage: "paigegreen.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -57,7 +61,8 @@ var tiles = [
 		name: "Archer",
 		frontImage: "archer.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -65,7 +70,8 @@ var tiles = [
 		name: "Peter",
 		frontImage: "peter.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -73,7 +79,8 @@ var tiles = [
 		name: "Neal",
 		frontImage: "neal.png",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -81,7 +88,8 @@ var tiles = [
 		name: "Arnold",
 		frontImage: "arnold.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -89,7 +97,8 @@ var tiles = [
 		name: "Gurman",
 		frontImage: "gurman.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -97,7 +106,8 @@ var tiles = [
 		name: "Sahba",
 		frontImage: "sahba.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -105,7 +115,8 @@ var tiles = [
 		name: "Kimberly",
 		frontImage: "kim.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -113,7 +124,8 @@ var tiles = [
 		name: "Clark",
 		frontImage: "jclark.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -121,7 +133,8 @@ var tiles = [
 		name: "Chris",
 		frontImage: "christopher.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -129,7 +142,8 @@ var tiles = [
 		name: "Francisco",
 		frontImage: "francisco.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+        opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -137,7 +151,8 @@ var tiles = [
 		name: "Ben",
 		frontImage: "ben.jpg",
 		backImage: "qmark-red-tile-sm.png",
-		opponentBackImage: "qmark-blue-tile.png",
+		opponentBackImage: "xmark-blue-tile.png",
+        opponentFrontImage: "qmark-blue-tile.png",
 		flipped: 0
 	},
 	{
@@ -561,5 +576,3 @@ Template.highScores.helpers({
 Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
-
-

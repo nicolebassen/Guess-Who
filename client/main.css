@@ -63,6 +63,23 @@ p{
 
 }
 
+.mySlides{
+    display: none;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    border: 1px solid #4c7dc8;
+    -moz-box-shadow:
+            3px 3px 3px   rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(184, 216, 255, 0.77);
+    -webkit-box-shadow:
+            3px 3px 3px  rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(184, 216, 255,0.77);
+    box-shadow:
+            3px 3px 5px  rgba(000,000,000,0.5),
+            inset 1px 2px 0px rgba(184, 216, 255, 0.77);
+}
+
 /* panel right margins */
 #mainbox, #chatPanel, #newMessage {
     margin-right: 10px;
@@ -212,7 +229,7 @@ p{
 /*chat stuff*/
 
 #chatPanel {
-    height: 10em;
+    height: 11em;
     overflow-y: scroll;
 }
 
@@ -554,4 +571,9 @@ li.heading {
     box-shadow:
             4px 4px 5px   rgba(000,000,000,0.5),
             inset 1px 2px 0px rgba(255, 138, 162, 0.77);
+}
+
+
+li.instructions {
+    list-style-image: url("http://kpraxel.greenrivertech.net/assets/images/board-games-with-roles.png")
 }

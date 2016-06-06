@@ -31,16 +31,11 @@
   <nav class='navbar navbar-default' id="navigationBar">
       <ul class='nav navbar-nav'>
         <li> <a class='navbar-brand navOption' id="mainTitle" href='/'> Guess Who? </a> </li>
+        <li class='nav navbar-nav' id="loginButton">{{> loginButtons }}</li>
         <li> <a class='navOption' href='/game'> Play Guess Who? </a> </li>
 		<li> <a class='navOption' href='/instructions'> Instructions </a> </li>
 		<li> <a class='navOption' href='/highscores'> High Scores </a> </li>
       </ul>
-	  
-      <div class='collapse navbar-collapse' id='navigation'>
-        <ul class='nav navbar-nav' id="loginButton">
-            {{> loginButtons }}
-        </ul>
-      </div>
   </nav>
 </template>
 
@@ -219,7 +214,7 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{this.frontImage}}" width="50" height="70">
+                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
@@ -239,7 +234,7 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{this.frontImage}}" width="50" height="70">
+                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
@@ -259,7 +254,7 @@
                         <div class="flip-container">
                             <div class="flipper" onclick="this.classList.toggle('flipped')">
                                 <div class="front">
-                                    <img src="{{this.frontImage}}" width="50" height="70">
+                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
                                 </div>
                                 <div class="back">
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
@@ -337,10 +332,46 @@
   <div class="container">
 	{{> navigation}}
 	
-	<h1 class="nonlogin mainTitle"><br><br>
+	<h1 class="nonlogin mainTitle">
 			  Welcome to Guess Who?<br>
 			</h1>
+      <div class="w3-content w3-section" style="max-width:500px">
+          <img class="mySlides" src="archer.jpg" style="width:100%">
+          <img class="mySlides" src="arnold.jpg" style="width:100%">
+          <img class="mySlides" src="ben.jpg" style="width:100%">
+          <img class="mySlides" src="christopher.jpg" style="width:100%">
+          <img class="mySlides" src="francisco.jpg" style="width:100%">
+          <img class="mySlides" src="blueFirst.png" style="width:100%">
+          <img class="mySlides" src="gurman.jpg" style="width:100%">
+          <img class="mySlides" src="jami.jpg" style="width:100%">
+          <img class="mySlides" src="jclark.jpg" style="width:100%">
+          <img class="mySlides" src="jhawks.jpg" style="width:100%">
+          <img class="mySlides" src="kim.jpg" style="width:100%">
+          <img class="mySlides" src="blueSecond.png" style="width:100%">
+          <img class="mySlides" src="neal.png" style="width:100%">
+          <img class="mySlides" src="nicole.jpg" style="width:100%">
+          <img class="mySlides" src="paigegreen.jpg" style="width:100%">
+          <img class="mySlides" src="peter.jpg" style="width:100%">
+          <img class="mySlides" src="sahba.jpg" style="width:100%">
+          <img class="mySlides" src="blueThird.png" style="width:100%">
+      </div>
   </div>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}
+            x[myIndex-1].style.display = "block";
+            setTimeout(carousel, 1000); // Change image every 1 second
+        }
+    </script>
 </template>
 
 <!--***************************
@@ -408,30 +439,29 @@
 	
 	<div class="panel panel-default" id="instructionsPanel">
 	  <div class="col-xs-10 col-xs-offset-1">
-	  <h3>Game Play</h3>
-          <p><strong class="strong">Objective of Game: </strong>Your objective is to guess the Mystery Person on your opponent's board.
-          This is achieved by asking one question per turn, and eliminating any gameboard faces that don't fit the
-          Mystery Person's description.</p>
-	  <ul>
-        <li><strong class="strong">Gameboard Faces: </strong>Notice there are 15 faces on the gameboard. They all have differences; notice
-            these differences. Eye Color, Hair Color, Rosey Cheeks, Facial Hair, Big Noses... As you play, you will
-            notice several other differences about the gameboard faces.</li><br>
-		<li><strong class="strong">Your Turn: </strong>The younger player always goes first. On your turn, you may either ask a question or make a guess
-            at who the Mystery Person is. But don't use your turn to guess the Mystery Person until you're ready. If
-            your guess is wrong you'll lose the game!</li><br>
-		<li><strong class="strong">Asking Questions: </strong>Until you're ready to guess who the Mystery Person is, ask your opponent one question
-            per turn. Each question must have either a "yes" or "no" answer. For example, you may ask "Does your
-            person have white hair?" Your opponent must then answer either "yes" or "no" <br> After your opponent
-            answers, you may be able to elimate one or more gameboard faces. For example, if the Mystery Person has
-            white hair, flip down all the faces that have black, brown, red, and blonde hair. This leaves only the
-            white haired people as the possible Mystery Person. <br> After you ask a question (and flip down any faces
-            you can), your turn is over.</li><br>
-        <li><strong class="strong">Guessing the Mystery Person: </strong>When you're ready to guess who the Mystery Person is, make your guess on
-            your turn, instead of asking a question. To guess the Mystery Person, flip over all the tiles except the one you think
-			is correct. If your guess is right, you win the Game! If it's wrong, you lose!</li><br>
-        <li><strong class="strong">How to Win: </strong>Players alternate turns asking questions until one player makes a guess. If you make a correct
-            guess or your opponent guesses incorrectly - you win the game!</li>
-	  </ul>
+          <h3><strong>Objective of Game: </strong>Your objective is to guess the Mystery Person on your opponent's board.
+              This is achieved by asking one question per turn, and eliminating any gameboard faces that don't fit the
+              Mystery Person's description.</h3><br>
+          <ul>
+              <li class="instructions"><strong>Gameboard Faces: </strong>Notice there are 15 faces on the gameboard. They all have differences; notice
+                  these differences. Eye Color, Hair Color, Rosey Cheeks, Facial Hair, Big Noses... As you play, you will
+                  notice several other differences about the gameboard faces.</li>
+              <li class="instructions"><strong >Your Turn: </strong>The younger player always goes first. On your turn, you may either ask a question or make a guess
+                  at who the Mystery Person is. But don't use your turn to guess the Mystery Person until you're ready. If
+                  your guess is wrong you'll lose the game!</li>
+              <li class="instructions"><strong>Asking Questions: </strong>Until you're ready to guess who the Mystery Person is, ask your opponent one question
+                  per turn. Each question must have either a "yes" or "no" answer. For example, you may ask "Does your
+                  person have white hair?" Your opponent must then answer either "yes" or "no" <br> After your opponent
+                  answers, you may be able to elimate one or more gameboard faces. For example, if the Mystery Person has
+                  white hair, flip down all the faces that have black, brown, red, and blonde hair. This leaves only the
+                  white haired people as the possible Mystery Person. <br> After you ask a question (and flip down any faces
+                  you can), your turn is over.</li>
+              <li class="instructions"><strong>Guessing the Mystery Person: </strong>When you're ready to guess who the Mystery Person is, make your guess on
+                  your turn, instead of asking a question. To guess the Mystery Person, flip over all the tiles except the one you think
+                  is correct. If your guess is right, you win the Game! If it's wrong, you lose!</li>
+              <li class="instructions"><strong>How to Win: </strong>Players alternate turns asking questions until one player makes a guess. If you make a correct
+                  guess or your opponent guesses incorrectly - you win the game!</li>
+          </ul>
 	  </div>
 	</div>	
   </div>
@@ -457,7 +487,7 @@
               </thead>
 
 		{{#each highScoresUsers}}
-        <tr>
+        <tr class="w3-white">
 		 <td><i class="fa fa-user"></i> {{username}}</td>
 		  <td><span class="pull-right"><strong>{{profile.wins}}</strong> / {{profile.losses}}</span></td>
 
@@ -468,8 +498,3 @@
 	</div>	
   </div>
 </template>
-
-
-<!--************************************
-    HIGH SCORES PAGE: /findFriends
-*************************************-->
