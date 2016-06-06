@@ -37,7 +37,7 @@
       </ul>
 	  
       <div class='collapse navbar-collapse' id='navigation'>
-        <ul class='nav navbar-nav navbar-right' id="loginButton">
+        <ul class='nav navbar-nav' id="loginButton">
             {{> loginButtons }}
         </ul>
       </div>
@@ -182,9 +182,9 @@
     <div class="panel panel-default" id="chatPanel">
     <ul class="list-group">
     	<!-- Display messages stored in the database -->
-        {{#each allMessages}}
+        {{#each gameMessages}}
             <span class="time"><small>{{time}}</small></span>
-            <b><span class="userDisplayName">{{this.name}}</span></b>: {{this.messageText}}<br>
+            <b><span class="userDisplayName">{{this.name}}</span></b>: {{this.message}}<br>
         {{/each}}
     </ul>
         </div>

@@ -77,14 +77,10 @@ Meteor.startup(() => {
             gamesCollection.update({"user1._id": user._id}, {"$set": {"user1": user}});
             gamesCollection.update({"user2._id": user._id}, {"$set": {"user2": user}});
          },
-        'messageInsert': function (message) {
-            //gamesCollection.insert({"})
-            messagesCollection.insert({
-                public: true,
-                name: message.name,
-                messageText: message.message,
-				time: message.time
-            });
+        'messageInsert': function (message, gameId) {
+            gamesCollection.update({"_id": gameId}, {$push: {
+               "messages": message
+            }});
         },
         'messageDelete': function (message) {
             messagesCollection.remove({"_id": message._id});

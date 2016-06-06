@@ -383,9 +383,21 @@ Template.addMessageForm.events({
 				message: messageText,
 				time: time
 			};
-	
+			
+			var errorMessage = {
+				name: "Guess Who Game",
+				message: "You must be in a game to send messages to your opponent."
+			};
+			
+			var game = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+			var gameId = game._id;
+			
 			// add message object to the messages collection
-			Meteor.call('messageInsert', newMessage);
+			if (Meteor.user().profile.partOfGame == null) {
+                Meteor.call('messageInsert', errorMessage, gameId); 	// TODO FIX
+            } else {
+				Meteor.call('messageInsert', newMessage, gameId);
+			}
 		}
         
         scrollChat();
@@ -393,8 +405,8 @@ Template.addMessageForm.events({
 });
 
 Template.messageList.helpers({
-	allMessages: function() {
-		return messagesCollection.find({});
+	gameMessages: function() {
+		return gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame}).messages;
 	}
 });
 
@@ -492,7 +504,7 @@ Template.infoPanel.events({
 					secondRow: secondRow,
 					thirdRow: thirdRow
 				},
-				messages: []
+				messages: [{name: "Guess Who Game", message: "Use this panel to send messages to your opponent!"}]
 			};
 			var currentGame;
 			Meteor.call('gameInsert', newGame, function(error, result) {
