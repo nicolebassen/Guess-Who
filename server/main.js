@@ -61,11 +61,12 @@ Meteor.startup(() => {
     
             game.player2 = user;
     
-            gamesCollection.update({"_id": game._id}, {"$set": {"player1": game.player1, "player2": game.player2}})
-    
+            gamesCollection.update({"_id": game._id}, {"$set": {"player2": user.username}});
+
             return game;
          },
          'removeGame': function(game) {
+             Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
              Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
              gamesCollection.remove({"_id": game._id});
          },

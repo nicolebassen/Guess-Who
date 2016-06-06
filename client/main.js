@@ -157,7 +157,8 @@ var allTiles = Session.get('tile'); // store tiles session in a variable
 var tileCounter = 0;
 
 // start game, results of game (win/loss)
-Session.set('gameMessage', "Choose a tile for your opponent to guess.");
+Session.set('preGameMessage', "Create or join a game to play!");
+Session.set('gameMessaage', "Choose a tile for your opponent to guess.");
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
@@ -182,35 +183,41 @@ for (var i = 0; i < 5; i++) {
 	secondRow[i] = allTiles[i + 5];
 	thirdRow[i] = allTiles[i + 10];
 }
-
+/*
 Session.set('opponent', null);
 Session.set('currentUserRole', null);
 Session.set('opponentRole', null);
 
 Session.set('player1', null);
 Session.set('player2', null);
-
+*/
 //var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 
 /**********************
 	   MAIN PANEL
 ***********************/
+/*
+var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+if (currentGame.player1 == Meteor.user()) {
+    var userBoard = currentGame.player1Board;
+	var opponentBoard = currentGame.player2Board;
+} else {
+    var userBoard = currentGame.player2Board;
+	var opponentBoard = currentGame.player1Board;
+}*/
+
 
 Template.mainbox.helpers({
 	firstRow: function() {
-		/*
-		console.log(Meteor.user().profile.partOfGame);
-		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-		if (Session.get('player1') == Meteor.user()) {
-            return currentGame.player1Board.firstRow;
-        } else {
-            return currentGame.player2Board.firstRow;
-        }*/
+		//return userBoard.firstRow;
+		return firstRow;
 	},
 	secondRow: function() {
+		//return userBoard.secondRow;
 		return secondRow;
 	},
 	thirdRow: function() {
+		//return userBoard.thirdRow;
 		return thirdRow;
 	},
 	myTile: function() {
@@ -222,11 +229,11 @@ Template.mainbox.helpers({
 	gameMessage: function() {
 		return Session.get('gameMessage');
 	},
+	preGameMessage: function() {
+		return Session.set('preGameMessage');
+	},
 	currentUser: function() {
 		return Meteor.user();
-	},
-	player1: function() {
-		return Session.get('player1');
 	},
 	player2: function() {
 		return Session.get('player2');
@@ -314,6 +321,7 @@ Template.mainbox.events({
 	'click #leaveGame': function(event) {
 		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 		Meteor.call('removeGame', currentGame);
+		Session.set('preGameMessage', null);
 		// show create new button
 	}
 });
@@ -363,12 +371,6 @@ Template.addMessageForm.events({
 		if (Meteor.user().profile.partOfGame == null) {
             $('#messageText').val(''); // remove text from our message box
 			
-			var errorMessage = {
-				name: "Guess Who Game",
-				message: "You must join a game before sending messages to your opponent.",
-			};
-			
-			Meteor.call('messageInsert', errorMessage);
         } else {
 			//get our form value (message text)
 			var messageText = $('#messageText').val();
@@ -383,21 +385,12 @@ Template.addMessageForm.events({
 				message: messageText,
 				time: time
 			};
-			
-			var errorMessage = {
-				name: "Guess Who Game",
-				message: "You must be in a game to send messages to your opponent."
-			};
-			
+
 			var game = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 			var gameId = game._id;
 			
 			// add message object to the messages collection
-			if (Meteor.user().profile.partOfGame == null) {
-                Meteor.call('messageInsert', errorMessage, gameId); 	// TODO FIX
-            } else {
-				Meteor.call('messageInsert', newMessage, gameId);
-			}
+			Meteor.call('messageInsert', newMessage, gameId);
 		}
         
         scrollChat();
@@ -407,6 +400,9 @@ Template.addMessageForm.events({
 Template.messageList.helpers({
 	gameMessages: function() {
 		return gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame}).messages;
+	},
+	defaultMessages: function() {
+		return messagesCollection.find({});
 	}
 });
 
@@ -517,6 +513,7 @@ Template.infoPanel.events({
 				console.log(user.profile.partOfGame);
 			});
 	
+			Session.set('preGameMessage', "Waiting for an opponent...");
 			Session.set('player1', Meteor.user());
 			console.log(Session.get('currentUserRole'));
             //var opponent = currentGame.player2;
@@ -525,10 +522,9 @@ Template.infoPanel.events({
 		// hide create new button
     },
 	'click a.joinGame': function(event) {
-		//
+		// store the ID of the game the user has joined
 		var gameId = event.currentTarget.id;
-		console.log(event.currentTarget.id);
-
+		
 		var user = Meteor.user();
 		if (user.profile.partOfGame == null) {
 			var currentGame = gamesCollection.findOne({"_id": gameId});

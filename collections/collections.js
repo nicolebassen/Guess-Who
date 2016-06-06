@@ -18,6 +18,6 @@ export const matchesCollection = new Mongo.Collection("matches"); // stores matc
  export const messagesData = [
  {
  name: "Guess Who Game",
- messageText: "Use this panel to send messages to your opponent!"
+ messageText: "Join a game to send messages to your opponent."
  }
  ];
