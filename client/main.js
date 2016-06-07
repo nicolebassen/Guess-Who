@@ -662,8 +662,8 @@ Template.infoPanel.events({
 				gameStarted: false,
 				player1Tile: tiles[15],
 				player2Tile: tiles[15],
-				player1Board: jQuery.extend({}, tiles),
-				player2Board: jQuery.extend({}, tiles),
+				player1Board: jQuery.extend(true, {}, tiles),
+				player2Board: jQuery.extend(true, {}, tiles),
 				matchFull: false,
 				messages: [{name: "Guess Who Game", message: "Use this panel to send messages to your opponent!"}]
 			};

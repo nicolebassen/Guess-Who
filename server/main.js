@@ -93,21 +93,16 @@ Meteor.startup(() => {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-         
-               var counter = currentGame.tileCounter;
-               counter++;
-               gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
-                                       {"tileCounter": counter}});
+
+            gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
+                                       {"tileCounter": 1}});
          },
          'decTileCounter': function(user) {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-            
-               var counter = currentGame.tileCounter;
-               counter--;
-               gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
-                                       {"tileCounter": counter}});
+            gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
+                                    {"tileCounter": -1}});
          },
          'incFlipped': function(user, tileId) {
             if (Meteor.user()) {
