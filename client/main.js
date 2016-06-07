@@ -279,7 +279,7 @@ Template.mainbox.helpers({
 			var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 		}
 		
-		if (currentGame != null) {
+		if (currentGame != null && currentGame.player2 != null) {
 			if (currentGame.player1.username == Meteor.user().username) {
 				var userBoard = currentGame.player1Board;
 				var thirdRow = [];
@@ -343,70 +343,71 @@ Template.mainbox.events({
         }
 		
 		if (currentGame != null) {
-			var tileCounter = currentGame.tileCounter;
 			if (Meteor.user().username == currentGame.player1.username) {
-                userBoard = currentGame.player1Board;
+				var currentUser = currentGame.player1;
+				var opponent = currentGame.player2;
+				var userTileCounter = currentGame.p1tileCounter;
+				var oppTileCounter = currentGame.p2tileCounter;
+                var userBoard = currentGame.player1Board;
+				var opponentTIle = currentGame.player2Tile;
+				var userTile = currentGame.player1Tile;
             } else if (Meteor.user().username == currentGame.player2.username) {
-                userBoard = currentGame.player2Board;
+				var currentuser = currentGame.player2;
+				var opponent = currentGame.player1;
+				var userTileCounter = currentGame.p2tileCounter;
+				var oppTileCounter = currentGame.p1tileCounter;
+                var userBoard = currentGame.player2Board;
+				var opponentTile = currentGame.player1Tile;
+				var userTile = currentGame.player2Tile;
             }
         }
 		
-		if (tileCounter < 14) {
-			// set tile flipped property to true
-			Session.set('flipTile', "this.classList.toggle('flipped')");
-			console.log("Event Target ID: " + id);
-			if (tileCounter == 0) {
+		if (userTileCounter < 14) {
+			if (userTileCounter == 0) {
 				// set the tile that the player is choosing
                 Meteor.call('chooseTile', Meteor.user(), id);
 				Meteor.call('incTileCounter', Meteor.user());
 				
 				Session.set('gameMessage', "Let's play!");
 			} else {
-				Meteor.call('decTileCounter', Meteor.user());
+				// set tile flipped property to true
+				Session.set('flipTile', "this.classList.toggle('flipped')");
 				Session.set('gameMessage', "");
-        	
+				console.log("Flipped?" + userBoard[id].flipped);
+				
 				// if image side of tile was facing up
 				if (userBoard[id].flipped % 2 == 0) {
 					Meteor.call('incFlipped', Meteor.user(), id);
-					//allTiles[id].flipped++;	// switch flipped to true
 					Meteor.call('incTileCounter', Meteor.user());
-					console.log("Increment flipped " + userBoard[id].flipped);
-					
-					//tileCounter++;
+
 				} 
 				// if blank side of tile was facing up
 				else {
 					Meteor.call('decFlipped', Meteor.user(), id)
-					//allTiles[id].flipped--; // switch flipped to false
 					Meteor.call('decTileCounter', Meteor.user());
-					//tileCounter--;
-					console.log("Decrement flipped " + userBoard[id].flipped);
 				}
-				//console.log("FLipped: " + userBoard[id].flipped);
-				//Session.set('tileCounter', tileCounter + 1);
+
 			}
-			console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
-        } /*else {
-			allTiles[id].flipped++; // change flipped property of the last tile flipped
+			console.log("Player 1 Tile counter: " + userTileCounter);  // how many tiles are flipped over
+			console.log("Player 2 Tile counter: " + oppTileCounter);
+        } else {
+			Meteor.call('incFlipped', Meteor.user(), id); // change flipped property of the last tile flipped
 			
 			// find the remaining (unflipped) tile and compare to opponent's tile
-			for (var i = 0; i < allTiles.length; i++) {
-				if (allTiles[i].flipped == 0) {
+			for (var i = 0; i < userBoard.length; i++) {
+				if (userBoard[i].flipped == 1) {
 					
-					// temporary opponent is computer
-					var opponent = Meteor.users.findOne({"username": "computer"}, {"_id": 1});
-					
-					if (allTiles[i].id == opponentTile.id) {
+					if (userBoard[i].id == opponentTile.id) {
 						Session.set('gameMessage', "That is your opponent's tile. You win!");
 						
 						// update win count for user and loss count for opponent
-						Meteor.call('winsIncrement', Meteor.userId());
+						Meteor.call('winsIncrement', currentUser._id);
 						Meteor.call('lossesIncrement', opponent._id);
 					} else {
 						Session.set('gameMessage', "That is not your opponent's tile. You lose!");
 						
 						// update loss count for user and win count for opponent
-						Meteor.call('lossesIncrement', Meteor.userId());
+						Meteor.call('lossesIncrement', currentUser._id);
 						Meteor.call('winsIncrement', opponent._id);
 					}
 				}
@@ -414,7 +415,7 @@ Template.mainbox.events({
 			
 			Session.set('flipTile', ''); // can no longer flip tiles
 			Session.set('gameOver', true);	// game is over
-		}*/
+		}
     },
 	// remove the current game from the collection
 	'click #leaveGame': function(event) {
@@ -434,7 +435,7 @@ Template.opponentBoard.helpers({
             var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
         }
 		
-		if (currentGame != null) {
+		if (currentGame != null && currentGame.player2 != null) {
 			if (currentGame.player1.username == Meteor.user().username) {
 				var opponentBoard = currentGame.player2Board;
 				var firstRow = [];
@@ -457,7 +458,7 @@ Template.opponentBoard.helpers({
             var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
         }
 		
-		if (currentGame != null) {
+		if (currentGame != null && currentGame.player2 != null) {
 			if (currentGame.player1.username == Meteor.user().username) {
 				var opponentBoard = currentGame.player2Board;
 				var secondRow = [];
@@ -480,7 +481,7 @@ Template.opponentBoard.helpers({
             var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
         }
 		
-		if (currentGame != null) {
+		if (currentGame != null && currentGame.player2 != null) {
 			if (currentGame.player1.username == Meteor.user().username) {
 				var opponentBoard = currentGame.player2Board;
 				var thirdRow = [];
