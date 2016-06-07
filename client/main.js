@@ -653,6 +653,9 @@ Template.infoPanel.events({
 
 		// if user is not in a match
 		if (user.profile.partOfGame == null) {
+			// make copies of the tiles
+			var player1Tiles = jQuery.extend(true, {}, tiles);
+			var player2Tiles = jQuery.extend(true, {}, tiles);
             //create the new game
 			var newGame = {
 				date: new Date(),
@@ -662,8 +665,8 @@ Template.infoPanel.events({
 				gameStarted: false,
 				player1Tile: tiles[15],
 				player2Tile: tiles[15],
-				player1Board: jQuery.extend(true, {}, tiles),
-				player2Board: jQuery.extend(true, {}, tiles),
+				player1Board: player1Tiles,
+				player2Board: player2Tiles,
 				matchFull: false,
 				messages: [{name: "Guess Who Game", message: "Use this panel to send messages to your opponent!"}]
 			};
