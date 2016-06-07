@@ -162,24 +162,8 @@ var tiles = [
 	}
 ];
 
-function copyTiles() {
-    var newTiles = [];
-	
-	for (var i = 0; i <= 15; i++) {
-        newTiles.push(tiles[i]);
-    }
-	
-	return newTiles;
-}
-
-// tracks whether game is still going
-Session.set('gameOver', false);
-
 Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
-
-// keeps track of how many tiles are flipped over
-//Session.set('tileCounter', 0);
 
 // start game, results of game (win/loss)
 Session.set('gameMessaage', "Choose a tile for your opponent to guess.");
@@ -187,42 +171,9 @@ Session.set('gameMessaage', "Choose a tile for your opponent to guess.");
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");
 
-// tile that the player selects
-var myTile = allTiles[15];
-Session.set('myTile', myTile);
-
-// computer opponent randomly selects a tile
-var random = Math.floor(Math.random() * 15);
-var opponentTile = allTiles[random];
-console.log("The opponent's tile is " + opponentTile.name + "; ID " + opponentTile.id);
-
-// store the three rows of tiles separately
-var firstRow = [];
-var secondRow = [];
-var thirdRow = [];
-
-// fill in the three rows of tiles
-for (var i = 0; i < 5; i++) {
-	firstRow[i] = allTiles[i];
-	secondRow[i] = allTiles[i + 5];
-	thirdRow[i] = allTiles[i + 10];
-}
-
-
-
 /**********************
 	   MAIN PANEL
 ***********************/
-/*
-var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-if (currentGame.player1 == Meteor.user()) {
-    var userBoard = currentGame.player1Board;
-	var opponentBoard = currentGame.player2Board;
-} else {
-    var userBoard = currentGame.player2Board;
-	var opponentBoard = currentGame.player1Board;
-}
-*/
 
 Template.mainbox.helpers({
 	firstRow: function() {
@@ -322,6 +273,18 @@ Template.mainbox.helpers({
 	currentUser: function() {
 		return Meteor.user();
 	},
+	opponent: function() {
+		if (Meteor.user()) {
+			var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+        }
+		if (currentGame != null) {
+            if (currentGame.player1.username == Meteor.user().username) {
+				return currentGame.player2;
+			} else if (currentGame.player2.username == Meteor.user().username) {
+				return currentGame.player1;
+			}
+        }
+	},
 	currentGame: function() {
 		if (Meteor.user()) {
 			var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
@@ -414,7 +377,6 @@ Template.mainbox.events({
 			}
 			
 			Session.set('flipTile', ''); // can no longer flip tiles
-			Session.set('gameOver', true);	// game is over
 		}
     },
 	// remove the current game from the collection

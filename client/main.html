@@ -55,10 +55,10 @@
 					{{#if matchReady}}
                     <div class="text-center">
                     <img src="{{myTile.frontImage}}" id="myTile">
-                    <h4 class="text-center">{{myTile.name}}</h4><br><br>
+                    <h4 class="text-center">{{myTile.name}}</h4><br>
                     </div>
 					{{else}}
-					<img src="qmark-red-tile.png" id="myTile">
+					<img src="qmark-red-tile.png" id="myTile"><br><br>
 					{{/if}}
             	</div><!-- /photo div -->
             
@@ -67,15 +67,15 @@
 					<!-- if the current user is in a game -->
 					{{#if currentUser.profile.partOfGame}}
 					  <!-- show current user data -->
-					  <h4 class="text-center userDisplayName">{{currentGame.player1.username}}</h4>
-					  <p>Wins: {{currentGame.player1.profile.wins}}<br />
-					  Losses: {{currentGame.player1.profile.losses}}</p><br>
+					  <h4 class="text-center userDisplayName">{{currentUser.username}}</h4>
+					  <p>Wins: {{currentUser.profile.wins}}<br />
+					  Losses: {{currentUser.profile.losses}}</p><br>
 					  <!-- if two players are in the game -->
 					  {{#if matchReady}}
 						<!-- display the opponent's data -->
-						<h4 class="text-center userDisplayName">{{currentGame.player2.username}}</h4>
-						<p>Wins: {{currentGame.player2.profile.wins}}<br />
-						Losses: {{currentGame.player2.profile.losses}}</p>
+						<h4 class="text-center userDisplayName">{{opponent.username}}</h4>
+						<p>Wins: {{opponent.profile.wins}}<br />
+						Losses: {{opponent.profile.losses}}</p>
 					  <!-- if only one player is in the game -->
 					  {{else}}
 						<h4><span class="whiteText">Waiting for an opponent...</span></h4>
