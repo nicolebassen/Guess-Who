@@ -80,7 +80,8 @@ Meteor.startup(() => {
                   var tile = currentGame.player1Board[tileId];
                    gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player1Tile": tile}});
-               } else if (currentGame.player2.username == user.username) {
+               }
+               if (currentGame.player2.username == user.username) {
                   var tile = currentGame.player2Board[tileId];
                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player2Tile": tile}});
@@ -93,16 +94,19 @@ Meteor.startup(() => {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-
-            gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
-                                       {"tileCounter": 1}});
+            var counter = currentGame.tileCounter;
+            counter++;
+            gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                                       {"tileCounter": counter}});
          },
          'decTileCounter': function(user) {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-            gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
-                                    {"tileCounter": -1}});
+            var counter = currentGame.tileCounter;
+            counter--;
+            gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                                    {"tileCounter": counter}});
          },
          'incFlipped': function(user, tileId) {
             if (Meteor.user()) {

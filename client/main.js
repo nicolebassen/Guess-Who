@@ -370,6 +370,7 @@ Template.mainbox.events({
 					Meteor.call('incFlipped', Meteor.user(), id);
 					//allTiles[id].flipped++;	// switch flipped to true
 					Meteor.call('incTileCounter', Meteor.user());
+					console.log("Increment flipped " + userBoard[id].flipped);
 					
 					//tileCounter++;
 				} 
@@ -379,8 +380,9 @@ Template.mainbox.events({
 					//allTiles[id].flipped--; // switch flipped to false
 					Meteor.call('decTileCounter', Meteor.user());
 					//tileCounter--;
+					console.log("Decrement flipped " + userBoard[id].flipped);
 				}
-				console.log("FLipped: " + userBoard[id].flipped);
+				//console.log("FLipped: " + userBoard[id].flipped);
 				//Session.set('tileCounter', tileCounter + 1);
 			}
 			console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
