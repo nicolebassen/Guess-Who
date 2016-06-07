@@ -306,7 +306,7 @@
 			<!-- Display a list of games in progress or waiting for opponents -->
 			{{#each gamesList}}
 			  <li><span class="userInGame">{{player1.username}}</span> vs.
-			  {{#if matchReady this}}
+			  {{#if this.matchFull}}
 				<span class="userInGame">{{player2.username}}</span>
 			  {{else}}
 				{{#if playerInGame this}}

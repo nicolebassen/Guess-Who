@@ -49,18 +49,21 @@ Meteor.startup(() => {
         },
         // add a second user to the game
         'addToGame': function(user, gameId) {
-            //update user profile
-            Meteor.users.update({"_id": user._id}, {"$set": {"profile.partOfGame": gameId}});
-    
-            //remove from any existing game
-            gamesCollection.update({"player1._id": user._id}, {"$set": {"player1": null}});
-            gamesCollection.update({"player2._id": user._id}, {"$set": {"player2": null}});
-    
-            //add to game
-            var game = gamesCollection.findOne({"_id": gameId});
-            gamesCollection.update({"_id": game._id}, {"$set": {"player2": user}});
-
-            return game;
+            if (Meteor.user()) {
+               //update user profile
+               Meteor.users.update({"_id": user._id}, {"$set": {"profile.partOfGame": gameId}});
+       
+               //remove from any existing game
+               gamesCollection.update({"player1._id": user._id}, {"$set": {"player1": null}});
+               gamesCollection.update({"player2._id": user._id}, {"$set": {"player2": null}});
+       
+               //add to game
+               var game = gamesCollection.findOne({"_id": gameId});
+               gamesCollection.update({"_id": game._id}, {"$set": {"player2": user}});
+               gamesCollection.update({"_id": game._id}, {"$set": {"matchFull": true}});
+               return game;
+            }
+            
          },
          'removeGame': function(game) {
              Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
@@ -106,8 +109,45 @@ Meteor.startup(() => {
                                        {"tileCounter": -1}});
             }
          },
-         'flipTile': function(user) {
+         'incFlipped': function(user, tileId) {
+            if (Meteor.user()) {
+                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
+            }
             
+            if (currentGame != null) {
+               if (user.username == currentGame.player1.username) {
+                  var userBoard = currentGame.player1Board;
+                  userBoard[tileId].flipped = userBoard[tileId].flipped + 1;
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                     {"player1Board": userBoard}});
+               } else if (user.username == currentGame.player2.username) {
+                  var userBoard = currentGame.player2Board;
+                  userBoard[tileId].flipped = userBoard[tileId].flipped + 1;
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                     {"player2Board": userBoard}});
+               }
+                
+            }
+         },
+         'decFlipped': function(user, tileId) {
+            if (Meteor.user()) {
+                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
+            }
+            
+            if (currentGame != null) {
+               if (user.username == currentGame.player1.username) {
+                  var userBoard = currentGame.player1Board;
+                  userBoard[tileId].flipped = userBoard[tileId].flipped - 1;
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                     {"player1Board": userBoard}});
+               } else if (user.username == currentGame.player2.username) {
+                  var userBoard = currentGame.player2Board;
+                  userBoard[tileId].flipped = userBoard[tileId].flipped - 1;
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
+                     {"player2Board": userBoard}});
+               }
+                
+            }
          },
         'messageInsert': function (message, gameId) {
             gamesCollection.update({"_id": gameId}, {$push: {
