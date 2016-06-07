@@ -183,7 +183,7 @@ p{
     perspective:1000;
 }
 /* flip the pane when hovered */
-.flipped {
+.flipped, .flip1 {
     /*transform*/
     -webkit-transform:rotateY(180deg);
     -moz-transform:rotateY(180deg);
@@ -196,7 +196,7 @@ p{
     height:50px;
 }
 /* flip speed goes here */
-.flipper {
+.flipper, .flip0 {
     /*transition*/
     -webkit-transition:0.6s;
     -moz-transition:0.6s;

@@ -80,11 +80,15 @@ Meteor.startup(() => {
                   var tile = currentGame.player1Board[tileId];
                    gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player1Tile": tile}});
+                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set:
+                                       {"p1tileCounter": 0}});
                }
                if (currentGame.player2.username == user.username) {
                   var tile = currentGame.player2Board[tileId];
                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player2Tile": tile}});
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$set:
+                                       {"p2tileCounter": 0}});
                }
 
             //update the chosen card
@@ -175,15 +179,15 @@ Meteor.startup(() => {
             });
         },
         // increments the given field of the given user by 1
-        'winsIncrement': function (_id) {
-            Meteor.users.update({"_id": _id}, {
+        'winsIncrement': function (user) {
+            Meteor.users.update({"_id": user._id}, {
                 "$inc": {
                     "profile.wins" : 1
                 }
             });
         },
-        'lossesIncrement': function (_id) {
-            Meteor.users.update({"_id": _id}, {
+        'lossesIncrement': function (user) {
+            Meteor.users.update({"_id": user._id}, {
                 "$inc": {
                     "profile.losses" : 1
                 }
