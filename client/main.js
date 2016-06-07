@@ -384,7 +384,7 @@ Template.mainbox.events({
 				//Session.set('tileCounter', tileCounter + 1);
 			}
 			console.log("Tile counter: " + tileCounter);  // how many tiles are flipped over
-        } else {
+        } /*else {
 			allTiles[id].flipped++; // change flipped property of the last tile flipped
 			
 			// find the remaining (unflipped) tile and compare to opponent's tile
@@ -412,7 +412,7 @@ Template.mainbox.events({
 			
 			Session.set('flipTile', ''); // can no longer flip tiles
 			Session.set('gameOver', true);	// game is over
-		}
+		}*/
     },
 	// remove the current game from the collection
 	'click #leaveGame': function(event) {
@@ -662,8 +662,8 @@ Template.infoPanel.events({
 				gameStarted: false,
 				player1Tile: tiles[15],
 				player2Tile: tiles[15],
-				player1Board: copyTiles(),
-				player2Board: copyTiles(),
+				player1Board: jQuery.extend({}, tiles),
+				player2Board: jQuery.extend({}, tiles),
 				matchFull: false,
 				messages: [{name: "Guess Who Game", message: "Use this panel to send messages to your opponent!"}]
 			};
