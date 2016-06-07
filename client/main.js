@@ -373,6 +373,14 @@ Template.mainbox.events({
 						Meteor.call('lossesIncrement', currentUser._id);
 						Meteor.call('winsIncrement', opponent._id);
 					}
+					
+					// remove game from collection after 30 seconds
+					setTimeout(removeGameTimed, 30000);
+					
+					function removeGameTimed() {
+                        var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
+						Meteor.call('removeGame', currentGame);
+                    }
 				}
 			}
 			
