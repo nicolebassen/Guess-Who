@@ -94,19 +94,32 @@ Meteor.startup(() => {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-            var counter = currentGame.tileCounter;
-            counter++;
-            gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
-                                       {"tileCounter": counter}});
+            
+            if (currentGame.player1.username == user.username) {
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$inc:
+                                       {"p1tileCounter": 1}});
+               }
+                else if (currentGame.player2.username == user.username) {
+                  var tile = currentGame.player2Board[tileId];
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$inc:
+                                       {"p2tileCounter": 1}});
+               }
+
          },
          'decTileCounter': function(user) {
             if (Meteor.user()) {
                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
-            var counter = currentGame.tileCounter;
-            counter--;
-            gamesCollection.update({"_id": user.profile.partOfGame}, {"$set":
-                                    {"tileCounter": counter}});
+
+            if (currentGame.player1.username == user.username) {
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$inc:
+                                       {"p1tileCounter": -1}});
+               }
+                else if (currentGame.player2.username == user.username) {
+                  var tile = currentGame.player2Board[tileId];
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$inc:
+                                       {"p2tileCounter": -1}});
+               }
          },
          'incFlipped': function(user, tileId) {
             if (Meteor.user()) {

@@ -661,7 +661,8 @@ Template.infoPanel.events({
             //create the new game
 			var newGame = {
 				date: new Date(),
-				tileCounter: 0,
+				p1tileCounter: 0,
+				p2tileCounter: 0,
 				player1: user,
 				player2: null,
 				gameStarted: false,
