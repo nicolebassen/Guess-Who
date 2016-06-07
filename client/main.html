@@ -61,13 +61,15 @@
             	<!-- stats div -->
             	<div class="row">
 					{{#if currentUser.profile.partOfGame}}
-            		<h4 class="text-center userDisplayName">{{currentUser.username}}</h4>
-                    <p>Wins: {{currentUser.profile.wins}}<br />
-                    Losses: {{currentUser.profile.losses}}</p>
+            		<h4 class="text-center userDisplayName">{{currentGame.player1.username}}</h4>
+                    <p>Wins: {{currentGame.player1.profile.wins}}<br />
+                    Losses: {{currentGame.player1.profile.losses}}</p>
 					{{#if matchReady}}
-                    <h4 class="text-center userDisplayName">{{player2.username}}</h4>
-                    <p>Wins: {{player2.profile.wins}}<br />
-                    Losses: {{player2.profile.losses}}</p>
+                    <h4 class="text-center userDisplayName">{{currentGame.player2.username}}</h4>
+                    <p>Wins: {{currentGame.player2.profile.wins}}<br />
+                    Losses: {{currentGame.player2.profile.losses}}</p>
+					{{else}}
+					<h4>Waiting for an opponent...</h4>
 					{{/if}}
 					<br>
 					<button class="btn btn-default" id="leaveGame">Leave Game</button>
@@ -302,7 +304,7 @@
 				{{#if playerInGame this}}
 				  <span class="emptySlot">empty</span>
 				{{else}}
-				  <a href="#" class="emptySlot" id="{{_id}}"><b>join</b></a>
+				  <a href="#" class="joinGame" id="{{_id}}"><b>join</b></a>
 				{{/if}}
 			  {{/if}}
 			  </li>
