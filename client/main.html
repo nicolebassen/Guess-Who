@@ -52,27 +52,37 @@
             <div class="col-xs-3">
             	<!-- photo div -->
             	<div class="row">
+					{{#if matchReady}}
                     <div class="text-center">
                     <img src="{{myTile.frontImage}}" id="myTile">
                     <h4 class="text-center">{{myTile.name}}</h4><br><br>
                     </div>
+					{{else}}
+					<img src="qmark-red-tile.png" id="myTile">
+					{{/if}}
             	</div><!-- /photo div -->
             
             	<!-- stats div -->
-            	<div class="row">
+            	<div class="row" id="playersInfo">
+					<!-- if the current user is in a game -->
 					{{#if currentUser.profile.partOfGame}}
-            		<h4 class="text-center userDisplayName">{{currentGame.player1.username}}</h4>
-                    <p>Wins: {{currentGame.player1.profile.wins}}<br />
-                    Losses: {{currentGame.player1.profile.losses}}</p>
-					{{#if matchReady}}
-                    <h4 class="text-center userDisplayName">{{currentGame.player2.username}}</h4>
-                    <p>Wins: {{currentGame.player2.profile.wins}}<br />
-                    Losses: {{currentGame.player2.profile.losses}}</p>
-					{{else}}
-					<h4>Waiting for an opponent...</h4>
-					{{/if}}
-					<br>
-					<button class="btn btn-default" id="leaveGame">Leave Game</button>
+					  <!-- show current user data -->
+					  <h4 class="text-center userDisplayName">{{currentGame.player1.username}}</h4>
+					  <p>Wins: {{currentGame.player1.profile.wins}}<br />
+					  Losses: {{currentGame.player1.profile.losses}}</p><br>
+					  <!-- if two players are in the game -->
+					  {{#if matchReady}}
+						<!-- display the opponent's data -->
+						<h4 class="text-center userDisplayName">{{currentGame.player2.username}}</h4>
+						<p>Wins: {{currentGame.player2.profile.wins}}<br />
+						Losses: {{currentGame.player2.profile.losses}}</p>
+					  <!-- if only one player is in the game -->
+					  {{else}}
+						<h4><span class="whiteText">Waiting for an opponent...</span></h4>
+					  {{/if}}
+					  <br>
+					  <!-- deletes the current game -->
+					  <button class="btn btn-default" id="leaveGame">Leave Game</button>
 					{{/if}}
                 </div> <!-- /stats div -->
 				
@@ -82,12 +92,9 @@
             <!-- tiles div -->
             <div class="col-lg-9 col-md-9 col-sm-9" id="playerboard">
 
-            	<div class="row text-center">
-				  {{#if matchReady}}
+				{{#if matchReady}}
+				<div class="row text-center">
             		<h4>{{gameMessage}}</h4>
-				  {{else}}
-					<h4>{{preGameMessage}}</h4>
-				  {{/if}}
             	</div>
             	<!-- row #1 -->
             	<div class="row" id="playerTiles">
@@ -154,8 +161,16 @@
                         </div>
                 	{{/each}}
                 </div> <!-- /row #3 -->
-
+				
+			<!-- match is not ready -->
+			{{else}}
+			  <h2 class="text-center playGameTitle">Create or join a game to play!</h2>
+			{{/if}} <!-- /matchReady-->
             </div><!-- /tiles div -->
+			
+			
+			
+			
         </div>
     </div>
 </template>
@@ -193,7 +208,7 @@
             <b><span class="userDisplayName">{{this.name}}</span></b>: {{this.message}}<br>
         {{/each}}
     </ul>
-        </div>
+    </div>
 </template>
 
 
@@ -263,14 +278,7 @@
                 </div>
             {{/each}}
         </div> <!-- /row #3 -->
-        
-        <!-- display opponent's tile choice for testing     
-        <div class="row panel-body">
-        	<p class="text-center">
-        		The opponent chose {{opponentTile.name}} (tile id {{opponentTile.id}})
-        	</p>        
-        </div>
-		-->
+
 	</div>
 </template>
 

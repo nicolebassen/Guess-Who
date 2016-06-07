@@ -58,9 +58,6 @@ Meteor.startup(() => {
     
             //add to game
             var game = gamesCollection.findOne({"_id": gameId});
-    
-            game.player2 = user;
-    
             gamesCollection.update({"_id": game._id}, {"$set": {"player2": user}});
 
             return game;
@@ -70,19 +67,25 @@ Meteor.startup(() => {
              Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
              gamesCollection.remove({"_id": game._id});
          },
-        'setTile': function(user, tileId) {
-            var currentGame = gamesCollection.findOne({"_id": user.partOfGame});
+        'chooseTileFirstRow': function(user, tileId) {
+            if (Meteor.user()) {
+                var currentGame = gamesCollection.findOne({"_id": user.partOfGame});
+            }
             
             // determine which player's tile is being set and update the collection
-            if (currentGame.player1 == user) {
-               var tile = currentGame.player1Board.tileId;
-               console.log("TILE: " + tile);
-                gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
-                  "player1Tile": tile}});
-            } else if (currentGame.player2 == user) {
-               gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
-                  "player2Tile": tile}});
+            if (currentGame != null) {
+                if (currentGame.player1 == user) {
+                  var tile = currentGame.player1Board.firstRow[tileId];
+                  console.log("TILE: " + tile);
+                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
+                     "player1Tile": tile}});
+               } else if (currentGame.player2 == user) {
+                  var tile = currentGame.player2Board.firstRow[tileId];
+                  gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
+                     "player2Tile": tile}});
+               }
             }
+
             //update the chosen card
             //Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
          },

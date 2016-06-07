@@ -43,6 +43,13 @@ a.navOption {
     margin-bottom: 0;
 }
 
+.playGameTitle {
+    color: #ff4c4c;
+    font-size: 4.5em;
+    text-shadow: 2px 2px lightskyblue;
+    font-family: 'Raleway', sans-serif;
+}
+
 #loginTitle {
     color: #ffffb2;
     margin-left: 10px;
@@ -132,7 +139,7 @@ p{
 
 #playerboard{
     background-color: #fffff9;
-    max-height: 37em;
+    height: 37em;
     padding: 10px;
 
 }
@@ -155,6 +162,15 @@ p{
 
 #playerTiles{
     margin-left: 22px;
+}
+
+
+div#playersInfo { /* in main box */
+    margin-top: 25px;
+}
+
+.whiteText {
+    color: #ffffb2;
 }
 
 
@@ -267,6 +283,7 @@ a.userItem:hover, a#backToUsers {
 
 #userInfo {
     display: none;
+    padding-left: 10px;
 }
 
 .userDisplayName {
@@ -292,10 +309,6 @@ ul#displayGames li {
 span.userInGame {
     color: #6ca4c8;
     text-transform: capitalize;
-}
-
-.emptySlot {
-    color: gray;
 }
 
 /* High Scores */
