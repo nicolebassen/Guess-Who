@@ -67,27 +67,44 @@ Meteor.startup(() => {
              Meteor.users.update({"profile.partOfGame": game._id}, {$set: {"profile.partOfGame": null}});
              gamesCollection.remove({"_id": game._id});
          },
-        'chooseTileFirstRow': function(user, tileId) {
+        'chooseTile': function(user, tileId) {
             if (Meteor.user()) {
-                var currentGame = gamesCollection.findOne({"_id": user.partOfGame});
+                var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
             }
             
             // determine which player's tile is being set and update the collection
-            if (currentGame != null) {
-                if (currentGame.player1 == user) {
-                  var tile = currentGame.player1Board.firstRow[tileId];
-                  console.log("TILE: " + tile);
+                if (currentGame.player1.username == user.username) {
+                  var tile = currentGame.player1Board[tileId];
                    gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player1Tile": tile}});
-               } else if (currentGame.player2 == user) {
-                  var tile = currentGame.player2Board.firstRow[tileId];
+               } else if (currentGame.player2.username == user.username) {
+                  var tile = currentGame.player2Board[tileId];
                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player2Tile": tile}});
                }
-            }
 
             //update the chosen card
             //Meteor.users.update({"_id": user._id}, {"$set": {"profile.cardChosen": user.profile.cardChosen}});
+         },
+         'incTileCounter': function(user) {
+            if (Meteor.user()) {
+               var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
+            }
+            
+            if (currentGame != null) {
+                gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
+                                       {"tileCounter": 1}});
+            }
+         },
+         'decTileCounter': function(user) {
+            if (Meteor.user()) {
+               var currentGame = gamesCollection.findOne({"_id": user.profile.partOfGame});
+            }
+            
+            if (currentGame != null) {
+                gamesCollection.update({"_id": user.profile.partOfGame}, {"$inc":
+                                       {"tileCounter": -1}});
+            }
          },
          'flipTile': function(user) {
             
