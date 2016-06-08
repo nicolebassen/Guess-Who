@@ -80,15 +80,13 @@ Meteor.startup(() => {
                   var tile = currentGame.player1Board[tileId];
                    gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player1Tile": tile}});
-                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set:
-                                       {"p1tileCounter": 0}});
+
                }
                if (currentGame.player2.username == user.username) {
                   var tile = currentGame.player2Board[tileId];
                   gamesCollection.update({"_id": user.profile.partOfGame}, {$set: {
                      "player2Tile": tile}});
-                  gamesCollection.update({"_id": user.profile.partOfGame}, {$set:
-                                       {"p2tileCounter": 0}});
+
                }
 
             //update the chosen card

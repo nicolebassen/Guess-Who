@@ -7,6 +7,10 @@ body{
     background-color: lightskyblue;
 }
 
+h1, h2, h3 {
+    font-family: "Raleway", sans-serif;
+}
+
 #navigationBar {
     color: white;
     margin-bottom: 10px;
@@ -191,7 +195,7 @@ p{
     -o-transform:rotateY(180deg);
     transform:rotateY(180deg);
 }
-.flip-container, .front, .back{
+.flip-container, .front, .back {
     width:50px;
     height:50px;
 }
@@ -223,11 +227,11 @@ p{
     left:0;
 }
 /* front pane, placed above back */
-.front{
+.front {
     z-index:2;
 }
 /* back, initially hidden pane */
-.back{
+.back {
     /*transform*/
     -webkit-transform:rotateY(180deg);
     -moz-transform:rotateY(180deg);

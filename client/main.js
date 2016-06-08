@@ -303,10 +303,15 @@ Template.mainbox.helpers({
     }
 });
 
+function toggleImage() {
+    this.classList.toggle('flipped')
+}
+
 Template.mainbox.events({
 	
     'click .playerTile': function(event) {
 		var id = event.currentTarget.id;
+		event.stopImmediatePropagation();
 		
 		// store current game document
 		if (Meteor.user()) {
@@ -320,7 +325,7 @@ Template.mainbox.events({
 				var userTileCounter = currentGame.p1tileCounter;
 				var oppTileCounter = currentGame.p2tileCounter;
                 var userBoard = currentGame.player1Board;
-				var opponentTIle = currentGame.player2Tile;
+				var opponentTile = currentGame.player2Tile;
 				var userTile = currentGame.player1Tile;
             } else if (Meteor.user().username == currentGame.player2.username) {
 				var currentuser = currentGame.player2;
@@ -333,17 +338,20 @@ Template.mainbox.events({
             }
         }
 		
-		if (userTileCounter < 15) {
-			if (userTileCounter == 0) {
+		if (userTileCounter < 14) {
+			//is this the first tile selection?
+			if (userTileCounter == -1) {
 				console.log("User tile counter: " + userTileCounter);
 				// set the tile that the player is choosing
                 Meteor.call('chooseTile', Meteor.user(), id);
 				Meteor.call('incTileCounter', Meteor.user());
 				
-				Session.set('gameMessage', "Let's play!");
-			} else {
-				// set tile flipped property to true
 				Session.set('flipTile', "this.classList.toggle('flipped')");
+				//Session.set('gameMessage', "Let's play!");
+			} else {
+				console.log('flipped');
+				// set tile flipped property to true
+				//Session.set('flipTile', "this.classList.toggle('back')");
 				Session.set('gameMessage', "");
 				console.log("Flipped?" + userBoard[id].flipped);
 				
@@ -363,57 +371,51 @@ Template.mainbox.events({
 			console.log("Player 1 Tile counter: " + userTileCounter);  // how many tiles are flipped over
 			console.log("Player 2 Tile counter: " + oppTileCounter);
         } else {
-			console.log("Flipped before?" + userBoard[id].flipped);
-			Meteor.call('incFlipped', Meteor.user(), id); // change flipped property of the last tile flipped
-			console.log("Flipped after?" + userBoard[id].flipped);
+			// NOT WORKING
+			Meteor.call('incFlipped', Meteor.user(), id, function (error, result) {
+				// find the remaining (unflipped) tile and compare to opponent's tile
+				for (var i = 0; i < 15; i++) {
+					console.log(userBoard[i]);
+					if (userBoard[i].flipped == 0) {
+						console.log(opponentTile);
+	
+						if (userBoard[i].id == opponentTile.id) {
+							Session.set('gameMessage', "That is your opponent's tile. You win!");
+							alert("You win! " + opponentTile.name + ", Your tile: " + userBoard[i].name);
+							if (currentUser != null && opponent != null) {
+								// update win count for user and loss count for opponent
+								Meteor.call('winsIncrement', currentUser);
+								Meteor.call('lossesIncrement', opponent);
+							}
+							
+						} else {
+							Session.set('gameMessage', "That is not your opponent's tile. You lose!");
+							alert("You lose! " + opponentTile.name + ", Your tile: " + userBoard[i].name);
+							if (currentUser != null && opponent != null) {
+								// update loss count for user and win count for opponent
+								Meteor.call('lossesIncrement', currentUser);
+								Meteor.call('winsIncrement', opponent);
+							}
+						}
+					}
+				}
+				
+				// remove game from collection after 30 seconds
+				setTimeout(function() { Meteor.call('removeGame', currentGame); }, 30000);
+				setTimeout(function() { Session.set('gameMessage', ""); }, 30000);
+				Session.set('flipTile', ''); // can no longer flip tiles
+			}); // change flipped property of the last tile flipped
 			
 			console.log("UTC:" + userTileCounter);
-			console.log(userBoard[14]);
 			
-			// find the remaining (unflipped) tile and compare to opponent's tile
-			for (var i = 0; i < 15; i++) {
-				console.log(userBoard[i]);
-				if (userBoard[i].flipped == 0) {
-					console.log(opponentTile);
-					if (userBoard[i].id == opponentTile.id) {
-						Session.set('gameMessage', "That is your opponent's tile. You win!");
-						alert("You win! " + opponentTile.name + ", Your tile: " + userBoard[i].name);
-						if (currentUser != null && opponent != null) {
-                            // update win count for user and loss count for opponent
-							Meteor.call('winsIncrement', currentUser);
-							Meteor.call('lossesIncrement', opponent);
-                        }
-						
-					} else {
-						Session.set('gameMessage', "That is not your opponent's tile. You lose!");
-						alert("You lose! " + opponentTile.name + ", Your tile: " + userBoard[i].name);
-						if (currentUser != null && opponent != null) {
-                            // update loss count for user and win count for opponent
-							Meteor.call('lossesIncrement', currentUser);
-							Meteor.call('winsIncrement', opponent);
-                        }
-					}
-					
-					// remove game from collection after 30 seconds
-					/*
-					setTimeout(removeGameTimed, 30000);
-					
-					function removeGameTimed() {
-                        var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
-						Meteor.call('removeGame', currentGame);
-                    }*/
-				}
-			}
 			
-			setTimeout(function() { Meteor.call('removeGame', currentGame); }, 5000);
-			setTimeout(function() { Session.set('gameMessage', ""); }, 5000);
-			Session.set('flipTile', ''); // can no longer flip tiles
 		}
     },
 	// remove the current game from the collection
 	'click #leaveGame': function(event) {
 		var currentGame = gamesCollection.findOne({"_id": Meteor.user().profile.partOfGame});
 		Meteor.call('removeGame', currentGame);
+		Session.set('flipTile', '');
 	}
 });
 
@@ -649,14 +651,12 @@ Template.infoPanel.events({
 
 		// if user is not in a match
 		if (user.profile.partOfGame == null) {
-			// make copies of the tiles
-			var player1Tiles = jQuery.extend(true, {}, tiles);
-			var player2Tiles = jQuery.extend(true, {}, tiles);
+
             //create the new game
 			var newGame = {
 				date: new Date(),
-				p1tileCounter: 0,
-				p2tileCounter: 0,
+				p1tileCounter: -1,
+				p2tileCounter: -1,
 				player1: user,
 				player2: null,
 				gameStarted: false,
@@ -694,9 +694,8 @@ Template.infoPanel.events({
             var user = Meteor.user();
 			if (user.profile.partOfGame == null) {
 				var currentGame = gamesCollection.findOne({"_id": gameId});
-				var opponent = currentGame.player1;
-				Session.set('opponent', opponent);
 				Meteor.call('addToGame', user, gameId);
+				//Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 			}
         }
 			
@@ -712,6 +711,8 @@ Template.registerHelper('matchReady', function() {
 
 		if (match)
 		{
+			
+			
 			//check if two players are in the match
 			return match.player1 && match.player2;
 		}	
@@ -742,7 +743,7 @@ Template.registerHelper('playerInGame', function() {
  ***********************/
 Template.highScores.helpers({
 	highScoresUsers: function() {
-		return Meteor.users.find({}, {"sort": {"profile.wins": -1}, "limit": 10});
+		return Meteor.users.find({}, {"sort": {"profile.wins": -1, "profile.losses": 1}, "limit": 10});
 	}
 });
 

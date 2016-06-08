@@ -102,15 +102,14 @@
                 	<div class="col-lg-2 col-md-2 col-sm-2">
                     	<div class="box" id="player-row">
                             <div class="flip-container">
-                                <div class="flipper" onclick="{{flipTile}}">
-                                    <div class="front">
+                                <div class="flipper">
+                                    {{#if this.flipped}}
+										<img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
+                                    {{else}}
                                         <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
                                         <p>{{this.name}}</p>
-                                    </div>
-                                    <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
-                                    </div>
+                                    {{/if}}
                                 </div>
                             </div>
                     	</div>
@@ -124,15 +123,16 @@
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
-                                    <div class="flipper" onclick="{{flipTile}}">
-                                        <div class="front">
-                                        <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
-                                    </div>
-                                    <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
-                                        <p>{{this.name}}</p>
-                                    </div>
+                                    <div class="flipper">
+                                        <div class="flipper">
+										  {{#if this.flipped}}
+											  <img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+											  <p>{{this.name}}</p>
+										  {{else}}
+											  <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
+											  <p>{{this.name}}</p>
+										  {{/if}}
+									   </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,15 +146,16 @@
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="box" id="player-row">
                                 <div class="flip-container">
-                                    <div class="flipper" onclick="{{flipTile}}">
-                                        <div class="front">
+                                    <div class="flipper" >
+                                        <div class="flipper">
+                                    {{#if this.flipped}}
+										<img src="{{this.backImage}}" class="playerTile" id="{{this.id}}">
+                                        <p>{{this.name}}</p>
+                                    {{else}}
                                         <img src="{{this.frontImage}}" class="playerTile" id="{{this.id}}">
                                         <p>{{this.name}}</p>
-                                    </div>
-                                    <div class="back">
-                                        <img src="{{this.backImage}}" class="playerTile"  id="{{this.id}}">
-                                        <p>{{this.name}}</p>
-                                    </div>
+                                    {{/if}}
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,13 +226,13 @@
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="box" id="opponent-row">
                         <div class="flip-container">
-                            <div class="flip{{this.flipped}}">
-                                <div class="front">
-                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
-                                </div>
-                                <div class="back">
+                            <div class="">
+                                {{#if this.flipped}}
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
-                                </div>
+                                {{else}}
+                                    
+									<img src="{{this.opponentFrontImage}}" width="50" height="70">
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -245,13 +246,13 @@
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="box" id="opponent-row">
                         <div class="flip-container">
-                            <div class="flip{{this.flipped}}">
-                                <div class="front">
-                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
-                                </div>
-                                <div class="back">
+                            <div class="">
+                                {{#if this.flipped}}
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
-                                </div>
+                                {{else}}
+                                    
+									<img src="{{this.opponentFrontImage}}" width="50" height="70">
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -265,13 +266,13 @@
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="box" id="opponent-row">
                         <div class="flip-container">
-                            <div class="flip{{this.flipped}}">
-                                <div class="front">
-                                    <img src="{{this.opponentFrontImage}}" width="50" height="70">
-                                </div>
-                                <div class="back">
+                            <div class="">
+                                {{#if this.flipped}}
                                     <img src="{{this.opponentBackImage}}" width="50" height="70">
-                                </div>
+                                {{else}}
+                                    
+									<img src="{{this.opponentFrontImage}}" width="50" height="70">
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -484,7 +485,8 @@
 	
 	<div class="panel panel-default" id="highScoresPanel">
 	  <div class="col-xs-10 col-xs-offset-1">
-	  <h3>High Scores</h3>
+	  <h2>High Scores</h2>
+	  <h4>Top Ten</h4>
           <table class="w3-table w3-striped w3-bordered w3-card-4">
               <thead>
               <tr class="w3-blue">
