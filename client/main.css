@@ -109,6 +109,7 @@ p{
     max-height: 10em;
     max-width: 6em;
     box-shadow: 1px 1px 2px gray;
+    margin-bottom: 2px;
 }
 
 #mainbox #myTile {
