@@ -105,6 +105,9 @@ Meteor.startup(() => {
                   gamesCollection.update({"_id": user.profile.partOfGame}, {$inc:
                                        {"p2tileCounter": 1}});
                }
+               if (currentGame.p1tileCounter >= 14 || currentGame.p2tileCounter >= 14) {
+                 gamesCollection.update({"id": user.profile.partOfGame}, {"gameOver": true});
+               }
 
          },
          'decTileCounter': function(user) {
