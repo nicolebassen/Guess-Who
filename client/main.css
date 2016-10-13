@@ -31,6 +31,18 @@ a.navOption {
     color: white;
 }
 
+#login-buttons {
+    color: black;
+}
+
+a#forgot-password-link.additional-link {
+    color: black;
+}
+
+a#signup-link.additional-link {
+    color: black;
+}
+
 #navigationBar a#mainTitle {
     color: #ffffb2;
     font-size: 2.5em;

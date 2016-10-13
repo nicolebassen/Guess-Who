@@ -174,7 +174,7 @@ Session.set('tile', tiles); // store tiles data in a session
 var allTiles = Session.get('tile'); // store tiles session in a variable
 
 // start game, results of game (win/loss)
-Session.set('gameMessaage', "Choose a tile for your opponent to guess.");
+Session.set('gameMessage', "Choose a tile for your opponent to guess.");
 
 // onclick event to flip a tile
 var flipTile = Session.set('flipTile', "");

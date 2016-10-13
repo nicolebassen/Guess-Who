@@ -1,5 +1,3 @@
-
-
 // define routes
 
 Router.route('/', function() {
@@ -22,15 +20,29 @@ Router.route('/highscores', function() {
     this.render('highScores');
 });
 
-Router.onBeforeAction(function() {
-    // make sure the user is logged in
-    if (!Meteor.user() && !Meteor.loggingIn()) {
-        // send to login page if not logged in or logging in
-        Router.go('/login');
+if (Meteor.isClient) {
+    Router.onBeforeAction(function() {
+        // make sure the user is logged in
+        if (!Meteor.user() && !Meteor.loggingIn()) {
+            // send to login page if not logged in or logging in
+            Router.go('/login');
+        } else {
+            // must include
+            this.next(); // tells the router to continue with its business
+        }
+    }, {
+        except: ['login', 'home']
+    });
+}
+
+if (Meteor.isClient) {
+    Router.onBeforeAction(function() {
+    if (Meteor.user()) {
+        Router.go('/');
     } else {
-        // must include
-        this.next(); // tells the router to continue with its business
+        this.next();
     }
 }, {
-    except: ['login', 'home']
+    only: ['login']
 });
+}
